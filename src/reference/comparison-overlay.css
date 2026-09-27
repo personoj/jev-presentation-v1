@@ -2,6 +2,7 @@
 .comparison-clock{position:absolute;width:1px;height:1px;visibility:hidden;pointer-events:none}
 .comparison-backdrop{position:absolute;inset:0;background:#b0a79330;pointer-events:none}
 .comparison-sheet{position:absolute;inset:0;transform-origin:74% 62%;outline:0;pointer-events:none;will-change:transform,opacity}
+.comparison-overlay .comparison-sheet:focus{outline:none}
 .comparison-sheet button,.comparison-sheet a{pointer-events:auto}
 .comparison-paper-fallback{position:absolute;left:72px;top:87px;width:1528px;height:772px;background:#f6f1e7 url('/reference-art/paper-field.png') center/cover;border-radius:4px;box-shadow:0 20px 40px #3d302340;pointer-events:auto}
 .comparison-paper{position:absolute;inset:0;width:1672px;height:941px;pointer-events:none;user-select:none}
