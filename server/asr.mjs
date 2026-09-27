@@ -5,7 +5,7 @@ export function createAsrRelay(config, WebSocketImpl = WebSocket) {
   let quotaStopped = false;
   return function relay(client) {
     let upstream, started = false, ready = false, stopping = false, finished = false;
-    let connectTimer, finishTimer;
+    let connectTimer, finishTimer,lastPartial='';
     const send = value => { if (client.readyState === WebSocket.OPEN) client.send(JSON.stringify(value)); };
     const upstreamSend = value => { if (upstream?.readyState === WebSocket.OPEN) upstream.send(JSON.stringify({ event_id: randomUUID(), ...value })); };
     const cleanup = () => { clearTimeout(connectTimer); clearTimeout(finishTimer); clearTimeout(sessionTimer); if (upstream && upstream.readyState !== WebSocket.CLOSED) upstream.terminate(); };
@@ -22,7 +22,7 @@ export function createAsrRelay(config, WebSocketImpl = WebSocket) {
       if (binary) {
         if (!ready || stopping) return;
         if (data.length > 65536 || data.length % 2 !== 0) return fail({code:'BAD_AUDIO',message:'请发送 PCM16 单声道 16kHz 音频块。'});
-        if (upstream.bufferedAmount > 1024 * 1024) return fail({code:'AUDIO_BACKPRESSURE',message:'音频发送积压，请重新开始录音。'});
+        if (upstream.bufferedAmount > 24000) return fail({code:'AUDIO_BACKPRESSURE',message:'云端音频发送积压，请检查网络后重新开始录音。'});
         upstreamSend({ type:'input_audio_buffer.append', audio: data.toString('base64') });
         return;
       }
@@ -41,7 +41,7 @@ export function createAsrRelay(config, WebSocketImpl = WebSocket) {
         upstream.on('message', raw => {
           let event; try { event = JSON.parse(raw.toString()); } catch { return fail({code:'INVALID_RESPONSE',message:'语音服务返回格式异常。'}); }
           if (event.type === 'session.updated') { ready = true; clearTimeout(connectTimer); send({type:'ready',model:config.models.asr}); }
-          if (event.type === 'conversation.item.input_audio_transcription.text') send({type:'partial',text:(event.text || '')+(event.stash || ''),segmentId:event.item_id});
+          if (event.type === 'conversation.item.input_audio_transcription.text') {const text=(event.text||'')+(event.stash||''),key=JSON.stringify([event.item_id,text,event.text||'']);if(key!==lastPartial){lastPartial=key;send({type:'partial',text,stableText:event.text||'',segmentId:event.item_id})}}
           if (event.type === 'conversation.item.input_audio_transcription.completed') send({type:'final',text:event.transcript || '',segmentId:event.item_id});
           if (event.type === 'error' || event.type === 'conversation.item.input_audio_transcription.failed') fail(upstreamError(0, event.error || event));
           if (event.type === 'session.finished') { finished = true; send({type:'stopped'}); cleanup(); client.close(1000); }

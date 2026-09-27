@@ -9,13 +9,27 @@ export function normalized(text: string) {
 const soundGroups = ['的地得', '在再', '是事式试', '以已', '做作', '音因阴', '义意易', '识时实', '跟根', '型形'];
 const substitution = (a: string, b: string) => a === b ? 0 : soundGroups.some(g => g.includes(a) && g.includes(b)) ? 0.45 : 1;
 export type Candidate = {start: number; end: number; text: string; similarity: number; exact: boolean; distance: number};
+/** A two/three-character preview is allowed only at the expected reading head,
+ * never by finding a coincidental short word elsewhere in the manuscript. */
+export function findShortPreview(script:string,heard:string,anchor:number):Candidate|null{
+  const source=normalized(script),query=normalized(heard).text;
+  if(query.length<2||query.length>=4)return null;
+  const index=source.positions.findIndex(p=>p>=anchor);if(index<0)return null;
+  if(!source.text.startsWith(query,index))return null;
+  const start=source.positions[index],end=source.positions[index+query.length-1]+1;
+  return {start,end,text:script.slice(start,end),exact:true,similarity:1,distance:Math.abs(start-anchor)};
+}
 export function findCandidate(script: string, heard: string, anchor: number): Candidate | null {
   const source = normalized(script), query = normalized(heard).text;
   if (query.length < 4 || query.length > 350) return null;
   const a = source.positions.findIndex(p => p >= anchor);
   const center = a < 0 ? source.text.length : a;
-  const low = Math.max(0, center - 45), high = Math.min(source.text.length, center + 150);
+  const low = Math.max(0, center - 45), high = Math.min(source.text.length, center + Math.max(150,query.length+24));
   const target = source.text.slice(low, high), m = query.length, n = target.length;
+  // Most streaming revisions are exact prefixes; avoid the edit-distance matrix.
+  let exactIndex=target.indexOf(query),nearest=-1,distance=Infinity;
+  while(exactIndex>=0){const d=Math.abs(source.positions[low+exactIndex]-anchor);if(d<distance){nearest=exactIndex;distance=d}exactIndex=target.indexOf(query,exactIndex+1)}
+  if(nearest>=0&&(distance===0||(distance<=4&&m<=100))){const start=source.positions[low+nearest],end=source.positions[low+nearest+m-1]+1;return {start,end,text:script.slice(start,end),similarity:1,exact:true,distance}}
   let prev = new Float64Array(n + 1), starts = Int32Array.from({length: n + 1}, (_, i) => i);
   for (let i = 1; i <= m; i++) {
     const row = new Float64Array(n + 1), nextStarts = new Int32Array(n + 1); row[0] = i;

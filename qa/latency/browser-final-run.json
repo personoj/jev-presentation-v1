@@ -1,0 +1,13 @@
+{
+  "firstCursor": {
+    "at": 1790506257483,
+    "confirmed": "0",
+    "paused": "false",
+    "position": "2"
+  },
+  "final": {
+    "at": 1790506287788,
+    "panel": "×\n转写与稿件\n\n已确认 · 对应原文 · 确认位置 32\n\n然后继续按照稿件朗读。\n\n首段 ASR\n461 ms\n最近更新间隔\n8 ms\n本地匹配\n0.4 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "reading": "<div class=\"r-reading-manuscript\" data-position=\"32\" data-confirmed=\"32\" data-paused=\"false\" data-settled=\"true\" aria-label=\"逐字跟读稿件\"><div class=\"r-reading-content\"><div class=\"r-reading-guides\" aria-h"
+  }
+}

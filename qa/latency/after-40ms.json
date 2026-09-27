@@ -1,0 +1,426 @@
+{
+  "summary": {
+    "name": "after-40ms",
+    "source": "Existing synthetic WAV streamed in real time to live cloud ASR; not live microphone",
+    "chunkMs": 40,
+    "audioSeconds": 12.65,
+    "success": true,
+    "connectionReadyMs": 224,
+    "firstTextAfterAudioMs": 469,
+    "meaningfulUpdates": 31,
+    "updateGapMedianMs": 376,
+    "updateGapP95Ms": 916,
+    "finalText": [
+      "我们使用语音识别模型。",
+      "把声音转换成文字。",
+      "下面先停一下。",
+      "我补充一个例子。",
+      "然后继续按照稿件朗读。"
+    ]
+  },
+  "events": [
+    {
+      "type": "ready",
+      "model": "qwen3-asr-flash-realtime",
+      "atMs": 224
+    },
+    {
+      "type": "partial",
+      "text": "我们",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 693
+    },
+    {
+      "type": "partial",
+      "text": "我们。",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 696
+    },
+    {
+      "type": "partial",
+      "text": "我们是",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 1008
+    },
+    {
+      "type": "partial",
+      "text": "我们是。",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 1014
+    },
+    {
+      "type": "partial",
+      "text": "我们使用",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 1662
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 1668
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音。",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 1674
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 2356
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 2364
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型。",
+      "stableText": "",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 2370
+    },
+    {
+      "type": "final",
+      "text": "我们使用语音识别模型。",
+      "segmentId": "item_YxA7iavdME8Nyfs7t4y2u",
+      "atMs": 2938
+    },
+    {
+      "type": "partial",
+      "text": "把",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 3280
+    },
+    {
+      "type": "partial",
+      "text": "把。",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 3286
+    },
+    {
+      "type": "partial",
+      "text": "把声音",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 3617
+    },
+    {
+      "type": "partial",
+      "text": "把声音。",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 3625
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 4265
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换。",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 4271
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 4953
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成文字",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 4960
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成文字。",
+      "stableText": "",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 4966
+    },
+    {
+      "type": "final",
+      "text": "把声音转换成文字。",
+      "segmentId": "item_WTMomsYwh8no2Gd7ddF3T",
+      "atMs": 5137
+    },
+    {
+      "type": "partial",
+      "text": "下",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 5947
+    },
+    {
+      "type": "partial",
+      "text": "下。",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 5954
+    },
+    {
+      "type": "partial",
+      "text": "下面",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6258
+    },
+    {
+      "type": "partial",
+      "text": "下面。",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6268
+    },
+    {
+      "type": "partial",
+      "text": "下面先",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6894
+    },
+    {
+      "type": "partial",
+      "text": "下面先停",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6900
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6907
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一。",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 6913
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 7437
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下。",
+      "stableText": "",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 7445
+    },
+    {
+      "type": "final",
+      "text": "下面先停一下。",
+      "segmentId": "item_RmKACUzpSjC7nNe1QL5ZL",
+      "atMs": 7451
+    },
+    {
+      "type": "partial",
+      "text": "我",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 7813
+    },
+    {
+      "type": "partial",
+      "text": "我。",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 7819
+    },
+    {
+      "type": "partial",
+      "text": "我补充",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 8137
+    },
+    {
+      "type": "partial",
+      "text": "我补充。",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 8144
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 8784
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 8791
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例。",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 8797
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例子",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 9237
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例子。",
+      "stableText": "",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 9244
+    },
+    {
+      "type": "final",
+      "text": "我补充一个例子。",
+      "segmentId": "item_K8pA3JabtmMBJ48bB53Du",
+      "atMs": 9251
+    },
+    {
+      "type": "partial",
+      "text": "然",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 10149
+    },
+    {
+      "type": "partial",
+      "text": "然。",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 10156
+    },
+    {
+      "type": "partial",
+      "text": "然后",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 10452
+    },
+    {
+      "type": "partial",
+      "text": "然后。",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 10459
+    },
+    {
+      "type": "partial",
+      "text": "然后继续",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11109
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11115
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按。",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11123
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11793
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11799
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件了",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11806
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件了。",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 11813
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 12493
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗读",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 12499
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗读。",
+      "stableText": "",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 12505
+    },
+    {
+      "type": "final",
+      "text": "然后继续按照稿件朗读。",
+      "segmentId": "item_Wv7lyxxnV9hOKVUbQh476",
+      "atMs": 12512
+    },
+    {
+      "type": "stopped",
+      "atMs": 12933
+    }
+  ]
+}

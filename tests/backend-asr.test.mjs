@@ -15,6 +15,12 @@ test('ASR relay combines confirmed text and revised stash, preserves segment IDs
  event(upstream,{type:'conversation.item.input_audio_transcription.text',item_id:'segment-1',text:'我们',stash:'使用语义识别'});
  event(upstream,{type:'conversation.item.input_audio_transcription.text',item_id:'segment-1',text:'我们使用',stash:'语音识别'});
  assert.equal(client.messages.at(-1).text,'我们使用语音识别');assert.equal(client.messages.at(-1).segmentId,'segment-1');
+ assert.equal(client.messages.at(-1).stableText,'我们使用');
+ const count=client.messages.length;
+ event(upstream,{type:'conversation.item.input_audio_transcription.text',item_id:'segment-1',text:'我们使用',stash:'语音识别'});
+ assert.equal(client.messages.length,count,'identical revisions are deduplicated');
+ event(upstream,{type:'conversation.item.input_audio_transcription.text',item_id:'segment-1',text:'我们使用语音',stash:'识别'});
+ assert.equal(client.messages.length,count+1,'a changed stable prefix must still arrive');
  event(client,{type:'stop'});assert.equal(upstream.messages.at(-1).type,'session.finish');
  event(upstream,{type:'conversation.item.input_audio_transcription.completed',item_id:'segment-1',transcript:'我们使用语音识别。'});
  assert.equal(client.messages.at(-1).type,'final');

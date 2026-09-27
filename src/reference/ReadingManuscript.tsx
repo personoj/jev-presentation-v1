@@ -1,9 +1,10 @@
-import {useLayoutEffect,useMemo,useRef,useState} from 'react';
-import {locateReadingCharacter,scriptCharacters} from '../features/alignment/reading-visual';
+import {memo,useLayoutEffect,useMemo,useRef,useState} from 'react';
+import {locateReadingCharacter,scriptCharacters,type ReadingRect} from '../features/alignment/reading-visual';
 
-export function ReadingManuscript({script,position,confirmed,paused,settled}:{script:string;position:number;confirmed:number;paused:boolean;settled:boolean}){
+export const ReadingManuscript=memo(function ReadingManuscript({script,position,confirmed,paused,settled}:{script:string;position:number;confirmed:number;paused:boolean;settled:boolean}){
  const content=useRef<HTMLDivElement>(null),viewport=useRef<HTMLDivElement>(null);
- const [geometry,setGeometry]=useState<ReturnType<typeof locateReadingCharacter>>(null);
+ const [rectangles,setRectangles]=useState<ReadingRect[]>([]);
+ const geometry=useMemo(()=>locateReadingCharacter(rectangles,position),[rectangles,position]);
  const rows=useMemo(()=>{let offset=0;return script.split('\n').map(text=>{const chars=scriptCharacters(text).map(char=>({...char,start:char.start+offset,end:char.end+offset}));offset+=text.length+1;return chars})},[script]);
  useLayoutEffect(()=>{
   const element=content.current;if(!element)return;
@@ -16,12 +17,12 @@ export function ReadingManuscript({script,position,confirmed,paused,settled}:{sc
     const box=span.getBoundingClientRect();
     return {start:Number(span.dataset.scriptStart),end:Number(span.dataset.scriptEnd),left:(box.left-origin.left)/scale,right:(box.right-origin.left)/scale,top:(box.top-origin.top)/scale,bottom:(box.bottom-origin.top)/scale};
    });
-   setGeometry(locateReadingCharacter(rects,position));
+   setRectangles(rects);
   };
   measure();const observer=new ResizeObserver(measure);observer.observe(element);
   window.addEventListener('resize',measure);document.fonts.ready.then(measure);
   return()=>{disposed=true;observer.disconnect();window.removeEventListener('resize',measure)};
- },[script,position]);
+ },[script]);
  useLayoutEffect(()=>{
   const element=viewport.current;if(!element||!geometry)return;
   if(geometry.top<element.scrollTop||geometry.top+geometry.height>element.scrollTop+element.clientHeight){
@@ -42,4 +43,4 @@ export function ReadingManuscript({script,position,confirmed,paused,settled}:{sc
    ].filter(Boolean).join(' ')}>{char}</span>)}</div>)}
   </div>
  </div>
-}
+});

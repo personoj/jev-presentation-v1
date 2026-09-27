@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {openMicrophone, ASR_STOP_TIMEOUT_MS} from '../src/features/alignment/microphone.ts';
+import {openMicrophone, ASR_STOP_TIMEOUT_MS, ASR_MAX_QUEUE_BYTES} from '../src/features/alignment/microphone.ts';
 
 function browser(t:any) {
   const originals = new Map<string,PropertyDescriptor|undefined>();
   const replace = (name:string,value:unknown) => {originals.set(name,Object.getOwnPropertyDescriptor(globalThis,name));Object.defineProperty(globalThis,name,{value,configurable:true,writable:true});};
   const track={stops:0,stop(){this.stops++;}};
-  class Node {port:any={onmessage:null};disconnects=0;gain={value:1};connect(target:any){return target;}disconnect(){this.disconnects++;}}
+  class Node {static nodes:Node[]=[];constructor(){Node.nodes.push(this)}port:any={onmessage:null};disconnects=0;gain={value:1};connect(target:any){return target;}disconnect(){this.disconnects++;}}
   class Context {
     static current:Context;state='running';destination=new Node();audioWorklet={addModule:async()=>{}};closed=0;
     constructor(){Context.current=this;}createMediaStreamSource(){return new Node();}createGain(){return new Node();}async resume(){}async close(){this.closed++;this.state='closed';}
@@ -20,8 +20,21 @@ function browser(t:any) {
   replace('navigator',{mediaDevices:{getUserMedia:async()=>({getTracks:()=>[track]})}});
   replace('AudioContext',Context);replace('AudioWorkletNode',Node);replace('WebSocket',Socket);replace('location',{protocol:'http:',host:'localhost:5178'});
   t.after(()=>{for(const [name,descriptor]of originals){if(descriptor)Object.defineProperty(globalThis,name,descriptor);else Reflect.deleteProperty(globalThis,name);}});
-  return {track,Socket,Context};
+  return {track,Socket,Context,Node};
 }
+
+test('stop sends the remaining worklet PCM before finishing the upstream session',async t=>{
+ const {Socket,Node}=browser(t);const session=await openMicrophone(()=>{},()=>{});
+ const ws=Socket.current,worklet=Node.nodes.find(n=>n.port.onmessage)!;ws.receive({type:'ready'});
+ const pcm=new ArrayBuffer(100);worklet.port.postMessage=()=>{worklet.port.onmessage({data:{pcm,level:0}});worklet.port.onmessage({data:{flushed:true}})};
+ session.stop();assert.equal(ws.sent[0],pcm);assert.equal(JSON.parse(ws.sent[1]).type,'stop');session.dispose();
+});
+test('excessive audio backlog stops visibly instead of silently dropping words',async t=>{
+ const {Socket,Node,track}=browser(t),events:any[]=[];await openMicrophone(e=>events.push(e),()=>{});
+ const ws=Socket.current;ws.receive({type:'ready'});ws.bufferedAmount=ASR_MAX_QUEUE_BYTES+1;
+ Node.nodes.find(n=>n.port.onmessage)!.port.onmessage({data:{pcm:new ArrayBuffer(1280),level:0}});
+ assert.equal(events.at(-1).code,'AUDIO_BACKPRESSURE');assert.equal(ws.readyState,3);assert.equal(track.stops,1);assert.equal(ws.sent.length,0);
+});
 
 test('stop accepts a final after the old five-second deadline and completes only on server stopped',async t=>{
   t.mock.timers.enable({apis:['setTimeout']});
