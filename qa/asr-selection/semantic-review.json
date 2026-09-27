@@ -1,0 +1,104 @@
+[
+  {
+    "name": "同音错字",
+    "text": "我按搞件朗读，标记就跟随我的位置。",
+    "candidate": {
+      "start": 0,
+      "end": 16,
+      "text": "我按稿件朗读，标记就跟随我的位置",
+      "similarity": 0.9333333333333333,
+      "exact": false,
+      "distance": 0
+    },
+    "expected": true,
+    "accepted": true,
+    "answer": {
+      "type": "choice",
+      "choice": "match",
+      "confidence": 0.98,
+      "probabilities": {
+        "no_match": 0.01,
+        "match": 0.99
+      }
+    },
+    "elapsedMs": 576,
+    "model": "jev-1.13.0"
+  },
+  {
+    "name": "近义表达",
+    "text": "我照着稿子念，屏幕会标出我正在读的位置。",
+    "candidate": {
+      "start": 0,
+      "end": 16,
+      "text": "我按稿件朗读，标记就跟随我的位置",
+      "similarity": 0,
+      "exact": false,
+      "distance": 0,
+      "semantic": true
+    },
+    "expected": true,
+    "accepted": true,
+    "answer": {
+      "type": "choice",
+      "choice": "match",
+      "confidence": 0.99,
+      "probabilities": {
+        "match": 0.99,
+        "no_match": 0.01
+      }
+    },
+    "elapsedMs": 308,
+    "model": "jev-1.13.0"
+  },
+  {
+    "name": "话题相关插话",
+    "text": "这里我补充一下，语音识别有时候也会出现错误。",
+    "candidate": {
+      "start": 0,
+      "end": 16,
+      "text": "我按稿件朗读，标记就跟随我的位置",
+      "similarity": 0,
+      "exact": false,
+      "distance": 0,
+      "semantic": true
+    },
+    "expected": false,
+    "accepted": false,
+    "answer": {
+      "type": "choice",
+      "choice": "no_match",
+      "confidence": 0.99,
+      "probabilities": {
+        "match": 0.01,
+        "no_match": 0.99
+      }
+    },
+    "elapsedMs": 330,
+    "model": "jev-1.13.0"
+  },
+  {
+    "name": "含义相反",
+    "text": "我没有按照稿件朗读，标记也不会跟随我的位置。",
+    "candidate": {
+      "start": 0,
+      "end": 16,
+      "text": "我按稿件朗读，标记就跟随我的位置",
+      "similarity": 0.7,
+      "exact": false,
+      "distance": 0
+    },
+    "expected": false,
+    "accepted": false,
+    "answer": {
+      "type": "choice",
+      "choice": "no_match",
+      "confidence": 0.99,
+      "probabilities": {
+        "match": 0,
+        "no_match": 1
+      }
+    },
+    "elapsedMs": 295,
+    "model": "jev-1.13.0"
+  }
+]

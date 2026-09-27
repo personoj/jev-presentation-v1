@@ -1,4 +1,4 @@
-import {findCandidate,findExactReadingTail,findShortPreview,normalized,type Candidate} from './engine';
+import {findCandidate,findExactReadingTail,findShortPreview,findSemanticCandidate,normalized,type Candidate} from './engine';
 
 /** Hold through ASR retractions, but relocate when sustained lexical evidence
  * identifies a deliberate reread or a different place in the manuscript. */
@@ -19,9 +19,9 @@ export class ReadingProgress {
  }
  select(script:string,text:string,final:boolean,stableText=''):Candidate|null{
   const found=findCandidate(script,text,this.anchor)??findShortPreview(script,text,this.anchor);
-  if(this.allows(script,found)&&found&&(found.exact||found.similarity>=.8)){this.pending=null;return found;}
+  if(this.allows(script,found)&&found?.exact){this.pending=null;return found;}
   const target=findExactReadingTail(script,text,this.anchor);
-  if(!target){this.pending=null;return null;}
+  if(!target){this.pending=null;if(this.allows(script,found)&&found&&found.similarity>=.6)return found;const nearby=findSemanticCandidate(script,text,this.anchor);return this.allows(script,nearby)?nearby:null;}
   if(this.allows(script,target)){this.pending=null;return target;}
   const spoken=normalized(text).text;
   const stable=normalized(stableText).text.length>=6?findExactReadingTail(script,stableText,this.anchor):null;

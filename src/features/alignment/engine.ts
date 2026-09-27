@@ -8,7 +8,21 @@ export function normalized(text: string) {
 // Small, explicit pronunciation confusions. This is not a general phonetic recognizer.
 const soundGroups = ['的地得', '在再', '是事式试', '以已', '做作', '音因阴', '义意易', '识时实', '跟根', '型形'];
 const substitution = (a: string, b: string) => a === b ? 0 : soundGroups.some(g => g.includes(a) && g.includes(b)) ? 0.45 : 1;
-export type Candidate = {start: number; end: number; text: string; similarity: number; exact: boolean; distance: number};
+export type Candidate = {start: number; end: number; text: string; similarity: number; exact: boolean; distance: number;semantic?:boolean};
+/** Offer only the expected nearby clause for semantic review. This is a
+ * hypothesis for Jev, never lexical evidence or automatic permission to move. */
+export function findSemanticCandidate(script:string,heard:string,anchor:number):Candidate|null{
+  const length=normalized(heard).text.length;if(length<6||length>120)return null;
+  const positions=normalized(script).positions,start=positions.find(p=>p>=anchor);if(start===undefined)return null;
+  const candidates:Candidate[]=[];
+  for(let end=start+1;end<=Math.min(script.length,start+120);end++){
+    if(end<script.length&&!/[，。！？；、\n,.!?;]/.test(script[end]))continue;
+    const text=script.slice(start,end),size=normalized(text).text.length;
+    if(size>=Math.max(4,length*.55)&&size<=length*1.65)candidates.push({start,end,text,similarity:0,exact:false,distance:start-anchor,semantic:true});
+    if(size>length*1.65)break;
+  }
+  return candidates.sort((a,b)=>Math.abs(normalized(a.text).text.length-length)-Math.abs(normalized(b.text).text.length-length))[0]??null;
+}
 /** Recover the words being spoken now, including after an aside inside the
  * same ASR segment. Only a unique, substantial exact suffix can relocate. */
 export function findExactReadingTail(script:string,heard:string,anchor:number):Candidate|null{
@@ -68,12 +82,14 @@ export function findCandidate(script: string, heard: string, anchor: number): Ca
 export type MatchDecision = 'short' | 'exact' | 'review' | 'pause';
 export function classifyCandidate(candidate: Candidate | null, heard: string): MatchDecision {
   if (normalized(heard).text.length < 4) return 'short';
+  if(candidate?.semantic)return 'review';
   if (!candidate || candidate.similarity < 0.6) return 'pause';
   if (candidate.exact && normalized(heard).text.length >= 6 && candidate.distance <= 60) return 'exact';
   return 'review';
 }
 export const commitPosition = (confirmed: number, candidateEnd: number) => Math.max(confirmed, candidateEnd);
 export function acceptJudgment(candidate: Candidate | null, choice?: string, probability?: number) {
+  if(candidate?.semantic)return choice==='match'&&probability!==undefined&&probability>=.7;
   if (!candidate || candidate.similarity < 0.6 || choice !== 'match' || probability === undefined) return false;
   // Strong ordered lexical evidence permits a lower semantic gate. Both are explicit demo parameters.
   return candidate.similarity >= 0.9 ? probability > 0.5 : probability >= 0.8;

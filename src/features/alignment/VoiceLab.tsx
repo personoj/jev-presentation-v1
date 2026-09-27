@@ -18,7 +18,7 @@ const defaultSamples = [
 type Trace = {segmentId:string; heard: string; candidate: string; baseline: number; enhanced: number; state: string};
 
 type LiveLatency={localMs:number|null;jevMs:number|null;firstTextMs:number|null;updateGapMs:number|null;queueMs:number|null;chunkMs:number};
-export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;focusConfirmed:boolean;latency:LiveLatency;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
+export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;focusConfirmed:boolean;latency:LiveLatency;asrModel:string;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
 export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples=defaultSamples,render,sampleUrl}: FeatureProps&{initialScript?:string;samples?:ReadonlyArray<readonly[string,string]>;render?:(data:VoiceView)=>ReactNode;sampleUrl?:string}) {
   const [script, setScript] = useState(initialScript), [editing, setEditing] = useState(false);
   const [confirmed, setConfirmed] = useState(0), [tentative, setTentative] = useState(0), [baseline, setBaseline] = useState(0);
@@ -27,6 +27,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   const [candidate, setCandidate] = useState<Candidate|null>(null), [result, setResult] = useState<Evaluation|null>(null);
   const [error, setError] = useState(''), [mode, setMode] = useState<'test'|'live'>('test'), [trace, setTrace] = useState<Trace[]>([]);
   const [latency,setLatency]=useState<LiveLatency>({localMs:null,jevMs:null,firstTextMs:null,updateGapMs:null,queueMs:null,chunkMs:40});
+  const [asrModel,setAsrModel]=useState('');
   const [view, setView] = useState<'enhanced'|'baseline'>('enhanced');
   const [heardPhase,setHeardPhase]=useState<'empty'|'partial'|'final'|'cancelled'>('empty');
   const [activeSpan,setActiveSpan]=useState<{start:number;end:number;confirmed:boolean}|null>(null);
@@ -96,13 +97,13 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     if(decision==='exact'||match?.exact){reviews.current?.cancel();apply(true,final?'已确认 · 对应原文':'暂定 · 等待转写稳定');return;}
     // An unrelated fragment cannot pass the lexical gate. Hold immediately instead of
     // spending a model call whose answer could never be accepted by acceptJudgment.
-    if(decision==='pause'){reviews.current?.cancel();apply(false,'暂停 · 这段内容不在稿件中');return;}
+    if(decision==='pause'){reviews.current?.cancel();apply(false,'暂停 · 尚无对应的稿件位置');return;}
     setTentative(progress.current.position);
     setActiveSpan(null);
-    setStatus('暂缓推进 · 正在核对局部差异');
+    setStatus('保持位置 · 正在核对语义');
     reviews.current!.enqueue({
       key:JSON.stringify([id,spoken,match?.start,match?.end]),
-      value:{version,state:{transcript:text,localScript:script.slice(Math.max(0,segment.current.anchor-45),segment.current.anchor+380),candidate:match?.text??'',task:'按稿朗读，允许少量转写错字；不允许大幅改述或话题相关插话。'}},
+      value:{version,state:{transcript:text,localScript:script.slice(Math.max(0,segment.current.anchor-45),segment.current.anchor+380),candidate:match?.text??'',task:'语义跟读：允许错字、同音字与意思一致的近义表达；话题相关的插话不等于在读稿件。'}},
       apply:output=>{
         if(!freshness.current.isCurrent(version))return;
         setLatency(old=>({...old,jevMs:output.elapsedMs}));
@@ -110,7 +111,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
         const matchProbability=answer?.probabilities?.match;const noMatchProbability=answer?.probabilities?.no_match;
         const preferred=matchProbability!==undefined&&noMatchProbability!==undefined&&matchProbability>noMatchProbability?'match':'no_match';
         const accepted=acceptJudgment(match,preferred,matchProbability);
-        apply(accepted,accepted?(final?'已确认 · 容忍局部差异':'暂定 · 局部差异可接受'):'暂停 · 尚不能确认对应原文',output);
+        apply(accepted,accepted?(final?'已确认 · 语义对应':'暂定 · 语义对应'):'暂停 · 尚不能确认对应原文',output);
       },
       fail:e=>{if(!freshness.current.isCurrent(version))return;setTentative(positions.current.confirmed);setActiveSpan(null);const message=e instanceof Error?e.message:'判断请求未完成';setError(message);setStatus('保持位置 · 判断未完成');if(e instanceof APIError&&/QUOTA|CREDIT|BALANCE|BUDGET/i.test(e.code))onQuota?.(message);record('请求失败，保持位置',undefined,true);}
     });
@@ -130,7 +131,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     try {
       const next=await openMicrophone(event=>{
         if(!mounted.current||generation!==micGeneration.current)return;
-        if(event.type==='ready'){setMic('on');setStatus(sampleUrl?'正在识别样本音频':'麦克风已连接，请按稿朗读');}
+        if(event.type==='ready'){setAsrModel(event.model??'');setMic('on');setStatus(sampleUrl?'正在识别样本音频':'麦克风已连接，请按稿朗读');}
         if(event.timing)setLatency(old=>({...old,...event.timing}));
         if((event.type==='partial'||event.type==='final')&&event.text)receiver.current(event.text,event.type==='final',event.segmentId??'current',event.stableText);
         if(event.type==='stopped'){setMic('off');setLevel(0);setHeardPhase(phase=>phase==='partial'?'cancelled':phase);}
@@ -147,7 +148,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   const indicator=isPaused?'pause':isContinuing?'continue':isMatching?'match':'listen';
   const indicatorLabel=isPaused?'暂停':isContinuing?'继续':isMatching?'匹配':'收音';
   const signalActive=mic==='on'||previewing;
-  if(render)return render({script,confirmed,tentative,focusPosition,focusConfirmed,latency,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
+  if(render)return render({script,confirmed,tentative,focusPosition,focusConfirmed,latency,asrModel,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
   return <section className="voice-lab" aria-label="按稿跟读实验">
     <div className="voice-topline"><span className="voice-source">{mode==='live'?'实时跟读':'固定转写演示'}</span><span className="voice-counter">确认位置 {shown} / {script.length}</span></div>
     <div className="voice-reading">
@@ -165,7 +166,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     <div className="voice-quick-demo" role="group" aria-label="固定转写演示"><span>固定转写</span>{[[0,'① 按稿朗读'],[2,'② 临时插话'],[3,'③ 回到原文']].map(([sample,label])=><button key={sample} disabled={mic!=='off'||editing} onClick={()=>{const text=samples[Number(sample)][1];if(sample===0)reset();setInput(text);startPreview(text);}}>{label}</button>)}</div>
     {error&&<p className="voice-error" role="alert">{error}</p>}
     <details name="voice-details" className="voice-test"><summary>转写测试 <span>原文、局部差异、插话、返回</span></summary><p>人为输入演示，不采集声音。逐字预览会在稿件上显示暂定位置，最后提交稳定文本。</p><div className="voice-presets">{samples.map(([label,text])=><button disabled={mic!=='off'} key={label} onClick={()=>{clearPreviewInput();setInput(text);}}>{label}</button>)}</div><textarea aria-label="测试转写文本" disabled={mic!=='off'} value={input} maxLength={350} onChange={e=>{clearPreviewInput();setInput(e.target.value);}}/><div className="voice-test-actions"><button className="voice-preview-button" disabled={mic!=='off'||editing||!input.trim()} onClick={()=>previewing?stopPreview():startPreview()}>{previewing?'停止预览':'逐字预览'}</button><button className="voice-primary" disabled={mic!=='off'||!input.trim()||editing} onClick={()=>{cancelPreview();inputMode.current='test';setMode('test');receiver.current(input,true,crypto.randomUUID());}}>提交这段转写</button></div></details>
-    <details name="voice-details" className="voice-method"><summary>查看匹配过程与对照</summary><div className="voice-switch"><button aria-pressed={view==='enhanced'} onClick={()=>setView('enhanced')}>局部对齐 ＋ Jev</button><button aria-pressed={view==='baseline'} onClick={()=>setView('baseline')}>仅局部对齐</button></div><p>两种路径读取同一段转写。仅局部对齐按相似度 ≥ 0.85 确认；加入 Jev 后，对有差异的片段额外检查。浅色下划线表示暂定位置，较深下划线表示确认位置；插话时光带保持。字符相似度 ≥ 0.9 时，要求 Jev 对应概率大于 0.5 且高于不匹配概率；其余可比候选要求 0.8。阈值为演示设定，尚未校准。</p><dl><dt>识别原文 · {heardPhase==='partial'?'暂定':heardPhase==='final'?'最终':'等待'}</dt><dd>{heard||'尚无转写'}</dd><dt>局部候选</dt><dd>{candidate?.text||'尚无候选'}{candidate&&<small> · 字符相似度 {(candidate.similarity*100).toFixed(1)}%</small>}</dd><dt>确认 / 暂定</dt><dd>{confirmed} / {tentative}</dd><dt>最近 Jev 返回</dt><dd>{result?<><span>{result.model} · {result.elapsedMs} ms</span><pre>{JSON.stringify(result.answers,null,2)}</pre></>:'当前没有模型返回值。精确匹配由程序处理。'}</dd></dl>{trace.length>0&&<div className="voice-trace"><table><thead><tr><th>同一转写</th><th>仅对齐</th><th>＋ Jev</th><th>状态</th></tr></thead><tbody>{trace.map((t,i)=><tr key={i}><td>{t.heard}</td><td>{t.baseline}</td><td>{t.enhanced}</td><td>{t.state}</td></tr>)}</tbody></table></div>}</details>
+    <details name="voice-details" className="voice-method"><summary>查看匹配过程与对照</summary><div className="voice-switch"><button aria-pressed={view==='enhanced'} onClick={()=>setView('enhanced')}>局部对齐 ＋ Jev</button><button aria-pressed={view==='baseline'} onClick={()=>setView('baseline')}>仅局部对齐</button></div><p>两种路径读取同一段转写。仅局部对齐按相似度 ≥ 0.85 确认；加入 Jev 后，对有差异的片段额外检查。浅色下划线表示暂定位置，较深下划线表示确认位置；插话时光带保持。允许错字和意思一致的近义表达；单纯话题相关的插话不推进。字面接近的候选按相似度采用 0.5 或 0.8 的判断门槛；只有语义联系的当前局部候选要求对应概率至少 0.7。阈值为演示设定，尚未校准。</p><dl><dt>识别原文 · {heardPhase==='partial'?'暂定':heardPhase==='final'?'最终':'等待'}</dt><dd>{heard||'尚无转写'}</dd><dt>局部候选</dt><dd>{candidate?.text||'尚无候选'}{candidate&&<small>{candidate.semantic?' · 当前局部语义候选':` · 字符相似度 ${(candidate.similarity*100).toFixed(1)}%`}</small>}</dd><dt>确认 / 暂定</dt><dd>{confirmed} / {tentative}</dd><dt>最近 Jev 返回</dt><dd>{result?<><span>{result.model} · {result.elapsedMs} ms</span><pre>{JSON.stringify(result.answers,null,2)}</pre></>:'当前没有模型返回值。精确匹配由程序处理。'}</dd></dl>{trace.length>0&&<div className="voice-trace"><table><thead><tr><th>同一转写</th><th>仅对齐</th><th>＋ Jev</th><th>状态</th></tr></thead><tbody>{trace.map((t,i)=><tr key={i}><td>{t.heard}</td><td>{t.baseline}</td><td>{t.enhanced}</td><td>{t.state}</td></tr>)}</tbody></table></div>}</details>
   </section>;
 }
 

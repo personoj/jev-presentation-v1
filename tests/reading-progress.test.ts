@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {ReadingProgress} from '../src/features/alignment/reading-progress';
-import {findCandidate,findShortPreview} from '../src/features/alignment/engine';
+import {findCandidate,findShortPreview,acceptJudgment,classifyCandidate} from '../src/features/alignment/engine';
 const script='我们使用语音识别模型。\n把声音转换成文字。\n然后继续按照稿件朗读。';
 const candidate=(p:ReadingProgress,text:string,s=script)=>findCandidate(s,text,p.anchor)??findShortPreview(s,text,p.anchor);
 
@@ -70,4 +70,14 @@ test('the recent exact suffix recovers after an aside within one continuous ASR 
  const p=new ReadingProgress();p.begin('continuous');p.confirm(script,p.select(script,'我们使用语音识别模型',true));
  const target=p.select(script,'我们使用语音识别模型，这里补充一句题外话，然后继续按照稿件朗读',true);
  assert.ok(target?.exact);p.confirm(script,target);assert.equal(p.position,32);
+});
+
+test('a low-overlap paraphrase offers a local semantic hypothesis but cannot advance without approval',()=>{
+ const s='我按稿件朗读，标记就跟随我的位置。\n等我回到原文，系统再继续跟随。';
+ const p=new ReadingProgress();p.begin('semantic');const c=p.select(s,'我照着稿子念，屏幕会标出我正在读的位置。',true);
+ assert.ok(c?.semantic);assert.equal(c.text,'我按稿件朗读，标记就跟随我的位置');
+ assert.equal(classifyCandidate(c,'我照着稿子念，屏幕会标出我正在读的位置。'),'review');
+ assert.equal(p.preview(s,c),false);assert.equal(p.position,0);
+ assert.equal(acceptJudgment(c,'no_match',.99),false);assert.equal(acceptJudgment(c,'match',.69),false);
+ assert.equal(acceptJudgment(c,'match',.99),true);assert.equal(p.confirm(s,c,true),true);assert.equal(p.position,16);
 });

@@ -5,7 +5,7 @@ import type {FeatureProps} from '../shared/types';
 import {Art,Diagram,Ink,Line,Text} from './primitives';
 import {Heading} from './ConceptPages';
 
-const lines=['今天，我们来看一个跟读的小例子。','请你放慢语速，读完这段文字。','读到哪里，标记就跟到哪里。','中途聊几句题外话，它会停住。','等你回到稿件，它再接着往下走。'];
+const lines=['接下来，我用跟读场景演示这套流程。','我按稿件朗读，标记就跟随我的位置。','如果我临时补充几句话，标记会停住。','等我回到原文，系统再继续跟随。','Jev 辅助判断，我是否还在按稿朗读。'];
 const aside='这里我补充一下，大家可以看看这个演示的效果。';
 const audioQA=new URLSearchParams(location.search).has('audio-qa');
 export function VoicePage(props:FeatureProps){return <VoiceLab {...props} sampleUrl={audioQA?'/fixtures/reading-chain.wav':undefined} initialScript={audioQA?'我们使用语音识别模型。\n把声音转换成文字。\n然后继续按照稿件朗读。':lines.join('\n')} render={data=><VoiceCanvas data={data}/>}/>}
@@ -27,7 +27,7 @@ function VoiceCanvas({data:d}:{data:VoiceView}){
   <button className="r-voice-button" style={{left:1190,width:320}} disabled={d.mic!=='off'} onClick={()=>d.preview(chunks.slice(2).join('\n')||d.script)}>回到原文</button>
   {d.error&&<p className="r-voice-error" role="alert">{d.error}</p>}
   <button className="r-voice-details-toggle" onClick={()=>setDetails(!details)} aria-expanded={details}>转写与稿件 ↗</button>
-  {details&&<div className="r-voice-details" role="dialog" aria-modal="true" aria-label="转写与稿件"><button autoFocus className="r-close" aria-label="关闭转写面板" onClick={()=>setDetails(false)}>×</button><h2>转写与稿件</h2><p role="status">{d.status} · 确认位置 {d.confirmed}</p><p>{d.heard||'尚无转写'}</p><dl className="r-live-latency"><dt>首段 ASR</dt><dd>{d.latency.firstTextMs??'—'} ms</dd><dt>最近更新间隔</dt><dd>{d.latency.updateGapMs??'—'} ms</dd><dt>本地匹配</dt><dd>{d.latency.localMs??'—'} ms</dd><dt>Jev 请求</dt><dd>{d.latency.jevMs??'—'} ms</dd><dt>上传积压</dt><dd>{d.latency.queueMs??'—'} ms</dd></dl>{audioQA&&<p className="r-audio-qa-label">样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。</p>}<label>朗读稿<textarea value={d.script} disabled={d.mic!=='off'} onChange={e=>d.edit(e.target.value)} maxLength={150}/></label><div><button onClick={d.reset}>从头开始</button><button disabled={d.mic!=='off'} onClick={()=>d.preview(chunks[0].replace('跟读','跟独').replace('语音','语义'))}>测试一处差异</button>{d.previewing&&<button onClick={d.stopPreview}>停止预览</button>}</div></div>}
+  {details&&<div className="r-voice-details" role="dialog" aria-modal="true" aria-label="转写与稿件"><button autoFocus className="r-close" aria-label="关闭转写面板" onClick={()=>setDetails(false)}>×</button><h2>转写与稿件</h2><p role="status">{d.status} · 确认位置 {d.confirmed}</p><p>{d.heard||'尚无转写'}</p>{d.asrModel&&<p className="r-audio-qa-label">ASR：{d.asrModel}</p>}<dl className="r-live-latency"><dt>首段 ASR</dt><dd>{d.latency.firstTextMs??'—'} ms</dd><dt>最近更新间隔</dt><dd>{d.latency.updateGapMs??'—'} ms</dd><dt>本地匹配</dt><dd>{d.latency.localMs??'—'} ms</dd><dt>Jev 请求</dt><dd>{d.latency.jevMs??'—'} ms</dd><dt>上传积压</dt><dd>{d.latency.queueMs??'—'} ms</dd></dl>{audioQA&&<p className="r-audio-qa-label">样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。</p>}<label>朗读稿<textarea value={d.script} disabled={d.mic!=='off'} onChange={e=>d.edit(e.target.value)} maxLength={150}/></label><div><button onClick={d.reset}>从头开始</button><button disabled={d.mic!=='off'} onClick={()=>d.preview(chunks[0].replace('跟读','跟独').replace('语音','语义'))}>测试一处差异</button>{d.previewing&&<button onClick={d.stopPreview}>停止预览</button>}</div></div>}
  </div>
 }
 

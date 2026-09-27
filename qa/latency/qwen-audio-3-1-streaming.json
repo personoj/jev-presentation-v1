@@ -1,0 +1,1043 @@
+{
+  "summary": {
+    "name": "qwen-audio-3-1-streaming",
+    "model": "qwen-audio-3.1-asr-flash-streaming",
+    "errors": [],
+    "source": "Existing synthetic WAV streamed in real time to live cloud ASR; not live microphone",
+    "chunkMs": 40,
+    "audioSeconds": 12.65,
+    "success": true,
+    "connectionReadyMs": 201,
+    "firstTextAfterAudioMs": 398,
+    "meaningfulUpdates": 16,
+    "updateGapMedianMs": 719,
+    "updateGapP95Ms": 1227,
+    "finalText": [
+      "我们使用语音识别模型，把声音转换成文字。",
+      "下面先停一下，我补充一个例子。",
+      "然后继续按照稿件朗读。"
+    ]
+  },
+  "events": [
+    {
+      "type": "ready",
+      "model": "qwen-audio-3.1-asr-flash-streaming",
+      "atMs": 201
+    },
+    {
+      "type": "partial",
+      "text": "我",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 0,
+          "end_time": 240,
+          "text": "我",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 599
+    },
+    {
+      "type": "partial",
+      "text": "我们使",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 320,
+          "text": "我",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 320,
+          "end_time": 600,
+          "text": "们",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 600,
+          "end_time": 720,
+          "text": "使",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 1082
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 320,
+          "text": "我",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 320,
+          "end_time": 640,
+          "text": "们",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 800,
+          "text": "使",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 800,
+          "end_time": 1000,
+          "text": "用",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1120,
+          "text": "语",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1120,
+          "end_time": 1440,
+          "text": "音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 1797
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 640,
+          "text": "我们",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 1000,
+          "text": "使用",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1480,
+          "text": "语音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1480,
+          "end_time": 1880,
+          "text": "识别",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1880,
+          "end_time": 2160,
+          "text": "模型",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 2686
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型，把",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 640,
+          "text": "我们",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 1000,
+          "text": "使用",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1480,
+          "text": "语音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1480,
+          "end_time": 1880,
+          "text": "识别",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1880,
+          "end_time": 2400,
+          "text": "模型",
+          "punctuation": "，",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 2720,
+          "end_time": 2880,
+          "text": "把",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 3244
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型，把声音转",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 640,
+          "text": "我们",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 1000,
+          "text": "使用",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1480,
+          "text": "语音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1480,
+          "end_time": 1880,
+          "text": "识别",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1880,
+          "end_time": 2400,
+          "text": "模型",
+          "punctuation": "，",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 2760,
+          "end_time": 3040,
+          "text": "把",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3040,
+          "end_time": 3160,
+          "text": "声",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3160,
+          "end_time": 3440,
+          "text": "音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3440,
+          "end_time": 3600,
+          "text": "转",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 3959
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型，把声音转换成文",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 640,
+          "text": "我们",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 1000,
+          "text": "使用",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1480,
+          "text": "语音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1480,
+          "end_time": 1880,
+          "text": "识别",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1880,
+          "end_time": 2400,
+          "text": "模型",
+          "punctuation": "，",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 2800,
+          "end_time": 3040,
+          "text": "把",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3040,
+          "end_time": 3520,
+          "text": "声音",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3520,
+          "end_time": 4120,
+          "text": "转换成",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 4120,
+          "end_time": 4320,
+          "text": "文",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 4851
+    },
+    {
+      "type": "final",
+      "text": "我们使用语音识别模型，把声音转换成文字。",
+      "stableText": "我们使用语音识别模型，把声音转换成文字。",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:1",
+      "words": [
+        {
+          "begin_time": 240,
+          "end_time": 640,
+          "text": "我们",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 640,
+          "end_time": 1000,
+          "text": "使用",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1000,
+          "end_time": 1480,
+          "text": "语音",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1480,
+          "end_time": 1880,
+          "text": "识别",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 1880,
+          "end_time": 2400,
+          "text": "模型",
+          "punctuation": "，",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 2800,
+          "end_time": 3040,
+          "text": "把",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3040,
+          "end_time": 3520,
+          "text": "声音",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 3520,
+          "end_time": 4200,
+          "text": "转换成",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 4200,
+          "end_time": 4720,
+          "text": "文字",
+          "punctuation": "。",
+          "fixed": true,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 5645
+    },
+    {
+      "type": "partial",
+      "text": "下面",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5500,
+          "end_time": 5660,
+          "text": "下",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 5660,
+          "end_time": 5740,
+          "text": "面",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 6065
+    },
+    {
+      "type": "partial",
+      "text": "下面先停",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5580,
+          "end_time": 5740,
+          "text": "下",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 5740,
+          "end_time": 6060,
+          "text": "面",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6060,
+          "end_time": 6260,
+          "text": "先",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6260,
+          "end_time": 6460,
+          "text": "停",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 6781
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5580,
+          "end_time": 6060,
+          "text": "下面",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6060,
+          "end_time": 6300,
+          "text": "先",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6300,
+          "end_time": 6540,
+          "text": "停",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6540,
+          "end_time": 7180,
+          "text": "一下",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 7616
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下，我补充",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5580,
+          "end_time": 6060,
+          "text": "下面",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6060,
+          "end_time": 6300,
+          "text": "先",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6300,
+          "end_time": 6540,
+          "text": "停",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6540,
+          "end_time": 6980,
+          "text": "一下",
+          "punctuation": "，",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7380,
+          "end_time": 7580,
+          "text": "我",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7580,
+          "end_time": 7660,
+          "text": "补",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7660,
+          "end_time": 7900,
+          "text": "充",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 8222
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下，我补充一个例子",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5580,
+          "end_time": 6060,
+          "text": "下面",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6060,
+          "end_time": 6300,
+          "text": "先",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6300,
+          "end_time": 6540,
+          "text": "停",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6540,
+          "end_time": 6980,
+          "text": "一下",
+          "punctuation": "，",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7380,
+          "end_time": 7580,
+          "text": "我",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7580,
+          "end_time": 7660,
+          "text": "补",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7660,
+          "end_time": 8060,
+          "text": "充",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8060,
+          "end_time": 8180,
+          "text": "一",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8180,
+          "end_time": 8340,
+          "text": "个",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8340,
+          "end_time": 8500,
+          "text": "例",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8500,
+          "end_time": 8620,
+          "text": "子",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 8953
+    },
+    {
+      "type": "final",
+      "text": "下面先停一下，我补充一个例子。",
+      "stableText": "下面先停一下，我补充一个例子。",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:2",
+      "words": [
+        {
+          "begin_time": 5580,
+          "end_time": 6060,
+          "text": "下面",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6060,
+          "end_time": 6300,
+          "text": "先",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6300,
+          "end_time": 6540,
+          "text": "停",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 6540,
+          "end_time": 7020,
+          "text": "一下",
+          "punctuation": "，",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7380,
+          "end_time": 7580,
+          "text": "我",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 7580,
+          "end_time": 8060,
+          "text": "补充",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8060,
+          "end_time": 8380,
+          "text": "一个",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 8380,
+          "end_time": 8820,
+          "text": "例子",
+          "punctuation": "。",
+          "fixed": true,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 9644
+    },
+    {
+      "type": "partial",
+      "text": "然后",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:3",
+      "words": [
+        {
+          "begin_time": 9670,
+          "end_time": 9790,
+          "text": "然",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 9790,
+          "end_time": 9870,
+          "text": "后",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 10180
+    },
+    {
+      "type": "partial",
+      "text": "然后继续",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:3",
+      "words": [
+        {
+          "begin_time": 9710,
+          "end_time": 9830,
+          "text": "然",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 9830,
+          "end_time": 10230,
+          "text": "后",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10230,
+          "end_time": 10310,
+          "text": "继",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10310,
+          "end_time": 10590,
+          "text": "续",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 10899
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:3",
+      "words": [
+        {
+          "begin_time": 9710,
+          "end_time": 10230,
+          "text": "然后",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10230,
+          "end_time": 10630,
+          "text": "继续",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10630,
+          "end_time": 11030,
+          "text": "按照",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11030,
+          "end_time": 11310,
+          "text": "稿件",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 11741
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗读",
+      "stableText": "",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:3",
+      "words": [
+        {
+          "begin_time": 9710,
+          "end_time": 10230,
+          "text": "然后",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10230,
+          "end_time": 10630,
+          "text": "继续",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10630,
+          "end_time": 11070,
+          "text": "按照",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11070,
+          "end_time": 11470,
+          "text": "稿件",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11470,
+          "end_time": 11590,
+          "text": "朗",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11590,
+          "end_time": 12030,
+          "text": "读",
+          "punctuation": "",
+          "fixed": false,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 12345
+    },
+    {
+      "type": "final",
+      "text": "然后继续按照稿件朗读。",
+      "stableText": "然后继续按照稿件朗读。",
+      "segmentId": "64bc8346-1994-4fa4-b0bc-12410dfb6eb6:3",
+      "words": [
+        {
+          "begin_time": 9710,
+          "end_time": 10230,
+          "text": "然后",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10230,
+          "end_time": 10630,
+          "text": "继续",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 10630,
+          "end_time": 11070,
+          "text": "按照",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11070,
+          "end_time": 11470,
+          "text": "稿件",
+          "punctuation": "",
+          "fixed": true,
+          "speaker_id": null
+        },
+        {
+          "begin_time": 11470,
+          "end_time": 11990,
+          "text": "朗读",
+          "punctuation": "。",
+          "fixed": true,
+          "speaker_id": null
+        }
+      ],
+      "atMs": 12796
+    },
+    {
+      "type": "stopped",
+      "atMs": 12874
+    }
+  ]
+}

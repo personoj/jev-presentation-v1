@@ -1,6 +1,6 @@
 export const ASR_CHUNK_MS=40;
 export const ASR_MAX_QUEUE_BYTES=16000; // 500 ms of PCM16; never silently build tens of seconds of delay.
-type ASREvent = {type: 'partial' | 'final' | 'ready' | 'error' | 'stopped'; text?: string; stableText?:string; segmentId?: string; code?: string; message?: string;timing?:{firstTextMs:number|null;updateGapMs:number|null;queueMs:number;chunkMs:number}};
+type ASREvent = {type: 'partial' | 'final' | 'ready' | 'error' | 'stopped'; text?: string; model?:string; stableText?:string; segmentId?: string; code?: string; message?: string;timing?:{firstTextMs:number|null;updateGapMs:number|null;queueMs:number;chunkMs:number}};
 // The relay drains for 15 seconds; allow its final transcript and terminal event to arrive.
 export const ASR_STOP_TIMEOUT_MS = 17000;
 export type MicrophoneSession = {stop: () => void; dispose: () => void};

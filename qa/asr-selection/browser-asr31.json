@@ -1,0 +1,142 @@
+[
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n片段较短，等待更多文字 · 确认位置 0\n\n我\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n— ms\n本地匹配\n0.9 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 0
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 短词连续匹配 · 确认位置 0\n\n我们使\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n479 ms\n本地匹配\n0.3 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 3
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n722 ms\n本地匹配\n0.3 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 6
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音识别模型\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n815 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 10
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音识别模型，把\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n631 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 13
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音识别模型，把声音转\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n722 ms\n本地匹配\n1.5 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 16
+  },
+  {
+    "confirmed": 0,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音识别模型，把声音转换成文\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n880 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 19
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n已确认 · 对应原文 · 确认位置 20\n\n我们使用语音识别模型，把声音转换成文字。\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n880 ms\n本地匹配\n0.4 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂停 · 尚无对应的稿件位置 · 确认位置 20\n\n下面先停\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n724 ms\n本地匹配\n0.5 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "true",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂缓推进 · 正在核对局部差异 · 确认位置 20\n\n下面先停一下，我补充\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n602 ms\n本地匹配\n0.9 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂停 · 尚不能确认对应原文 · 确认位置 20\n\n下面先停一下，我补充\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n602 ms\n本地匹配\n0.9 ms\nJev 请求\n533 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "true",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂缓推进 · 正在核对局部差异 · 确认位置 20\n\n下面先停一下，我补充一个例子\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n725 ms\n本地匹配\n0.7 ms\nJev 请求\n533 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂停 · 尚不能确认对应原文 · 确认位置 20\n\n下面先停一下，我补充一个例子\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n725 ms\n本地匹配\n0.7 ms\nJev 请求\n241 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "true",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂缓推进 · 正在核对局部差异 · 确认位置 20\n\n下面先停一下，我补充一个例子。\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n725 ms\n本地匹配\n0.8 ms\nJev 请求\n241 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂停 · 尚不能确认对应原文 · 确认位置 20\n\n下面先停一下，我补充一个例子。\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n725 ms\n本地匹配\n0.8 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "true",
+    "position": 20
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 短词连续匹配 · 确认位置 20\n\n然后\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n1227 ms\n本地匹配\n0.2 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 24
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n725 ms\n本地匹配\n0.2 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 26
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按照稿件\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n844 ms\n本地匹配\n0.2 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 30
+  },
+  {
+    "confirmed": 20,
+    "done": false,
+    "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按照稿件朗读\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n597 ms\n本地匹配\n0.2 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 32
+  },
+  {
+    "confirmed": 32,
+    "done": true,
+    "panel": "×\n转写与稿件\n\n已确认 · 对应原文 · 确认位置 32\n\n然后继续按照稿件朗读。\n\nASR：qwen-audio-3.1-asr-flash-streaming\n\n首段 ASR\n373 ms\n最近更新间隔\n597 ms\n本地匹配\n0.4 ms\nJev 请求\n261 ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+    "paused": "false",
+    "position": 32
+  }
+]

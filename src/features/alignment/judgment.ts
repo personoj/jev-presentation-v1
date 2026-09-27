@@ -1,2 +1,2 @@
 import type {Question} from '../../shared/types';
-export const ALIGNMENT_QUESTION: Question = {type:'choice',instructions:'判断 transcript 是否基本按顺序朗读 candidate。允许一两个识别错字或少量漏字，但保留主要字词和顺序。仅话题相关、解释演示、临时补充、任意同义改述均选不匹配；没有对应候选也选不匹配。',criteria:{match:'基本按原文朗读，有少量局部转写差异',no_match:'插话、大幅改述、无对应稿件，或证据不足'}};
+export const ALIGNMENT_QUESTION: Question = {type:'choice',instructions:'判断 transcript 是否正在表达 candidate 这部分稿件的相同意思。允许语音识别错字、同音字、漏字、口语词和近义改述，不要求逐字相同。重点比较主要对象、动作和含义；含义一致、仍在接着稿件表达就选 match。仅主题相关但在评论、解释、举另一个例子、对观众提问或临时插话，选 no_match；与原意相反、关键信息不同或证据不足也选 no_match。candidate 是当前位置附近的待核对假设，不代表已经读过。',criteria:{match:'仍在表达这部分稿件的意思，包含错字或近义表达也可以对应',no_match:'临时插话、只是话题相关、意思不同或无法对应当前稿件'}};
