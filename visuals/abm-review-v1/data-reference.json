@@ -1,0 +1,184 @@
+{
+  "source": "public/data/experiments.json",
+  "seed": 17,
+  "mode": "jev",
+  "units": "simulation currency",
+  "runs": [
+    {
+      "id": "J0-seed17",
+      "policy": false,
+      "firstChoice": {
+        "residentId": "R05",
+        "action": "B01",
+        "probabilities": {
+          "wait": 0.36,
+          "T01": 0,
+          "B02": 0.02,
+          "B01": 0.62
+        }
+      },
+      "firstRound": {
+        "units": 6,
+        "cash": 440,
+        "revenue": 440,
+        "subsidy": 0
+      },
+      "rounds": [
+        {
+          "round": 0,
+          "cumulativeRevenue": 0,
+          "cumulativeUnits": 0
+        },
+        {
+          "round": 1,
+          "cumulativeRevenue": 440,
+          "cumulativeUnits": 6
+        },
+        {
+          "round": 2,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 3,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 4,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 5,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 6,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 7,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 8,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 9,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 10,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 11,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 12,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        }
+      ],
+      "governmentSpent": 0
+    },
+    {
+      "id": "J1-seed17",
+      "policy": true,
+      "firstChoice": {
+        "residentId": "R05",
+        "action": "B01",
+        "probabilities": {
+          "wait": 0.25,
+          "T01": 0.02,
+          "B02": 0.01,
+          "B01": 0.72
+        }
+      },
+      "firstRound": {
+        "units": 6,
+        "cash": 260,
+        "revenue": 440,
+        "subsidy": 180
+      },
+      "rounds": [
+        {
+          "round": 0,
+          "cumulativeRevenue": 0,
+          "cumulativeUnits": 0
+        },
+        {
+          "round": 1,
+          "cumulativeRevenue": 440,
+          "cumulativeUnits": 6
+        },
+        {
+          "round": 2,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 3,
+          "cumulativeRevenue": 640,
+          "cumulativeUnits": 9
+        },
+        {
+          "round": 4,
+          "cumulativeRevenue": 700,
+          "cumulativeUnits": 10
+        },
+        {
+          "round": 5,
+          "cumulativeRevenue": 700,
+          "cumulativeUnits": 10
+        },
+        {
+          "round": 6,
+          "cumulativeRevenue": 700,
+          "cumulativeUnits": 10
+        },
+        {
+          "round": 7,
+          "cumulativeRevenue": 700,
+          "cumulativeUnits": 10
+        },
+        {
+          "round": 8,
+          "cumulativeRevenue": 700,
+          "cumulativeUnits": 10
+        },
+        {
+          "round": 9,
+          "cumulativeRevenue": 770,
+          "cumulativeUnits": 11
+        },
+        {
+          "round": 10,
+          "cumulativeRevenue": 770,
+          "cumulativeUnits": 11
+        },
+        {
+          "round": 11,
+          "cumulativeRevenue": 770,
+          "cumulativeUnits": 11
+        },
+        {
+          "round": 12,
+          "cumulativeRevenue": 770,
+          "cumulativeUnits": 11
+        }
+      ],
+      "governmentSpent": 210
+    }
+  ]
+}
