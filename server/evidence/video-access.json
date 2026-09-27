@@ -1,0 +1,19 @@
+{
+  "reportedAt": "2026-09-22",
+  "service": "ZenMux",
+  "model": "minimax/minimax-h3-max",
+  "httpStatus": 403,
+  "code": "access_denied",
+  "message": "You have no permission to access this resource (api_key_source: payg)",
+  "jobSubmitted": false,
+  "productionBlocked": false,
+  "reportedBy": "parent agent",
+  "action": "Prior 403 preserved as historical evidence; current video service verified by production job metadata.",
+  "resolved": true,
+  "resolution": "User updated ZenMux credential. Three independent real video jobs succeeded via the same installed adapter.",
+  "successfulGroups": [
+    "m03",
+    "m04",
+    "m07"
+  ]
+}

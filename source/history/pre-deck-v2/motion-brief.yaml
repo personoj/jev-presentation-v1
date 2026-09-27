@@ -1,0 +1,87 @@
+concept_contract: concept-contract.yaml
+identity_bible: identity-bible.md
+status: current_implementation_description
+runtime_sources:
+  book: ../src/components/TimelineMedia.tsx
+  diagrams: ../src/components/Concepts.tsx
+  voice: ../src/features/alignment/VoiceLab.tsx
+  town: ../src/features/abm/TownWorld.tsx
+  sprite: ../src/features/abm/ResidentSprite.tsx
+  routes_and_pose_rules: ../src/features/abm/resident-motion.ts
+
+book_chain:
+  parameter_space: linear
+  media_access: sequential_with_reverse_seek
+  storyboard: [有书名的封面, 开书停留, 进入右页图解, 近景停留, 用户继续到可编程问题]
+  states: [closed, open, entered]
+  timeline: ../public/media/book-timeline.json
+  compile_metadata: ../production/book/compiled/compile.json
+  chain_evidence: ../production/book-frame-chain.json
+  delivery:
+    desktop: ../public/media/book.mp4
+    mobile: ../public/media/book-mobile.mp4
+    open_still: ../public/art/book-open-hd.png
+    entered_still: ../public/art/book-entered-hd.png
+  gesture_policy: 输入选择下一段；相反输入撤回；进入近景后保留阅读状态，不按播放结束自动换章
+  timing_policy: 帧率、段落边界和停帧只读取实际 timeline；页面播放速度以 App.tsx 传入值为准，不把母版时长当作实际等待时间
+  rest_state: 素材到达并且高清图加载后平滑切换静图；已加载的静图在静止时替代视频字面
+  fallback: 保留可读静图与页面导航；减少动态效果时直接显示目标状态
+
+native_diagrams:
+  parameter_space: discrete
+  renderer: 网页 DOM 与 SVG
+  storyboard:
+    - primitives：同一段原文分别选择 Choice、Noul、Score，并检查返回值
+    - uncertainty：可见的等级语义、概率分布和同均值解释
+    - workflow：同一笔购书意向经过问题、判断、约束、结算；余额与库存可改变
+    - text：保留原文，分维度呈现实际分析结果
+    - discussion：研究问题、对照与验证指标
+  rest_state: 图表与正文稳定供阅读，交互仅更新相关区域
+  reduced_motion: 保留标签、结果和控件，取消装饰过渡
+
+voice_follow:
+  parameter_space: text_position_and_discrete_status
+  storyboard: [等待朗读, 稿件局部匹配, 暂定位置, 确认后继续, 插话暂停, 回稿继续]
+  driver_source: 千问 ASR 转写、局部对齐与 Jev 判断
+  display: 当前行光带与下划线跟随稿件位置；右侧状态仪表显示收音、匹配、暂停、继续
+  rest_state: 等待或插话时确认位置保持；转写原文只在可展开的过程面板中查看
+  reduced_motion: 定位与状态仍准确，光带无需连续位移
+
+pixel_residents:
+  prompt_source: eight-resident-action-prompts.md
+  parameter_space: discrete_pose_and_street_position
+  media_access: decoded_alpha_atlas
+  atlas_layout:
+    columns: 4
+    rows: 2
+    order_source: ../src/features/abm/personas.ts
+    aspect_ratio: '2:1'
+    pixel_dimensions: '1774x887'
+    format: RGBA PNG，真实透明背景
+    cell_policy: 每格为方形，完整身体等比显示；姓名、选中圈与交易标签独立于人物翻转
+  assets:
+    portrait_fallback: ../public/art/town-residents.png
+    idle: ../public/art/town-idle.png
+    walk_a: ../public/art/town-walk-a.png
+    walk_b: ../public/art/town-walk-b.png
+    interact: ../public/art/town-interact.png
+    map: ../public/art/town-map.png
+  storyboard: [各自住所或公园步道待机, 根据实际行动沿路步行, 成交后交换姿态, 回到待机]
+  walking: 原生关键帧沿路网移动；walk_a 与 walk_b 交替显示肢体相位，不用整张图旋转假装行走
+  interaction_rule: 只有交易记录 status 为 settled 才进入 interact；拒绝、等待和推理失败保持各自状态说明
+  route_policy: 遵循地图道路与绕行点；同行商家访客有独立排队位置，位置不参与经济账目
+  timing_source: ../src/features/abm/TownWorld.tsx 与 resident-sprite.css
+  cancellation: 逐轮前进可以播放；重置、大幅跳轮、回退和减少动态效果直接定位；清理定时器并作版本校验，禁止旧到达回调覆盖新快照
+  preload: 动作图集共享加载并解码，双行走帧准备好后才切换；失败降级至待机或原肖像图集
+  reduced_motion: 保持稳定人物帧，直接到达本轮位置
+
+single_page_experiment:
+  page: '#economy'
+  modes: [自由实验, 政策对照]
+  state_source: ../src/features/abm/EconomyLab.tsx
+  free_experiment: 八人档案、地图、政策开关、推进、真实选中人物判断和保存轨迹检查在同一页
+  policy_comparison: 同一人群与种子的无券、有券双镇；同步回放与收入轨迹，点击人物或建筑检查状态
+  navigation_boundary: 不再单设 round、compare 章节；新增案例未确定，不添加虚构案例页
+
+historical_brief: history/motion-brief-11scene-draft.yaml
+verification_note: 本文件说明当前资源和控制器，不替代实际浏览器、接口与账目验收记录

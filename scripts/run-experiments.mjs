@@ -1,0 +1,32 @@
+/** Run with: node --import tsx scripts/run-experiments.mjs [--rules-only] [--seeds=17,29,43] [--refresh-rules]
+ * No API key enters this file. Calls the same local backend as the browser.
+ */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createEconomy,ruleDecisions,settleRound,applyMerchants,ruleMerchantDecisions,merchantVisible,audit,ACTIONS,ABM_PROTOCOL} from '../src/features/abm/engine.ts';
+import {decisionRequest,modelDecision} from '../src/features/abm/model.ts';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const base=process.env.ABM_API_BASE||'http://127.0.0.1:4178';
+const seeds=(process.argv.find(a=>a.startsWith('--seeds='))?.slice(8)||'17,29,43').split(',').map(Number);
+const rulesOnly=process.argv.includes('--rules-only');
+const output=path.join(root,'public/data/experiments.json');
+const cacheFile=path.join(root,'public/data/abm-responses.json');
+let cache={};let existing={runs:[]};try{cache=Object.fromEntries(Object.entries(JSON.parse(await fs.readFile(cacheFile,'utf8'))).filter(([key])=>{try{return JSON.parse(key).protocol===ABM_PROTOCOL}catch{return false}}))}catch{}try{existing=JSON.parse(await fs.readFile(output,'utf8'))}catch{}
+let requests=0,cached=0,stop=false;const runs=(existing.runs||[]).filter(r=>r.protocolVersion===ABM_PROTOCOL&&!(process.argv.includes('--refresh-rules')&&r.mode==='rules'&&seeds.includes(r.seed)));
+async function persist(){for(const run of runs){if(run.snapshots)run.snapshots=run.snapshots.map(s=>({...s,history:[]}))}await fs.writeFile(cacheFile,JSON.stringify(cache,null,2));await fs.writeFile(output,JSON.stringify({schemaVersion:2,createdAt:new Date().toISOString(),description:`虚构文化市场；8 位固定异质居民、2 书店、1 剧场。Jev 条件下所有有可行消费选项的居民与需调整的商家由模型选择，argmax。无可行消费时程序直接等待；相同可见状态精确复用响应。${new Set(runs.filter(r=>r.mode==='jev').map(r=>r.seed)).size} 个 Jev 种子已完成记录（须有券/无券配对才可比较）。`,protocol:{version:ABM_PROTOCOL,profiles:'fixed names and relative preference weights; initial numerical circumstances vary reproducibly with seed',initialTreasury:240,initialBookStock:4,initialTheatreSeats:6,restockLimit:3,residentCount:8,rounds:12,policyRounds:6,coupon:30,threshold:60,choiceRule:'argmax',decisionScope:'all eligible residents and active merchants',missing:'API failures stop the experiment; no fabricated wait decisions',initialInventory:'given endowment; external costs tracked from first round',order:'round-start resident intentions → seeded settlement → merchant next-round actions',privateInformation:'separate per-agent requests; own private state and public market only'},runs},null,2))}
+async function call(req){const key=JSON.stringify({protocol:ABM_PROTOCOL,...req});if(cache[key]){cached++;return{...cache[key],cached:true}}if(stop)throw new Error('STOPPED');for(let attempt=0;attempt<5;attempt++){const response=await fetch(`${base}/api/evaluate`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({requestId:crypto.randomUUID(),...req}),signal:AbortSignal.timeout(90000)});const data=await response.json();if(!response.ok){if(response.status===402||/QUOTA|BALANCE|CREDIT/i.test(data.code||'')||/余额|额度|insufficient.*(?:balance|credit)/i.test(data.message||'')){stop=true;throw new Error(`QUOTA_STOP: ${data.code||response.status}`)}if(response.status===429&&attempt<4){await new Promise(r=>setTimeout(r,1500*2**attempt));continue}throw new Error(`API_ERROR: ${data.code||response.status}: ${data.message||'request failed'}`)}requests++;cache[key]=data;if(requests%8===0)await persist();return data}throw new Error('retry exhausted')}
+async function parallel(items,fn){const values=[];let cursor=0;await Promise.all(Array.from({length:Math.min(4,items.length)},async()=>{while(cursor<items.length){const i=cursor++;values[i]=await fn(items[i],i)}}));return values}
+function feasible(s,r){return s.merchants.some(m=>m.stock>0&&(m.kind==='book'?r.books<2:r.tickets<1)&&r.cash>=m.price-(s.policy&&s.round<6&&!r.couponUsed&&m.price>=60?30:0))}
+async function run(seed,policy,mode){const id=`${mode==='jev'?'J':'R'}${policy?1:0}-seed${seed}`;if(runs.some(r=>r.id===id)){console.log(`exists ${id}`);return}let s=createEconomy(seed,policy,mode);const snapshots=[s];const before=requests;const beforeCached=cached;
+ for(let round=0;round<12;round++){let ds=ruleDecisions(s);if(mode==='jev'){ds=await parallel(s.residents,async r=>{if(!feasible(s,r))return{residentId:r.id,action:'wait',source:'rules',input:{constraint:'no feasible purchase'}};const req=decisionRequest(s,r.id);const result=await call(req);return{...modelDecision(r.id,req.state,result),cached:!!result.cached}})}
+  s=settleRound(s,ds,true);let md=ruleMerchantDecisions(s);
+  if(mode==='jev'&&s.round<12){md=await parallel(s.merchants,async m=>{if(m.kind==='book'&&(m.stock>=2||m.cash<m.unitCost))return{merchantId:m.id,action:'hold',source:'rules'};if(m.kind==='theatre'&&m.stock===0)return{merchantId:m.id,action:'normal',source:'rules'};const actions=m.kind==='book'?{hold:'保持库存',restock:'在预算内补货最多3本'}:{normal:'维持原票价',discount:'下轮优惠15，最低60'};const req={state:merchantVisible(s,m.id),questions:{action:{type:'choice',instructions:'你是状态中的虚构商家。仅依据自己的经营现金、剩余库存或容量、刚结算的销量、成本、公开市场与剩余模拟周期，选择下一轮经营行动。避免在最后几轮补入无法售出的库存。',criteria:actions}}};const result=await call(req);const a=result.answers.action;const action=Object.entries(a.probabilities||{}).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))[0]?.[0];if(!(action in actions))throw new Error('Invalid merchant choice');return{merchantId:m.id,action,source:'live',requestId:result.requestId,cached:!!result.cached,input:req.state,probabilities:a.probabilities}})}
+  s=applyMerchants(s,md);s.history.at(-1).merchantDecisions=md;const issues=audit(s);if(issues.length)throw new Error(issues.join(';'));snapshots.push(s);console.log(`${id} round ${s.round}: units=${s.history.at(-1).units} revenue=${s.history.at(-1).revenue} requests=${requests} cached=${cached}`);
+ }
+ runs.push({id,protocolVersion:ABM_PROTOCOL,seed,policy,mode,state:s,snapshots,requests:requests-before,cached:cached-beforeCached});await persist();
+}
+try{for(const seed of seeds){for(const mode of rulesOnly?['rules']:['rules','jev'])for(const policy of [false,true])await run(seed,policy,mode)}console.log(`DONE: ${runs.length} runs, ${requests} new requests, ${cached} cache hits`)}catch(error){stop=true;await persist();console.error(error.message);process.exitCode=1}
+
+
+

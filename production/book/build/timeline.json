@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "fps": 24.0,
+  "frameDuration": 0.041666666666666664,
+  "frameCount": 248,
+  "initialState": "closed",
+  "states": [
+    {
+      "id": "closed",
+      "frame": 0,
+      "hold": 0.0
+    },
+    {
+      "id": "open",
+      "frame": 123,
+      "hold": 5.125
+    },
+    {
+      "id": "entered",
+      "frame": 247,
+      "hold": 10.291666666666666
+    }
+  ],
+  "segments": [
+    {
+      "id": "closed->open",
+      "from": "closed",
+      "to": "open",
+      "sourceFrames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "frames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "start": 0.0,
+      "hold": 5.125,
+      "endExclusive": 5.166666666666667,
+      "curve": {
+        "type": "constant",
+        "rate": 1.0
+      }
+    },
+    {
+      "id": "open->entered",
+      "from": "open",
+      "to": "entered",
+      "sourceFrames": {
+        "start": 124,
+        "hold": 247,
+        "endExclusive": 248
+      },
+      "frames": {
+        "start": 124,
+        "hold": 247,
+        "endExclusive": 248
+      },
+      "start": 5.166666666666667,
+      "hold": 10.291666666666666,
+      "endExclusive": 10.333333333333334,
+      "curve": {
+        "type": "constant",
+        "rate": 1.0
+      }
+    }
+  ]
+}

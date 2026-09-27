@@ -1,0 +1,311 @@
+{
+ "version": 1,
+ "ticksPerSecond": 24,
+ "width": 1672,
+ "height": 941,
+ "sizes": {
+  "desktop": 1672,
+  "mobile": 960
+ },
+ "keys": {
+  "closed": 0,
+  "open": 27,
+  "entered": 48
+ },
+ "frames": [
+  {
+   "file": "closed.webp",
+   "source": 0,
+   "ticks": 3,
+   "kind": "key"
+  },
+  {
+   "file": "open-004.webp",
+   "source": 4,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-014.webp",
+   "source": 14,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-019.webp",
+   "source": 19,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-024.webp",
+   "source": 24,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-027.webp",
+   "source": 27,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-030.webp",
+   "source": 30,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-033.webp",
+   "source": 33,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-035.webp",
+   "source": 35,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-037.webp",
+   "source": 37,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-039.webp",
+   "source": 39,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-041.webp",
+   "source": 41,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-044.webp",
+   "source": 44,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-046.webp",
+   "source": 46,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-048.webp",
+   "source": 48,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-051.webp",
+   "source": 51,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-054.webp",
+   "source": 54,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-057.webp",
+   "source": 57,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-060.webp",
+   "source": 60,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-062.webp",
+   "source": 62,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-066.webp",
+   "source": 66,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-070.webp",
+   "source": 70,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-075.webp",
+   "source": 75,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-079.webp",
+   "source": 79,
+   "ticks": 2,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-083.webp",
+   "source": 83,
+   "ticks": 3,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-092.webp",
+   "source": 92,
+   "ticks": 3,
+   "kind": "drawing"
+  },
+  {
+   "file": "open-096.webp",
+   "source": 96,
+   "ticks": 3,
+   "kind": "drawing"
+  },
+  {
+   "file": "open.webp",
+   "source": 104,
+   "ticks": 3,
+   "kind": "key"
+  },
+  {
+   "file": "push-01.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-02.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-03.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-04.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-05.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-06.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-07.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-08.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-09.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-10.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-11.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-12.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-13.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-14.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-15.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-16.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-17.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-18.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-19.webp",
+   "source": null,
+   "ticks": 1,
+   "kind": "drawing"
+  },
+  {
+   "file": "push-20.webp",
+   "source": null,
+   "ticks": 3,
+   "kind": "drawing"
+  },
+  {
+   "file": "entered.webp",
+   "source": 242,
+   "ticks": 3,
+   "kind": "key"
+  }
+ ]
+}

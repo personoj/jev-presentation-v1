@@ -1,0 +1,13 @@
+{
+  "service": "Jev",
+  "http_status": 200,
+  "model": "jev-1.13.0",
+  "answers": {
+    "planned_purchase": {
+      "type": "noul",
+      "noul": 0.94
+    }
+  },
+  "elapsed_ms": 1048,
+  "scope": "single synthetic connectivity test, not a benchmark"
+}

@@ -1,0 +1,70 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Begin exactly at the supplied actual open-book frame. Perform one continuous slow camera push toward the right-hand page's diagram, especially the vermilion-underlined word 判断. The same printed paper grows to fill the entire frame; the physical gutter and cover gradually leave the view. Finish at the supplied close-up diagram composition. Preserve the headings, Chinese text identity, hand-drawn boxes, arrows, red underline, cream paper and upper-left light as closely as the keyframes define them. The endpoint is a readable enlarged printed diagram that will hand over to an editable webpage. No blank paper, no new world, no particles, no tunnel, no hard cut, no camera roll, no disappearing diagram or jitter. All motion is a coherent forward approach and gentle reframing over five seconds. Hold a clean final printed composition only at the end."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "16:9"
+  },
+  "submit": {
+    "id": "4949e114e2e149719920a44d973619cf",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "4949e114e2e149719920a44d973619cf",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "production",
+    "segmentIndex": 2,
+    "pilotApproval": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\approval.json",
+    "continuityMode": "chain",
+    "frameChain": {
+      "segmentIndex": 2,
+      "verifiedAt": "2026-09-22T10:05:29.349278+00:00",
+      "exactSha256Match": true,
+      "previousTail": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\actual-tail.png",
+        "bytes": 924899,
+        "sha256": "1e95122210332f3b16d913c1f7d2c5a6d802b34a16f371b199dfcf2c2f6cd3b8"
+      },
+      "nextFirst": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\first.png",
+        "bytes": 924899,
+        "sha256": "1e95122210332f3b16d913c1f7d2c5a6d802b34a16f371b199dfcf2c2f6cd3b8"
+      }
+    },
+    "frameChainManifest": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\book-frame-chain.json"
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\master-last-frame.jpg",
+    "source": "video-fallback"
+  }
+}

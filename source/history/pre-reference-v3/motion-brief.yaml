@@ -1,0 +1,81 @@
+concept_contract: concept-contract.yaml
+identity_bible: identity-bible.md
+status: current_deck_v2
+runtime_sources:
+  book: ../src/deck/BookFilm.tsx
+  segment_controller: ../src/deck/motion-runtime.ts
+  geometry: ../src/deck/Scenes.tsx
+  glyphs: ../src/deck/Geometry.tsx
+  examples: ../src/deck/Examples.tsx
+  styles: ../src/deck/deck.css
+  voice: ../src/features/alignment/VoiceLab.tsx
+  town: ../src/features/abm/TownWorld.tsx
+
+book_chain:
+  parameter_space: linear
+  media_access: sequential_with_reverse_seek
+  states: [closed, open]
+  timeline: ../public/media/book-timeline.json
+  compile_metadata: ../production/book/compiled/compile.json
+  delivery: ../public/media/book.mp4
+  gesture_policy:
+    unit: one-keypress-one-step
+    while_active: retarget
+    boundary: clamp
+    programmatic_navigation: ignore
+  rest_state: 停在同一影片的 open hold 帧，不切换静图；进入网页图解后暂停隐藏的影片
+  reduced_motion: 直接定位到目标状态
+  fallback: ../public/media/book-flip/desktop/open.webp
+
+native_diagrams:
+  parameter_space: discrete
+  renderer: DOM 和 SVG
+  navigation_source: ../src/deck/story.ts
+  rest_state: 当前讲解步骤静止；用户点击或按键才继续
+  motion_sources: ../src/deck/deck.css 与 Examples.tsx 中的数字控制器
+  reduced_motion: 保留状态与结果，关闭过渡和运动粒子
+
+voice_follow:
+  parameter_space: text_position_and_discrete_status
+  driver_source: 千问 ASR 转写、局部对齐、Jev 判断
+  rest_state: 等待和插话时确认位置保持
+  reduced_motion: 位置与状态准确，取消连续位移
+
+pixel_residents:
+  prompt_source: eight-resident-action-prompts.md
+  parameter_space: discrete_pose_and_street_position
+  media_access: decoded_alpha_atlas
+  atlas_layout:
+    columns: 4
+    rows: 2
+    order_source: ../src/features/abm/personas.ts
+    aspect_ratio: '2:1'
+    pixel_dimensions: '1774x887'
+    format: RGBA PNG，真实透明背景
+    cell_policy: 每格为方形，完整身体等比显示；姓名、选中圈与交易标签独立于人物翻转
+  assets:
+    portrait_fallback: ../public/art/town-residents.png
+    idle: ../public/art/town-idle.png
+    walk_a: ../public/art/town-walk-a.png
+    walk_b: ../public/art/town-walk-b.png
+    interact: ../public/art/town-interact.png
+    map: ../public/art/town-map.png
+  storyboard: [各自住所或公园步道待机, 根据实际行动沿路步行, 成交后交换姿态, 回到待机]
+  walking: 原生关键帧沿路网移动；walk_a 与 walk_b 交替显示肢体相位，不用整张图旋转假装行走
+  interaction_rule: 只有交易记录 status 为 settled 才进入 interact；拒绝、等待和推理失败保持各自状态说明
+  route_policy: 遵循地图道路与绕行点；同行商家访客有独立排队位置，位置不参与经济账目
+  timing_source: ../src/features/abm/TownWorld.tsx 与 resident-sprite.css
+  cancellation: 逐轮前进可以播放；重置、大幅跳轮、回退和减少动态效果直接定位；清理定时器并作版本校验，禁止旧到达回调覆盖新快照
+  preload: 动作图集共享加载并解码，双行走帧准备好后才切换；失败降级至待机或原肖像图集
+  reduced_motion: 保持稳定人物帧，直接到达本轮位置
+
+single_page_experiment:
+  page: '#economy'
+  modes: [自由实验, 政策对照]
+  state_source: ../src/features/abm/EconomyLab.tsx
+  free_experiment: 八人档案、地图、政策开关、推进、真实选中人物判断和保存轨迹检查在同一页
+  policy_comparison: 同一人群与种子的无券、有券双镇；同步回放与收入轨迹，点击人物或建筑检查状态
+  navigation_boundary: 不再单设 round、compare 章节；新增案例未确定，不添加虚构案例页
+
+historical_brief: history/motion-brief-11scene-draft.yaml
+verification_note: 本文件说明当前资源和控制器，不替代实际浏览器、接口与账目验收记录

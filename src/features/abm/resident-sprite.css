@@ -1,0 +1,9 @@
+.resident-sprite{display:block;position:relative;width:100%;aspect-ratio:1;isolation:isolate;transform:scaleX(var(--sprite-facing,1));transform-origin:50% 88%;pointer-events:none}
+.resident-sprite-frame{position:absolute;inset:0;background-size:400% 200%;background-position:var(--sprite-x) var(--sprite-y);background-repeat:no-repeat;image-rendering:pixelated}
+.resident-sprite-frame-b{opacity:0}
+.resident-sprite-walking .resident-sprite-frame-a{animation:resident-walk-a .36s steps(1,end) infinite}
+.resident-sprite-walking .resident-sprite-frame-b{animation:resident-walk-b .36s steps(1,end) infinite}
+.resident-sprite-unavailable{position:absolute;inset:12%;display:grid;place-items:center;border-radius:50%;background:#dbe0c8;box-shadow:0 0 0 3px #fff9;color:#475339;font:600 16px var(--sans)}
+@keyframes resident-walk-a{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes resident-walk-b{0%,100%{opacity:0}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.resident-sprite-frame{animation:none!important}.resident-sprite-frame-a{opacity:1}.resident-sprite-frame-b{opacity:0}}

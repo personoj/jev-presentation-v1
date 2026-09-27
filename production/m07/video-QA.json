@@ -1,0 +1,38 @@
+{
+  "group": "m07",
+  "status": "media-compiled-runtime-review-pending",
+  "generationAttempts": 1,
+  "master": {
+    "width": 768,
+    "height": 768,
+    "fps": 24,
+    "frames": 124
+  },
+  "delivery": "baked-video",
+  "controller": "segment-playback",
+  "budgetPass": true,
+  "nativeFrames": true,
+  "cropped": false,
+  "interpolated": false,
+  "desktop": {
+    "width": 720,
+    "height": 720,
+    "bytes": 8085447,
+    "allFramesAreKeyframes": true,
+    "audioStreams": 0
+  },
+  "mobile": {
+    "width": 480,
+    "height": 480,
+    "bytes": 2856339,
+    "allFramesAreKeyframes": true,
+    "audioStreams": 0
+  },
+  "timeline": "build/timeline.json",
+  "inspection": [
+    "20 samples contact sheet",
+    "124 native frames contact sheet",
+    "actual decoded tail"
+  ],
+  "pageRuntimeApproval": false
+}

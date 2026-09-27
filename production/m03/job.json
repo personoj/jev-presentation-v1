@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Raise the three die-cut regions from the approved flat diagram sheet into the approved paper-engineered relief. Choice's three branching arrows lift; Noul's two leaves labelled 是 and 否 open on their hinges; Score's three ordered stair tiers unfold. Keep all headings and definitions absolutely legible and stationary, the same sheet edges, column dividers, paper fiber texture, charcoal ink and vermilion dots. One continuous gentle unfolding, locked camera, stable upper-left light, no cuts or reversals, no other objects or data. Settle precisely into the supplied raised last frame. No blank substitution, text morphing, numbers, model probabilities, particles, zoom or camera drift."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "1:1"
+  },
+  "submit": {
+    "id": "77cb1320917b4ccd8facbaf03ea944dc",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "77cb1320917b4ccd8facbaf03ea944dc",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\actual-tail.png",
+    "source": "video-fallback"
+  }
+}

@@ -1,0 +1,22 @@
+concept_contract: contract.yaml
+identity_bible: ../../source/identity-bible.md
+parameter_space: linear
+media_access: sequential
+gesture_policy:
+  unit: one-gesture-one-step
+  inertia: coalesce
+  while_active: retarget
+  boundary: clamp
+  programmatic_navigation: ignore
+storyboard: [first, last]
+keyframes: [first.png, last.png]
+clip_chain: [master.mp4]
+rest_state: last
+loop: none
+anchor: fixed-body
+frame_policy: native
+target_fps: 24
+quality_target: 1100x619 CSS at DPR 1
+aspect_ratio: '16:9'
+pixel_dimensions: 1344x756
+reduced_motion: poster.png

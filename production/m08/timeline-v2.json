@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "fps": 24.0,
+  "frameDuration": 0.041666666666666664,
+  "frameCount": 124,
+  "initialState": "m08-first",
+  "states": [
+    {
+      "id": "m08-first",
+      "frame": 0,
+      "hold": 0.0
+    },
+    {
+      "id": "m08-last",
+      "frame": 123,
+      "hold": 5.125
+    }
+  ],
+  "segments": [
+    {
+      "id": "m08-first->m08-last",
+      "from": "m08-first",
+      "to": "m08-last",
+      "sourceFrames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "frames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "start": 0.0,
+      "hold": 5.125,
+      "endExclusive": 5.166666666666667,
+      "curve": {
+        "type": "constant",
+        "rate": 1.0
+      }
+    }
+  ]
+}

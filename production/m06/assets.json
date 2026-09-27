@@ -1,0 +1,16 @@
+[
+  {
+    "file": "production\\m06\\first.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2095484,
+    "sha256": "cb8489ee557457567789293b7601a84fdd25eb2441332b7f5243f3377cd3845c"
+  },
+  {
+    "file": "production\\m06\\last.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2106438,
+    "sha256": "6036bdef6d3b6b476711f940d31778d5fa3f97d1f7a0aa799c182d6c134919f7"
+  }
+]

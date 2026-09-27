@@ -1,0 +1,343 @@
+{
+  "source": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\master.mp4",
+    "width": 768,
+    "height": 768,
+    "probe": {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "Constrained Baseline",
+          "codec_type": "video",
+          "codec_time_base": "1/48",
+          "codec_tag_string": "avc1",
+          "codec_tag": "0x31637661",
+          "width": 768,
+          "height": 768,
+          "coded_width": 768,
+          "coded_height": 768,
+          "has_b_frames": 0,
+          "pix_fmt": "yuv420p",
+          "level": 41,
+          "chroma_location": "left",
+          "refs": 1,
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "r_frame_rate": "24/1",
+          "avg_frame_rate": "24/1",
+          "time_base": "1/24000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 124008,
+          "duration": "5.167000",
+          "bit_rate": "3747801",
+          "bits_per_raw_sample": "8",
+          "nb_frames": "124",
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0
+          },
+          "tags": {
+            "language": "und",
+            "handler_name": "VideoHandler"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_long_name": "AAC (Advanced Audio Coding)",
+          "profile": "LC",
+          "codec_type": "audio",
+          "codec_time_base": "1/32000",
+          "codec_tag_string": "mp4a",
+          "codec_tag": "0x6134706d",
+          "sample_fmt": "fltp",
+          "sample_rate": "32000",
+          "channels": 2,
+          "channel_layout": "stereo",
+          "bits_per_sample": 0,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/32000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "duration_ts": 165888,
+          "duration": "5.184000",
+          "bit_rate": "187463",
+          "max_bit_rate": "188620",
+          "nb_frames": "163",
+          "disposition": {
+            "default": 1,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0
+          },
+          "tags": {
+            "language": "und",
+            "handler_name": "SoundHandler"
+          }
+        }
+      ],
+      "format": {
+        "filename": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\master.mp4",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "format_long_name": "QuickTime / MOV",
+        "start_time": "0.000000",
+        "duration": "5.184000",
+        "size": "2548439",
+        "bit_rate": "3932776",
+        "probe_score": 100,
+        "tags": {
+          "minor_version": "512",
+          "major_brand": "isom",
+          "compatible_brands": "isomiso2avc1mp41",
+          "AIGC": "{\"Label\":\"1\",\"ContentProducer\":\"MiniMax\",\"ProduceID\":\"07018513560f3cae3f1aa12cc70075a7\",\"ReservedCode1\":\"{\\\"SecurityData\\\":{\\\"Type\\\":\\\"TC260PG\\\",\\\"Version\\\":1,\\\"PubSD\\\":[{\\\"Type\\\":\\\"DS\\\",\\\"AlgID\\\":\\\"1.2.156.10197.1.501\\\",\\\"TBSData\\\":{\\\"Type\\\":\\\"LabelMataData\\\"},\\\"Signature\\\":\\\"449d510ba19e62c21fcb8a1b94e1104fd1ae1179ba62cab640f0f7374d92ba5a89247e7a281257444a8b4dc933b25e62377d4af1929220e9a8bb815d6c331b4f\\\"},{\\\"Type\\\":\\\"DS\\\",\\\"AlgID\\\":\\\"1.2.156.10197.1.501\\\",\\\"TBSData\\\":{\\\"Type\\\":\\\"Binding\\\",\\\"BType\\\":\\\"0\\\"},\\\"Signature\\\":\\\"ee20aab68546caac4cb034e241197300508023bf0fb0407d55d9c9023f302ced54d59bccd4c60b6a49c66293b23638c795913f85d070dceb1d386373f3819da5\\\"},{\\\"Type\\\":\\\"PubKey\\\",\\\"AlgID\\\":\\\"1.2.156.10197.1.501\\\",\\\"TBSData\\\":{\\\"Type\\\":\\\"\\\"},\\\"KeyValue\\\":\\\"00a0b3b0b6a0c9b0c89cab328342af4e8221ec5b40799cbe835ab4251f7b47e4fd\\\"}],\\\"Bindings\\\":[{\\\"Type\\\":\\\"Hash\\\",\\\"AlgID\\\":\\\"1.2.156.10197.1.401\\\",\\\"TBSData\\\":{\\\"Type\\\":\\\"\\\"},\\\"Signature\\\":\\\"11a27f67f5de9f592d1ea9aec0ef4bb54583a4d537b360b95842b1a0a5fe14cb\\\"}]}}\",\"ContentPropagator\":\"MiniMax\",\"PropagateID\":\"\",\"ReservedCode2\":\"\"}",
+          "encoder": "Lavf59.27.100"
+        }
+      }
+    }
+  },
+  "compile": {
+    "backgroundOwner": "video",
+    "framePolicy": "native",
+    "sourceKeyColor": null,
+    "runtimeKeyColor": null,
+    "sourceKeyValidation": null,
+    "fps": 24.0,
+    "rawFrameCount": 124,
+    "finalFrameCount": 124,
+    "alphaQaFrameCount": 0,
+    "duration": 5.166666666666667,
+    "cleanup": "none",
+    "duplicateThreshold": 0.003,
+    "seamWindow": 40,
+    "framePreparationReport": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\frame-preparation\\frame-preparation-report.json",
+    "framePreparationVerdict": {
+      "passedAutomaticChecks": true,
+      "manualReviewRequired": true
+    },
+    "budgetReport": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\build\\motion-budget.json",
+    "selection": {
+      "selected": "baked-video",
+      "reasonCodes": [
+        "background-baked-into-video"
+      ],
+      "atlasWithinBudget": false,
+      "thresholds": {
+        "atlasMaxSheets": 1,
+        "atlasMaxDecodedMemoryMiB": 192.0,
+        "linearVideoMinFrames": 180
+      }
+    },
+    "timeline": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\build\\timeline.json",
+    "postEncodeKeyingReport": null,
+    "postEncodeKeyingPassed": null,
+    "intermediateFramesRetained": false
+  },
+  "runtime": {
+    "type": "baked-video",
+    "frameCount": 124,
+    "fps": 24.0,
+    "keying": null,
+    "anchors": {},
+    "posterFrame": 0,
+    "assets": {
+      "poster": "final/poster.png",
+      "desktop": "final/motion-baked-desktop.mp4",
+      "mobile": "final/motion-baked-mobile.mp4",
+      "timeline": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\build\\timeline.json"
+    }
+  },
+  "outputs": {
+    "poster": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\final\\poster.png",
+      "alpha": false,
+      "sourceFrame": 0,
+      "finalFrame": 0
+    },
+    "desktop": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\final\\motion-baked-desktop.mp4",
+      "width": 720,
+      "height": 720,
+      "bytes": 8053626,
+      "allFramesAreKeyframes": true,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_time_base": "1/48",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 720,
+            "height": 720,
+            "coded_width": 720,
+            "coded_height": 720,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "level": 31,
+            "chroma_location": "left",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/12288",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 63492,
+            "duration": "5.166992",
+            "bit_rate": "12467969",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "124",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0
+            },
+            "tags": {
+              "language": "und",
+              "handler_name": "VideoHandler",
+              "encoder": "Lavc60.31.102 libx264"
+            }
+          }
+        ],
+        "format": {
+          "filename": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\final\\motion-baked-desktop.mp4",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "start_time": "0.000000",
+          "duration": "5.167000",
+          "size": "8053626",
+          "bit_rate": "12469326",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf60.16.100"
+          }
+        }
+      }
+    },
+    "mobile": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\final\\motion-baked-mobile.mp4",
+      "width": 480,
+      "height": 480,
+      "bytes": 2700813,
+      "allFramesAreKeyframes": true,
+      "probe": {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+            "profile": "High",
+            "codec_type": "video",
+            "codec_time_base": "1/48",
+            "codec_tag_string": "avc1",
+            "codec_tag": "0x31637661",
+            "width": 480,
+            "height": 480,
+            "coded_width": 480,
+            "coded_height": 480,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "level": 30,
+            "chroma_location": "left",
+            "refs": 1,
+            "is_avc": "true",
+            "nal_length_size": "4",
+            "r_frame_rate": "24/1",
+            "avg_frame_rate": "24/1",
+            "time_base": "1/12288",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "duration_ts": 63492,
+            "duration": "5.166992",
+            "bit_rate": "4179795",
+            "bits_per_raw_sample": "8",
+            "nb_frames": "124",
+            "disposition": {
+              "default": 1,
+              "dub": 0,
+              "original": 0,
+              "comment": 0,
+              "lyrics": 0,
+              "karaoke": 0,
+              "forced": 0,
+              "hearing_impaired": 0,
+              "visual_impaired": 0,
+              "clean_effects": 0,
+              "attached_pic": 0,
+              "timed_thumbnails": 0
+            },
+            "tags": {
+              "language": "und",
+              "handler_name": "VideoHandler",
+              "encoder": "Lavc60.31.102 libx264"
+            }
+          }
+        ],
+        "format": {
+          "filename": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m03\\compiled\\final\\motion-baked-mobile.mp4",
+          "nb_streams": 1,
+          "nb_programs": 0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "format_long_name": "QuickTime / MOV",
+          "start_time": "0.000000",
+          "duration": "5.167000",
+          "size": "2700813",
+          "bit_rate": "4181634",
+          "probe_score": 100,
+          "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf60.16.100"
+          }
+        }
+      }
+    }
+  }
+}

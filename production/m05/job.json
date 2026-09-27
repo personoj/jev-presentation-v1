@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "One continuous 5-second shot. Preserve the first frame's camera, entire cream paper policy document, left printed Chinese title and paragraph, tabletop, background objects, light and colors. On the right-hand portion only, the three scored paper buildings smoothly lift from the page and fold into the miniature relief street shown in the final frame. Left two-storey bookstore, central arched theater with dark vermilion doors, right single-storey community bookstore. Real paper hinges and thickness, continuous soft contact shadows, stable exact printed signs. Finish precisely at the final frame and settle gently. No camera motion, no cuts, no added people, no new buildings, no moving text, no new numbers, no business results. The policy text stays perfectly unchanged and readable throughout."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "16:9"
+  },
+  "submit": {
+    "id": "d7525c2f65f84ce1b2cb5af2b021b6b7",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "d7525c2f65f84ce1b2cb5af2b021b6b7",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m05\\master-last-frame.jpg",
+    "source": "video-fallback"
+  }
+}

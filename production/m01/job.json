@@ -1,0 +1,48 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Use the supplied first and last images as exact anchors for the same ivory clothbound study companion. The cover has the Chinese title 思考，快与慢. Open the front cover smoothly leftward around the real spine, revealing exactly the fully printed Chinese study-guide spread from the last image. The camera stays at the same near-overhead position and distance; table, book footprint, red ribbon, paper thickness and soft upper-left illumination stay constant. The cover rotates like a rigid book cover; interior pages flex naturally and settle. Both facing pages have readable printed paragraphs and hand-drawn diagrams, not blank paper. Preserve their layout, headings and letter shapes as the book reaches the open state. The right-page diagram is 上下文 → 问题 → 判断, with a vermilion underline beneath 判断. One continuous opening action over five seconds. No cuts, no extra hands or objects, no text morphing, no duplicated covers, no extra book, no drifting camera or unrelated visual effects. End cleanly at the supplied open spread."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "16:9"
+  },
+  "submit": {
+    "id": "0361ee250fd6485bad72e5f21558a809",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "0361ee250fd6485bad72e5f21558a809",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  }
+}

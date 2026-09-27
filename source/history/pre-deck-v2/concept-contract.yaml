@@ -1,0 +1,72 @@
+status: implemented_current_contract
+scope: 9 幕、15–20 分钟的组会交互网页；小镇合并为一页自由实验，后续新案例待用户确定
+implementation_sources:
+  navigation: ../src/content.ts
+  composition: ../src/App.tsx
+  personas: ../src/features/abm/personas.ts
+  simulation: ../src/features/abm/engine.ts
+navigation: paged
+scene_order: [opening, system-one, primitives, uncertainty, workflow, voice, text, economy, discussion]
+destination: 桌面网页与投影；布局响应不同窗口，优先保证正文、图表与人物可读
+style: 暖白书页、墨黑正文、朱红批注；模型机制使用精确网页图解，ABM 使用俯视像素小镇
+data_boundary: 生成素材负责书本、场景和人物姿态；精确文字、数值、判断、交易与行动路径由程序及实验记录驱动
+
+book:
+  subject_count: 1
+  identity: 印有《思考，快与慢》的奶油白精装书，朱红书签，具有完整原创导读的跨页
+  motion_intent: 开书后停留阅读，再进入右页结构化判断图解；近景停住，由用户再次点击继续
+  background_owner: video
+  driver: state
+  input_semantics: step
+  time_control: segment-play
+  clip_continuity: chain
+  aspect_ratio: '16:9'
+  continuity: [M01 与 M02 使用同一条 book 成片, 右页判断下划线为进入锚点, 停留时平滑交接高清静图, 不自动跳到下一章]
+  text_requirements: 封面书名与原创导读可读；内页明确为原创概念导读，非原书内页复刻
+  timing_source: ../public/media/book-timeline.json
+
+diagrams:
+  scenes: [primitives, uncertainty, workflow, text, discussion]
+  background_owner: page
+  driver: state
+  input_semantics: event
+  time_control: state-transition
+  renderer: HTML、CSS、SVG 与真实文本
+  motion_intent: 问题选择、分布展开、约束改变及结果反馈保持同一阅读区域；数值和标签不烘焙进视频
+  continuity: [三类问题保持各自答案范围, 概率教学示例明确标注人为构造, 流程页围绕同一笔购书交易, 模型实调结果与构造示例区分]
+
+voice:
+  background_owner: page
+  driver: data
+  input_semantics: continuous
+  time_control: state-transition
+  renderer: 稿件上的行光带、当前位置下划线与独立 SVG 状态仪表
+  motion_intent: 朗读时平滑跟随稿件位置；插话时保留位置；回稿后继续
+  continuity: [稿件是主画面, 实时转写不作为常驻字幕栏, 暂定与确认位置分别显示, 波形只表示收音幅度]
+  detail_access: 原始转写与判断记录收纳在可展开的匹配过程面板
+
+town:
+  page: '#economy'
+  modes: [自由实验, 政策对照]
+  subject_count: 8
+  identity_source: ../src/features/abm/personas.ts
+  identity_bible: identity-bible.md
+  scenery: 同一张俯视像素地图；北侧两家书店与剧场，南侧住宅，步行道路和公园连接街区
+  background_owner: page
+  driver: data
+  input_semantics: event
+  time_control: state-driven-route-and-pose
+  clip_continuity: independent
+  scene_aspect_ratio: '1672:941'
+  sprite_cell_aspect_ratio: '1:1'
+  motion_intent: 八位固定居民以不同性格参与政策实验；根据实际行动沿道路步行，实际成交后表现交换，等待时使用各自待机姿态
+  interaction: 点击人物查看性格、动机、偏好与当轮状态；点击建筑查看经营信息；实验与对照在本页切换
+  layout: 小号单行商家名贴在屋顶高度 17% 处；价格库存放在详情，人物保留姓名与明亮选中圈
+  continuity: [人数固定为八人, 同一身份跨动作和政策世界一致, 人物分散在住房和步道, 失败与拒绝不展示成交动作, 地图位移不额外改变经济机制]
+  result_boundary: 性格是研究者预设条件；姿态不是模型内部思考；政策差异来自实验记录，不预先画出繁荣结果
+
+historical_design:
+  contract: history/concept-contract-11scene-draft.yaml
+  brief: history/motion-brief-11scene-draft.yaml
+  identities: history/identity-bible-11scene-draft.md
+  note: 原 11 幕与 M03–M08 纸艺视频方案保留历史资料；当前页面只使用 book 视频，其他阶段按本合同实现

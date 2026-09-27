@@ -1,0 +1,12 @@
+concept_contract: contract.yaml
+identity_bible: ../../source/identity-bible.md
+parameter_space: linear
+media_access: sequential
+keyframes: [first.png, last.png]
+rest_state: flat
+loop: none
+frame_policy: native
+target_fps: source-native
+aspect_ratio: '1:1'
+quality_target: desktop 720x720, mobile 480x480, 400x400 CSS at DPR 1
+reduced_motion: first.png

@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "One continuous 5-second shot. Begin with the single three-building cream paper cultural street on its closed hinged platform. The connected base gently unfolds horizontally, revealing two matching copies of the exact same initial street, ending at the provided final frame. A smooth physically plausible paper pop-up transformation, not a hard cut or dissolve. Keep background tabletop and books, upper-left branch, warm light, material and perspective stable. Both sides have identical building identities and order: two-storey bookstore, arched theater with vermilion doors, low community bookstore, identical trees and streetlamps. Both halves must end in the same initial condition, no people or crowds, no added inventory, no brighter prosperity on either side, no charts or numerical results. Remain one connected paper base with a visible central hinge. Gentle settling at end."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "16:9"
+  },
+  "submit": {
+    "id": "8e73b4b82cc747b99118fa7c4232b55c",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "8e73b4b82cc747b99118fa7c4232b55c",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m08\\master-last-frame.jpg",
+    "source": "video-fallback"
+  }
+}

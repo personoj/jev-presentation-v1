@@ -1,0 +1,11 @@
+{
+  "recoveredExistingJob": "4e8281f78b194a79905620d5f72163b2",
+  "final": {
+    "id": "4e8281f78b194a79905620d5f72163b2",
+    "status": "succeeded",
+    "content": {
+      "video_url": "https://video-product.cdn.minimax.io/h3-768p/2026/09/22/style1/444493572952321-1-4b6d97d670a2d22f_aigc.mp4"
+    },
+    "model": "minimax/minimax-h3-max"
+  }
+}

@@ -1,0 +1,125 @@
+status: design_draft
+requirements_source: ../全程动效设计.md
+source_script: ../剧本.md
+scope: 11 幕约 18 分钟的交互网页，媒体动效覆盖 M01–M08
+style: 精装书、暖白纸面、墨黑文字、朱红批注，手绘图与纸艺物体
+destination: 组会交互网页，1920x1080 投影为主要显示目标
+navigation: paged
+continuity_policy: M01/M02 构成唯一连续镜头链；M03–M08 各自建立独立状态，不共享连续时间轴
+text_requirements:
+  cover: 必须展示《思考，快与慢》，采用原创概念封面
+  pages: 完整原创导读、段落、手绘图、页码与朱红批注，标注原创导读
+  copy_source: ../全程动效设计.md 的“更新后的书页内容”
+  left_page: 两种思考方式；快速判断与审慎思考的概念类比
+  right_page: Jev 的结构化判断；上下文、问题、判断的关系图
+  entry_anchor: 右页“判断”一词下方的朱红下划线
+  display: 展示前完整合成并检查；文字扭曲需修正，不以空白页回避
+data_boundary: 媒体表现物理动作；精确文字、数字、路径与业务结果由程序控制，不生成假输出
+groups:
+  - id: M01
+    subject_count: 1
+    subjects:
+      - identity: 有书名的奶油白布面精装书，窄朱红书签，完整原创导读跨页
+    motion_intent: 封面绕书脊打开，内页自然展开并停留供阅读
+    background_owner: video
+    scene: 暖白桌面，左上方柔光，真实接触阴影
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: chain
+    chain_id: book-entry
+    continuity: [固定装帧与书签位置, 固定纸色与光照, 实际尾帧交给 M02]
+    aspect_ratio: '16:9'
+  - id: M02
+    subject_count: 1
+    subjects:
+      - identity: M01 结束时的同一原创导读跨页
+    motion_intent: 沿右页“判断”的朱红下划线推进，关系图扩大为网页工作区
+    background_owner: video
+    scene: 延续 M01 实际尾帧的纸面、光照与字面
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: chain
+    chain_id: book-entry
+    continuity: [使用 M01 实际尾帧, 锚点位置可追踪, 字面与网页图解接管一致]
+    aspect_ratio: '16:9'
+  - id: M03
+    subject_count: 3
+    subjects:
+      - identity: Choice 印刷插图与纸艺页签
+      - identity: Noul 印刷插图与纸艺页签
+      - identity: Score 印刷插图与纸艺页签
+    motion_intent: 印刷插图展开成可选择的立体页签
+    background_owner: page
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [三类页签共用纸厚与折叠语法, 标签与交互区位置稳定]
+    aspect_ratio: '1:1'
+  - id: M04
+    subject_count: 1
+    subjects:
+      - identity: 纸带读取装置与折纸导向片
+    motion_intent: 导向片在对应稿件与暂停姿态之间切换，作为跟读辅助视图
+    background_owner: page
+    driver: data
+    input_semantics: event
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [固定装置与纸带, 稿件位置由实际匹配驱动, 不以音量表示识别正确率]
+    aspect_ratio: '1:1'
+  - id: M05
+    subject_count: 1
+    subjects:
+      - identity: 有政策摘要的折页文件与虚构文化街区
+    motion_intent: 文件打开，书店与剧场立起，终点转为可点击街区
+    background_owner: video
+    scene: 暖白纸艺桌面，固定柔光，保留政策文件和街区的关系
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [政策摘要可读, 街区终点无预生成运行结果, 政策卡保留身份]
+    aspect_ratio: '16:9'
+  - id: M06
+    subject_count: 1
+    subjects:
+      - identity: 文化街区中选定书店的外景与剖切经营空间
+    motion_intent: 从街区推进到书店，外墙折开露出内部
+    background_owner: video
+    scene: 同一书店的门框、柜台与书架，保留环境光和遮挡
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [店铺身份与外观一致, 详情期间稳定, 关闭详情返回原街区位置而不重置模拟]
+    aspect_ratio: '16:9'
+  - id: M07
+    subject_count: 1
+    subjects:
+      - identity: 柜台上的消费券、核验区域与纸质夹扣
+    motion_intent: 券滑入核验区，成交时夹扣打开，约束不足时保持闭合
+    background_owner: video
+    scene: 固定柜台局部视窗，真实接触与阴影
+    driver: data
+    input_semantics: event
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [相同券与夹扣, 只有实际事件触发反馈, 待检查和未成交及请求失败明确区分]
+    aspect_ratio: '1:1'
+  - id: M08
+    subject_count: 1
+    subjects:
+      - identity: 同一文化街区的一体纸质底座与双视图底座
+    motion_intent: 底座沿中缝展开为初始状态一致的两侧视图
+    background_owner: video
+    scene: 两侧建筑、光照与初始陈设一致的纸艺街区
+    driver: state
+    input_semantics: step
+    time_control: segment-play
+    clip_continuity: independent
+    continuity: [两侧同样起点, 不预先渲染有券侧繁荣, 后续差异由实验记录产生]
+    aspect_ratio: '16:9'
+production_note: 设计约束，不代表生产视频或最终网页已完成；连接验证状态见需求来源

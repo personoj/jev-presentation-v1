@@ -1,0 +1,72 @@
+status: implemented_deck_v2
+scope: 面向初学者的十一页演示；先完成原理、小应用和语音，小镇机制保留
+implementation_sources:
+  navigation_and_copy: ../src/deck/story.ts
+  composition: ../src/Presentation.tsx
+  geometry: ../src/deck/Scenes.tsx
+  examples: ../src/deck/Examples.tsx
+navigation: paged
+aspect_ratio: '16:9'
+destination: 桌面浏览器全屏与投影，覆盖 1920x1080、1366x768、1280x720；窄屏自然阅读
+style: 干净纸白、深墨正文；蓝色 Choice、橙色 Noul、绿色 Score；连续几何推演，按讲解步骤停留
+readability: 主流程没有制作说明；重要内容使用大字；前十页完整置于视口中；技术解释进入笔记或资料
+input_semantics: step
+driver: state
+time_control: segment-play
+
+book:
+  subject_count: 1
+  identity: 奶油白精装概念导读书，朱红书签
+  motion_intent: 连续开书后停留，再从同一个画面进入清晰的网页图解
+  background_owner: video
+  driver: state
+  input_semantics: step
+  time_control: segment-play
+  clip_continuity: chain
+  aspect_ratio: '16:9'
+  continuity: [始终使用同一个影片节点, 从实际帧位置反向, 不再切换透视不同的 entered 静图, 停帧不自动换页]
+  timing_source: ../public/media/book-timeline.json
+  active_segment: closed->open
+  text_requirements: 书本作概念引入，正式解释使用可缩放的网页文字
+
+diagrams:
+  background_owner: page
+  renderer: HTML、CSS、SVG
+  motion_intent: 逐步生成、分流、概率定位、等级排序；图形有稳定的颜色和位置关系
+  continuity: [保留对象进行位置变化, 显示步骤可前进与后退, 每个静止状态可阅读, 示意与真实结果区分]
+  no_new_generated_media: true
+
+voice:
+  background_owner: page
+  driver: data
+  input_semantics: continuous
+  renderer: 稿件行光带、下划线与状态仪表
+  motion_intent: 朗读平滑跟随，插话保持，回稿继续
+  continuity: [保留真实麦克风与既有判断链, 固定转写与实时收音区分, 过期判断不推进稿件]
+  detail_access: 转写与判断过程面板
+
+town:
+  page: '#economy'
+  modes: [自由实验, 政策对照]
+  subject_count: 8
+  identity_source: ../src/features/abm/personas.ts
+  identity_bible: identity-bible.md
+  scenery: 同一张俯视像素地图；北侧两家书店与剧场，南侧住宅，步行道路和公园连接街区
+  background_owner: page
+  driver: data
+  input_semantics: event
+  time_control: state-driven-route-and-pose
+  clip_continuity: independent
+  scene_aspect_ratio: '1672:941'
+  sprite_cell_aspect_ratio: '1:1'
+  motion_intent: 八位固定居民以不同性格参与政策实验；根据实际行动沿道路步行，实际成交后表现交换，等待时使用各自待机姿态
+  interaction: 点击人物查看性格、动机、偏好与当轮状态；点击建筑查看经营信息；实验与对照在本页切换
+  layout: 小号单行商家名贴在屋顶高度 17% 处；价格库存放在详情，人物保留姓名与明亮选中圈
+  continuity: [人数固定为八人, 同一身份跨动作和政策世界一致, 人物分散在住房和步道, 失败与拒绝不展示成交动作, 地图位移不额外改变经济机制]
+  result_boundary: 性格是研究者预设条件；姿态不是模型内部思考；政策差异来自实验记录，不预先画出繁荣结果
+
+historical_design:
+  contract: history/concept-contract-11scene-draft.yaml
+  brief: history/motion-brief-11scene-draft.yaml
+  identities: history/identity-bible-11scene-draft.md
+  note: 原 11 幕与 M03–M08 纸艺视频方案保留历史资料；当前页面只使用 book 视频，其他阶段按本合同实现

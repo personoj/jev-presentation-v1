@@ -1,0 +1,142 @@
+[
+  {
+    "nextDisabled": false,
+    "route": "#opening",
+    "title": "让软件，也能做判断。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#system-one",
+    "title": "有些判断，来得很快。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#system-one/1",
+    "title": "有些判断，来得很快。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#system-one/2",
+    "title": "有些判断，来得很快。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#system-one/3",
+    "title": "有些判断，来得很快。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#judgment",
+    "title": "给它情况，问一个明确的问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#judgment/1",
+    "title": "给它情况，问一个明确的问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#judgment/2",
+    "title": "给它情况，问一个明确的问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#comparison",
+    "title": "生成一段回答，或返回一个判断。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#comparison/1",
+    "title": "生成一段回答，或返回一个判断。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#comparison/2",
+    "title": "生成一段回答，或返回一个判断。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#training",
+    "title": "训练目标，也有不同。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#training/1",
+    "title": "训练目标，也有不同。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#training/2",
+    "title": "训练目标，也有不同。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#primitives",
+    "title": "Jev 能回答三类问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#primitives/1",
+    "title": "Jev 能回答三类问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#primitives/2",
+    "title": "Jev 能回答三类问题。 · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#choice",
+    "title": "这条消息，应该交给谁？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#choice/1",
+    "title": "这条消息，应该交给谁？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#choice/2",
+    "title": "这条消息，应该交给谁？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#noul",
+    "title": "这场讲座，可以线上参加吗？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#noul/1",
+    "title": "这场讲座，可以线上参加吗？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#noul/2",
+    "title": "这场讲座，可以线上参加吗？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#score",
+    "title": "先处理哪一条求助？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#score/1",
+    "title": "先处理哪一条求助？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#score/2",
+    "title": "先处理哪一条求助？ · Jev"
+  },
+  {
+    "nextDisabled": false,
+    "route": "#voice",
+    "title": "念稿时跟随，插话时停住。 · Jev"
+  },
+  {
+    "nextDisabled": true,
+    "route": "#economy",
+    "title": "当判断进入一座小镇。 · Jev"
+  }
+]

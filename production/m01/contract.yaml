@@ -1,0 +1,17 @@
+subject_count: 1
+subjects:
+  - identity: 奶油白布面精装概念书，封面思考快与慢，朱红书签，原创导读跨页
+style: 暖白纸面，墨黑文字，朱红标记，真实纸张与布面
+motion_intent: 封面向左打开到有正文和手绘图的跨页
+background_owner: video
+scene: 暖白桌面，左上柔光，固定接触阴影
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: chain
+continuity:
+  - 固定书籍、书签、纸页布局和文字
+  - 固定相机、桌面与光照
+aspect_ratio: '16:9'
+destination: 网页书籍主舞台，最大约1280x720 CSS像素

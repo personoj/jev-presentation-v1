@@ -1,0 +1,19 @@
+subject_count: 3
+subjects:
+  - identity: 双层书店
+  - identity: 拱形剧场，朱红双门
+  - identity: 低层社区书店
+style: 暖白纸艺，墨黑中文，朱红细节
+motion_intent: 书店外墙展开，露出两层经营空间
+background_owner: video
+scene: 暖白桌面，左上柔光，真实纸纤维与接触阴影
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: independent
+continuity:
+  - 建筑身份和中文标签保持稳定
+  - 没有人物、交易数值或预设政策结果
+aspect_ratio: '16:9'
+destination: 网页约1100x619 CSS像素，DPR1

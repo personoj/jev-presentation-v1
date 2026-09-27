@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "links": [
+    {
+      "segmentIndex": 2,
+      "verifiedAt": "2026-09-22T10:05:29.349278+00:00",
+      "exactSha256Match": true,
+      "previousTail": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\actual-tail.png",
+        "bytes": 924899,
+        "sha256": "1e95122210332f3b16d913c1f7d2c5a6d802b34a16f371b199dfcf2c2f6cd3b8"
+      },
+      "nextFirst": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\first.png",
+        "bytes": 924899,
+        "sha256": "1e95122210332f3b16d913c1f7d2c5a6d802b34a16f371b199dfcf2c2f6cd3b8"
+      }
+    }
+  ],
+  "outputLinks": [
+    {
+      "segmentIndex": 2,
+      "verifiedAt": "2026-09-22T10:07:17.118593+00:00",
+      "passed": true,
+      "thresholds": {
+        "minimumSsim": 0.97,
+        "maximumNormalizedMae": 0.04
+      },
+      "metrics": {
+        "ssim": 0.975273,
+        "normalizedMae": 0.024203
+      },
+      "previousTail": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\book-chain-evidence\\segment-01-tail.png",
+        "bytes": 924899,
+        "sha256": "1e95122210332f3b16d913c1f7d2c5a6d802b34a16f371b199dfcf2c2f6cd3b8"
+      },
+      "nextHead": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\book-chain-evidence\\segment-02-head.png",
+        "bytes": 755222,
+        "sha256": "78317f3256a3e10b480556af0d4e38a6f65813096a975b261d57f4020a42d3a8"
+      },
+      "previousVideo": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\master.mp4",
+        "bytes": 7171759,
+        "sha256": "9d30f90e73c6b885f58d38e58a18361dc56c21709861daf740e5dabe238b5701"
+      },
+      "nextVideo": {
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\master.mp4",
+        "bytes": 9414579,
+        "sha256": "1095d2f0bacaf7af249ab0ea9af642faed9309531f85ae1853100b9087f4608a"
+      }
+    }
+  ]
+}

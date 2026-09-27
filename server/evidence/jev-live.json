@@ -1,0 +1,82 @@
+{
+  "testedAt": "2026-09-22T09:40:09.671Z",
+  "request": {
+    "requestId": "live-verification-20260922",
+    "stateVersion": 1,
+    "state": {
+      "reader_comment": "延长图书馆开放时间很好，但回家的末班车太早，我可能还是参加不了。"
+    },
+    "questions": {
+      "stance": {
+        "type": "choice",
+        "instructions": "读者对延长开放时间这项措施表达了什么态度？",
+        "criteria": {
+          "support": "支持延长开放时间",
+          "oppose": "反对延长开放时间",
+          "unclear": "未明确表达态度"
+        }
+      },
+      "transport": {
+        "type": "noul",
+        "instructions": "读者是否明确表达了交通方面的顾虑？"
+      },
+      "participation": {
+        "type": "score",
+        "instructions": "根据原文，读者实际参与晚间活动的意愿有多强？不要把对政策的支持当成参与意愿。",
+        "criteria": [
+          "明确不会参加或大概率不能参加",
+          "尚不确定是否参加",
+          "明确计划或承诺参加"
+        ]
+      }
+    }
+  },
+  "response": {
+    "requestId": "live-verification-20260922",
+    "stateVersion": 1,
+    "model": "jev-1.13.0",
+    "answers": {
+      "stance": {
+        "type": "choice",
+        "choice": "support",
+        "confidence": 0.88,
+        "probabilities": {
+          "unclear": 0.08,
+          "support": 0.91,
+          "oppose": 0.01
+        }
+      },
+      "transport": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "participation": {
+        "type": "score",
+        "score": 0.11,
+        "confidence": 0.83,
+        "legend": {
+          "0": "明确不会参加或大概率不能参加",
+          "1": "尚不确定是否参加",
+          "2": "明确计划或承诺参加"
+        },
+        "probabilities": {
+          "0": 0.89,
+          "1": 0.11,
+          "2": 0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 515,
+      "output_tokens": 72
+    },
+    "elapsedMs": 1018,
+    "source": "live"
+  },
+  "docs": [
+    "https://docs.typesafe.ai/api",
+    "https://docs.typesafe.ai/primitives/choice",
+    "https://docs.typesafe.ai/primitives/score",
+    "https://docs.typesafe.ai/primitives/noul"
+  ]
+}

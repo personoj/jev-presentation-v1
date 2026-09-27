@@ -1,0 +1,354 @@
+{
+  "testedAt": "2026-09-22T09:40:35.908Z",
+  "source": "Windows Microsoft Huihui Desktop synthetic speech, no microphone",
+  "sampleRate": 16000,
+  "channels": 1,
+  "bits": 16,
+  "durationSec": 12.65,
+  "events": [
+    {
+      "type": "ready",
+      "model": "qwen3-asr-flash-realtime",
+      "elapsedMs": 246
+    },
+    {
+      "type": "partial",
+      "text": "我们",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 916
+    },
+    {
+      "type": "partial",
+      "text": "我们。",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 924
+    },
+    {
+      "type": "partial",
+      "text": "我们是",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 1036
+    },
+    {
+      "type": "partial",
+      "text": "我们是。",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 1045
+    },
+    {
+      "type": "partial",
+      "text": "我们使用",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 1700
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 1704
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音。",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 1711
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 2460
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 2466
+    },
+    {
+      "type": "partial",
+      "text": "我们使用语音识别模型。",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 2526
+    },
+    {
+      "type": "final",
+      "text": "我们使用语音识别模型。",
+      "segmentId": "item_AYJ6EcDrH7HGmPW4ioFDP",
+      "elapsedMs": 3151
+    },
+    {
+      "type": "partial",
+      "text": "把",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 3514
+    },
+    {
+      "type": "partial",
+      "text": "把。",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 3522
+    },
+    {
+      "type": "partial",
+      "text": "把声音",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 3853
+    },
+    {
+      "type": "partial",
+      "text": "把声音。",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 3861
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 4510
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换。",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 4572
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 5272
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成文字",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 5279
+    },
+    {
+      "type": "partial",
+      "text": "把声音转换成文字。",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 5285
+    },
+    {
+      "type": "final",
+      "text": "把声音转换成文字。",
+      "segmentId": "item_NzY89nAWm4aieyvVHoWVf",
+      "elapsedMs": 5509
+    },
+    {
+      "type": "partial",
+      "text": "下",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 6411
+    },
+    {
+      "type": "partial",
+      "text": "下。",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 6417
+    },
+    {
+      "type": "partial",
+      "text": "下面",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 6659
+    },
+    {
+      "type": "partial",
+      "text": "下面。",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 6665
+    },
+    {
+      "type": "partial",
+      "text": "下面先",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7414
+    },
+    {
+      "type": "partial",
+      "text": "下面先停",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7421
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7434
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一。",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7441
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7976
+    },
+    {
+      "type": "partial",
+      "text": "下面先停一下。",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7983
+    },
+    {
+      "type": "final",
+      "text": "下面先停一下。",
+      "segmentId": "item_KJ1je5MoxoAOgWmkguauG",
+      "elapsedMs": 7990
+    },
+    {
+      "type": "partial",
+      "text": "我",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 8469
+    },
+    {
+      "type": "partial",
+      "text": "我。",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 8477
+    },
+    {
+      "type": "partial",
+      "text": "我补充",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 8707
+    },
+    {
+      "type": "partial",
+      "text": "我补充。",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 8713
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9469
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9474
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例。",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9480
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例子",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9949
+    },
+    {
+      "type": "partial",
+      "text": "我补充一个例子。",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9955
+    },
+    {
+      "type": "final",
+      "text": "我补充一个例子。",
+      "segmentId": "item_Rq6EcutGrVVnMgmS2cGe9",
+      "elapsedMs": 9961
+    },
+    {
+      "type": "partial",
+      "text": "然",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 10868
+    },
+    {
+      "type": "partial",
+      "text": "然。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 10873
+    },
+    {
+      "type": "partial",
+      "text": "然后",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 11192
+    },
+    {
+      "type": "partial",
+      "text": "然后。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 11197
+    },
+    {
+      "type": "partial",
+      "text": "然后继续",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 11960
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 11968
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 11976
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 12721
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 12729
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 13375
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗读",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 13381
+    },
+    {
+      "type": "partial",
+      "text": "然后继续按照稿件朗读。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 13387
+    },
+    {
+      "type": "final",
+      "text": "然后继续按照稿件朗读。",
+      "segmentId": "item_IT8emHIyiCZXXmNzUHZif",
+      "elapsedMs": 13394
+    },
+    {
+      "type": "stopped",
+      "elapsedMs": 14006
+    }
+  ],
+  "docs": [
+    "https://help.aliyun.com/zh/model-studio/qwen-asr-realtime-client-events",
+    "https://help.aliyun.com/zh/model-studio/qwen-asr-realtime-server-events"
+  ],
+  "success": true
+}

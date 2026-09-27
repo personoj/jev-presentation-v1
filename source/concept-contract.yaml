@@ -1,0 +1,28 @@
+status: reference_v3_implemented
+scope: 初学者十一页演示；前十页全屏，原小镇机制保留
+reference_manifest: ../visuals/reference-v3/manifest.json
+implementation: ../src/reference/Deck.tsx
+style: 原版暖米白纸张、炭黑、朱红；保持参考图构图、正文密度和图示位置
+navigation: paged
+aspect_ratio: '16:9'
+canonical_dimensions: [1672, 941]
+destination: 桌面浏览器全屏与投影，等比适配，无正文重排
+background_owner: page
+driver: state
+input_semantics: step
+time_control: segment-play
+continuity:
+  - 开书后高清停留，再连续聚焦同一张右页
+  - 相同纸条保留身份并重新排序
+  - 消息沿选中分支移动
+  - 概率值与指针同步变化
+  - 语音插话不改变确认位置
+  - 示意与真实模型返回明确区分
+assets: ../public/reference-art/prompts.md
+book_renderer: ../src/reference/BookPages.tsx
+diagram_renderer: ../src/reference/ConceptPages.tsx
+application_renderer: ../src/reference/ApplicationPages.tsx
+voice_renderer: ../src/reference/VoicePage.tsx
+judgment_engine: ../src/features/alignment/VoiceLab.tsx
+town_engine: ../src/features/abm/EconomyLab.tsx
+legacy: history/pre-reference-v3/concept-contract.yaml

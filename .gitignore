@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env*
+!.env.example
+*.log
+.local/
+
+.statamcp/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+

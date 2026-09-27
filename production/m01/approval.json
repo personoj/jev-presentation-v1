@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "approvedAt": "2026-09-22T10:00:05.010327+00:00",
+  "reviewer": "Codex visual and runtime review",
+  "continuityMode": "chain",
+  "notes": "",
+  "artifacts": {
+    "conceptContract": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\contract.yaml",
+      "bytes": 640,
+      "sha256": "83acbd78a9aebc7acb05716b2f07ec17a5d7c9df0952b4dbcc42976742cec904"
+    },
+    "firstFrame": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\first.png",
+      "bytes": 2221593,
+      "sha256": "4aeb5be6dfcb6aeee930ec717f8a939e46a53331609c3b4f7c4822157b87bdad"
+    },
+    "lastFrame": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\last.png",
+      "bytes": 2172815,
+      "sha256": "512f598ff6cfdd6087bdb310241fa1f0096af21e3452bc0440b67fa62543cb1e"
+    },
+    "pilotVideo": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\master.mp4",
+      "bytes": 7171759,
+      "sha256": "9d30f90e73c6b885f58d38e58a18361dc56c21709861daf740e5dabe238b5701"
+    },
+    "pageEvidence": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\page-evidence.md",
+      "bytes": 1049,
+      "sha256": "8ef5963d2943e855facda206c590503fb9a0cc74d1a2f7cfa31d95151c17614b"
+    },
+    "identityBible": {
+      "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\source\\identity-bible.md",
+      "bytes": 3245,
+      "sha256": "d08578cc942fb10d3962b819b84721f498e2ed68f31aefafba22953a0e10d7cc"
+    }
+  }
+}

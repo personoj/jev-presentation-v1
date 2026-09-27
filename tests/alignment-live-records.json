@@ -1,0 +1,64 @@
+[
+  {
+    "at": "2026-09-22T09:44:42.813Z",
+    "state": {
+      "transcript": "我们使用语义识别模型，把声音转换成文字。",
+      "localScript": "我们使用语音识别模型，把声音转换成文字。程序结合稿件中的前后内容，判断当前读到了什么位置。识别结果存在少量差异时，仍然可以尝试继续跟随。临时插话结束以后，再回到原文。",
+      "candidate": "我们使用语音识别模型，把声音转换成文字",
+      "task": "按稿朗读，允许少量转写错字；不允许大幅改述或话题相关插话。"
+    },
+    "status": 200,
+    "result": {
+      "requestId": "95edd59a-a710-4ddf-b026-c9595d51c8e1",
+      "model": "jev-1.13.0",
+      "answers": {
+        "alignment": {
+          "type": "choice",
+          "choice": "match",
+          "confidence": 0.25,
+          "probabilities": {
+            "match": 0.63,
+            "no_match": 0.37
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 600,
+        "output_tokens": 32
+      },
+      "elapsedMs": 752,
+      "source": "live"
+    }
+  },
+  {
+    "at": "2026-09-22T09:44:43.095Z",
+    "state": {
+      "transcript": "这里我补充一下，这个演示用的是流式语音识别，大家可以看一下效果。",
+      "localScript": "我们使用语音识别模型，把声音转换成文字。程序结合稿件中的前后内容，判断当前读到了什么位置。识别结果存在少量差异时，仍然可以尝试继续跟随。临时插话结束以后，再回到原文。",
+      "candidate": "我们使用语音识别模型，把声音转换成文字。程",
+      "task": "按稿朗读，允许少量转写错字；不允许大幅改述或话题相关插话。"
+    },
+    "status": 200,
+    "result": {
+      "requestId": "ca8e386a-8b56-4a0c-8411-a959ec85e187",
+      "model": "jev-1.13.0",
+      "answers": {
+        "alignment": {
+          "type": "choice",
+          "choice": "no_match",
+          "confidence": 0.97,
+          "probabilities": {
+            "no_match": 0.99,
+            "match": 0.01
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 614,
+        "output_tokens": 33
+      },
+      "elapsedMs": 276,
+      "source": "live"
+    }
+  }
+]

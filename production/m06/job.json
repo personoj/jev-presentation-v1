@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "One continuous 5-second shot from closed bookstore facade to the specified cutaway interior. Keep the camera completely stationary, original building dimensions, warm ivory paper fibers, foreground tree, streetlamp, background theater and community bookstore, light and composition. The bookstore's two facade halves swing smoothly outward on vertical folded-paper hinges to reveal the existing two-storey interior: shelves of books, central staircase, ground-floor display table and right checkout counter. Retain the original entrance door on the left hinged panel. The Chinese shop sign remains stable and legible on its specified support as shown in the final frame. Physical paper folds and thickness, calm restrained realistic model movement. No people, no numeric data, no added buildings, no cuts or dissolves, no flickering shelves. Settle exactly into final composition."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "16:9"
+  },
+  "submit": {
+    "id": "e96d1f6a4aca4ca69d4928c22f0b21fb",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "e96d1f6a4aca4ca69d4928c22f0b21fb",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m06\\master-last-frame.jpg",
+    "source": "video-fallback"
+  }
+}

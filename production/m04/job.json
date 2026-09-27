@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Animate ONLY the single vermilion-faced routing vane on the right post of the same paper reading device. Pivot it smoothly counterclockwise about its fixed round hinge, from the approved vertical pause pose to the supplied diagonal upper-left matching pose. Exactly preserve the paper strip, two rollers, base, posts, hinge center, sheet texture, framing and upper-left light. Text remains perfectly stationary and reads 我们使用语音识别模型 / 把声音转换成文字 and 跟读定位. Do not move the paper or reading position. Do not add waveform, highlights, arrows, cursor, status text, numbers or extra parts. One gentle 45-degree pivot, then hold the target pose; no camera motion, no overshoot or reverse, no cutting."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "1:1"
+  },
+  "submit": {
+    "id": "f47fd6bf54064f8c829b737bc95bd5c5",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "f47fd6bf54064f8c829b737bc95bd5c5",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m04\\actual-tail.png",
+    "source": "video-fallback"
+  }
+}

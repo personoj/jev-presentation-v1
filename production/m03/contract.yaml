@@ -1,0 +1,16 @@
+source_contract: ../../source/concept-contract.yaml
+subject_count: 1
+subjects:
+  - identity: One precision paper diagram sheet with three die-cut tabs
+style: warm-white, charcoal and vermilion contemporary precision paper engineering
+motion_intent: flat-to-raised
+background_owner: video
+scene: locked camera, original tabletop and soft upper-left light
+driver: state
+input_semantics: event
+time_control: segment-play
+navigation: paged
+clip_continuity: independent
+continuity: [subject identity, typography, framing, light, paper texture]
+aspect_ratio: '1:1'
+destination: independent component, 400x400 CSS px, DPR 1

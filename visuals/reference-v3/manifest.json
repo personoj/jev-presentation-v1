@@ -1,0 +1,62 @@
+[
+  {
+    "id": "01-opening",
+    "title": "开场",
+    "file": "01-opening.png"
+  },
+  {
+    "id": "02-system-one",
+    "title": "System 1 与高清开书",
+    "file": "02-system-one-revised.png"
+  },
+  {
+    "id": "02b-book-focus",
+    "title": "书页聚焦 · 第二个停留画面",
+    "file": "02b-book-focus.png"
+  },
+  {
+    "id": "03-judgment",
+    "title": "Jev 是什么",
+    "file": "03-judgment-density-v2.png"
+  },
+  {
+    "id": "04-comparison",
+    "title": "生成与判断",
+    "file": "04-comparison-density-v2.png"
+  },
+  {
+    "id": "05-training",
+    "title": "训练目标",
+    "file": "05-training-density-v2.png"
+  },
+  {
+    "id": "06-primitives",
+    "title": "三种类型",
+    "file": "06-primitives-density-v2.png"
+  },
+  {
+    "id": "07-choice",
+    "title": "Choice 简单应用",
+    "file": "07-choice-density-v2.png"
+  },
+  {
+    "id": "08-noul",
+    "title": "Noul 简单应用",
+    "file": "08-noul-density-v2.png"
+  },
+  {
+    "id": "09-score",
+    "title": "Score 简单应用",
+    "file": "09-score-density-v2.png"
+  },
+  {
+    "id": "10-voice",
+    "title": "语音演示",
+    "file": "10-voice.png"
+  },
+  {
+    "id": "11-economy",
+    "title": "小镇衔接",
+    "file": "11-economy.png"
+  }
+]

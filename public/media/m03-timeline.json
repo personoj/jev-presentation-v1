@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "fps": 24.0,
+  "frameDuration": 0.041666666666666664,
+  "frameCount": 124,
+  "initialState": "flat",
+  "states": [
+    {
+      "id": "flat",
+      "frame": 0,
+      "hold": 0.0
+    },
+    {
+      "id": "raised",
+      "frame": 123,
+      "hold": 5.125
+    }
+  ],
+  "segments": [
+    {
+      "id": "flat->raised",
+      "from": "flat",
+      "to": "raised",
+      "sourceFrames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "frames": {
+        "start": 0,
+        "hold": 123,
+        "endExclusive": 124
+      },
+      "start": 0.0,
+      "hold": 5.125,
+      "endExclusive": 5.166666666666667,
+      "curve": {
+        "type": "constant",
+        "rate": 1.0
+      }
+    }
+  ]
+}

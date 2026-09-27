@@ -1,0 +1,28 @@
+concept_contract: concept-contract.yaml
+status: reference_v3_implemented
+storyboard: reference-v3-production.md
+parameter_space: discrete_states_with_continuous_object_transitions
+media_access: decoded_alpha_stills_and_native_geometry
+runtime_sources:
+  navigation: ../src/reference/Deck.tsx
+  book: ../src/reference/BookPages.tsx
+  native_geometry: ../src/reference/ConceptPages.tsx
+  examples: ../src/reference/ApplicationPages.tsx
+  styles: ../src/reference/reference.css
+  voice: ../src/reference/VoicePage.tsx
+gesture_policy:
+  unit: one-keypress-one-step
+  while_active: retarget
+  boundary: clamp
+  programmatic_navigation: observe
+rest_state: 当前步骤稳定停留，用户推进后才进入下一步
+book_states: [closed, open, intuitive_comparison, right_page_focus, three_types]
+book_continuity: 始终使用同一张开书纸面；近景不换图片；文字、边框、箭头和下划线锚点连续插值
+frame_policy: 原生浏览器动画；没有编码帧率或伪造视频时间轴
+motion_timing_source: ../src/reference/reference.css
+number_timing_source: ../src/reference/ConceptPages.tsx
+reduced_motion: 保留全部内容、顺序与实际结果，直接到目标状态
+media_budget: 本轮新素材是静止透明 PNG，动作由 DOM/SVG 计算，不作为视频或逐帧图集交付
+legacy_video_timeline: ../public/media/book-timeline.json
+legacy: history/pre-reference-v3/motion-brief.yaml
+qa: ../qa/reference-v3/验收记录.md

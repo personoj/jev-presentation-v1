@@ -1,0 +1,1098 @@
+{
+  "auditedAt": "2026-09-22T10:49:57.972211+00:00",
+  "scope": "Media and artifact audit only; no browser playback claims",
+  "method": "ffprobe streams plus decoded key_frame/pict_type for all 14 delivered MP4 files; sha256 source comparisons; static timeline and art-reference checks",
+  "passed": true,
+  "assets": [
+    {
+      "group": "book",
+      "device": "desktop",
+      "path": "public/media/book.mp4",
+      "width": 1344,
+      "height": 756,
+      "fps": 24.0,
+      "streamFrameCount": 248,
+      "decodedFrameCount": 248,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 10.333984,
+      "formatDurationSeconds": 10.334,
+      "frameCountOverFpsSeconds": 10.333333333333334,
+      "bytes": 28119556,
+      "sha256": "b991511cd92fc2a2f50c33c7b10ef1f4d8bac4014a32642b602eec257c4259de",
+      "selectedCompiledSource": "production/book/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/book-timeline.json",
+      "states": [
+        {
+          "id": "closed",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "open",
+          "frame": 123,
+          "hold": 5.125
+        },
+        {
+          "id": "entered",
+          "frame": 247,
+          "hold": 10.291666666666666
+        }
+      ],
+      "segments": [
+        {
+          "id": "closed->open",
+          "from": "closed",
+          "to": "open",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        },
+        {
+          "id": "open->entered",
+          "from": "open",
+          "to": "entered",
+          "sourceFrames": {
+            "start": 124,
+            "hold": 247,
+            "endExclusive": 248
+          },
+          "frames": {
+            "start": 124,
+            "hold": 247,
+            "endExclusive": 248
+          },
+          "start": 5.166666666666667,
+          "hold": 10.291666666666666,
+          "endExclusive": 10.333333333333334,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "book",
+      "device": "mobile",
+      "path": "public/media/book-mobile.mp4",
+      "width": 768,
+      "height": 432,
+      "fps": 24.0,
+      "streamFrameCount": 248,
+      "decodedFrameCount": 248,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 10.333984,
+      "formatDurationSeconds": 10.334,
+      "frameCountOverFpsSeconds": 10.333333333333334,
+      "bytes": 9083833,
+      "sha256": "760a057fa49126f335beebce8a1b59c993c79d99326d06af549148b1efccde4e",
+      "selectedCompiledSource": "production/book/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/book-timeline.json",
+      "states": [
+        {
+          "id": "closed",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "open",
+          "frame": 123,
+          "hold": 5.125
+        },
+        {
+          "id": "entered",
+          "frame": 247,
+          "hold": 10.291666666666666
+        }
+      ],
+      "segments": [
+        {
+          "id": "closed->open",
+          "from": "closed",
+          "to": "open",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        },
+        {
+          "id": "open->entered",
+          "from": "open",
+          "to": "entered",
+          "sourceFrames": {
+            "start": 124,
+            "hold": 247,
+            "endExclusive": 248
+          },
+          "frames": {
+            "start": 124,
+            "hold": 247,
+            "endExclusive": 248
+          },
+          "start": 5.166666666666667,
+          "hold": 10.291666666666666,
+          "endExclusive": 10.333333333333334,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m03",
+      "device": "desktop",
+      "path": "public/media/m03.mp4",
+      "width": 720,
+      "height": 720,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 8053626,
+      "sha256": "3670db13afd54901b2ec75046f1eb49d494da43343aa27ef4e56da6f9380d9d1",
+      "selectedCompiledSource": "production/m03/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m03-timeline.json",
+      "states": [
+        {
+          "id": "flat",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "raised",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "flat->raised",
+          "from": "flat",
+          "to": "raised",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m03",
+      "device": "mobile",
+      "path": "public/media/m03-mobile.mp4",
+      "width": 480,
+      "height": 480,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 2700813,
+      "sha256": "7085b1452e42dd331ac9674d00d59652318742456b1e4191c633e767f8792d18",
+      "selectedCompiledSource": "production/m03/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m03-timeline.json",
+      "states": [
+        {
+          "id": "flat",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "raised",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "flat->raised",
+          "from": "flat",
+          "to": "raised",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m04",
+      "device": "desktop",
+      "path": "public/media/m04.mp4",
+      "width": 720,
+      "height": 720,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 6531665,
+      "sha256": "4afa25f4249a2d85d21146b07e58168502d10f06ee07efc7cad0f823abe16407",
+      "selectedCompiledSource": "production/m04/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m04-timeline.json",
+      "states": [
+        {
+          "id": "pause",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "match",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "pause->match",
+          "from": "pause",
+          "to": "match",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m04",
+      "device": "mobile",
+      "path": "public/media/m04-mobile.mp4",
+      "width": 480,
+      "height": 480,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 2418363,
+      "sha256": "a1c9d4a45daac4bc1483af40690faf61c13cdfa62453cd73f420985ed97b112a",
+      "selectedCompiledSource": "production/m04/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m04-timeline.json",
+      "states": [
+        {
+          "id": "pause",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "match",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "pause->match",
+          "from": "pause",
+          "to": "match",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m05",
+      "device": "desktop",
+      "path": "public/media/m05.mp4",
+      "width": 1344,
+      "height": 756,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 16298734,
+      "sha256": "3283845e462c7246f45c2dad5a7262ca2a23e6aabacba2bb189ae43b2f740cbb",
+      "selectedCompiledSource": "production/m05/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m05-timeline.json",
+      "states": [
+        {
+          "id": "m05-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m05-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m05-first->m05-last",
+          "from": "m05-first",
+          "to": "m05-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m05",
+      "device": "mobile",
+      "path": "public/media/m05-mobile.mp4",
+      "width": 768,
+      "height": 432,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 5391038,
+      "sha256": "1d1394b07c163915e2e94e8b5c8110ea0c0d4775b56e8a3be2797123962c7808",
+      "selectedCompiledSource": "production/m05/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m05-timeline.json",
+      "states": [
+        {
+          "id": "m05-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m05-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m05-first->m05-last",
+          "from": "m05-first",
+          "to": "m05-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m06",
+      "device": "desktop",
+      "path": "public/media/m06.mp4",
+      "width": 1344,
+      "height": 756,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 16551637,
+      "sha256": "ef251e74e85c329145955922eb37ae430e8c1b2a06088796736d5904ae02cf95",
+      "selectedCompiledSource": "production/m06/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m06-timeline.json",
+      "states": [
+        {
+          "id": "m06-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m06-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m06-first->m06-last",
+          "from": "m06-first",
+          "to": "m06-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m06",
+      "device": "mobile",
+      "path": "public/media/m06-mobile.mp4",
+      "width": 768,
+      "height": 432,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 5698039,
+      "sha256": "6186cc6dd3131d6e666475c4c129a7abc5a709dde1aeb65f02567e046f8c2321",
+      "selectedCompiledSource": "production/m06/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m06-timeline.json",
+      "states": [
+        {
+          "id": "m06-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m06-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m06-first->m06-last",
+          "from": "m06-first",
+          "to": "m06-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m07",
+      "device": "desktop",
+      "path": "public/media/m07.mp4",
+      "width": 720,
+      "height": 720,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 8085447,
+      "sha256": "3a8dfc0ac5e0ba6da1b732078ef56cb08e26eb125d999bc0e24aff3f700065cd",
+      "selectedCompiledSource": "production/m07/compiled/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m07-timeline.json",
+      "states": [
+        {
+          "id": "closed",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "open",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "closed->open",
+          "from": "closed",
+          "to": "open",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m07",
+      "device": "mobile",
+      "path": "public/media/m07-mobile.mp4",
+      "width": 480,
+      "height": 480,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 2856339,
+      "sha256": "1263cfe0d9d79efec201e19e86ac448d75c191c3ac5f21e63ecec1c8f9420057",
+      "selectedCompiledSource": "production/m07/compiled/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m07-timeline.json",
+      "states": [
+        {
+          "id": "closed",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "open",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "closed->open",
+          "from": "closed",
+          "to": "open",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m08",
+      "device": "desktop",
+      "path": "public/media/m08.mp4",
+      "width": 1344,
+      "height": 756,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 14809428,
+      "sha256": "fbf0d0195111fb4b078932be42cd498b688baef14312e79e5e3f6052eb07c236",
+      "selectedCompiledSource": "production/m08/compiled-v2/final/motion-baked-desktop.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m08-timeline.json",
+      "states": [
+        {
+          "id": "m08-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m08-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m08-first->m08-last",
+          "from": "m08-first",
+          "to": "m08-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    },
+    {
+      "group": "m08",
+      "device": "mobile",
+      "path": "public/media/m08-mobile.mp4",
+      "width": 768,
+      "height": 432,
+      "fps": 24.0,
+      "streamFrameCount": 124,
+      "decodedFrameCount": 124,
+      "audioStreamCount": 0,
+      "allFramesAreKeyframes": true,
+      "videoStreamDurationSeconds": 5.166992,
+      "formatDurationSeconds": 5.167,
+      "frameCountOverFpsSeconds": 5.166666666666667,
+      "bytes": 4769221,
+      "sha256": "319be533e80fff008a75e5121b774e853de3df7cc192d1cc5b9c9fbe5c4ded27",
+      "selectedCompiledSource": "production/m08/compiled-v2/final/motion-baked-mobile.mp4",
+      "selectedSourceHashMatches": true,
+      "timelinePath": "public/media/m08-timeline.json",
+      "states": [
+        {
+          "id": "m08-first",
+          "frame": 0,
+          "hold": 0.0
+        },
+        {
+          "id": "m08-last",
+          "frame": 123,
+          "hold": 5.125
+        }
+      ],
+      "segments": [
+        {
+          "id": "m08-first->m08-last",
+          "from": "m08-first",
+          "to": "m08-last",
+          "sourceFrames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "frames": {
+            "start": 0,
+            "hold": 123,
+            "endExclusive": 124
+          },
+          "start": 0.0,
+          "hold": 5.125,
+          "endExclusive": 5.166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1.0
+          }
+        }
+      ],
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "artReferences": [
+    {
+      "reference": "/art/book-closed.png",
+      "exists": true,
+      "usedBy": [
+        "src/App.tsx"
+      ]
+    },
+    {
+      "reference": "/art/book-open.png",
+      "exists": true,
+      "usedBy": [
+        "src/App.tsx"
+      ]
+    },
+    {
+      "reference": "/art/bookstore-interior.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/abm/EconomyLab.tsx"
+      ]
+    },
+    {
+      "reference": "/art/comparison-worlds.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/abm/EconomyLab.tsx"
+      ]
+    },
+    {
+      "reference": "/art/cultural-street-runtime.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/abm/EconomyLab.tsx"
+      ]
+    },
+    {
+      "reference": "/art/cultural-street.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/abm/EconomyLab.tsx"
+      ]
+    },
+    {
+      "reference": "/art/primitives-raised.png",
+      "exists": true,
+      "usedBy": [
+        "src/components/Concepts.tsx"
+      ]
+    },
+    {
+      "reference": "/art/transaction-counter.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/abm/EconomyLab.tsx"
+      ]
+    },
+    {
+      "reference": "/art/voice-gate.png",
+      "exists": true,
+      "usedBy": [
+        "src/features/alignment/VoiceLab.tsx"
+      ]
+    }
+  ],
+  "bookContinuity": {
+    "path": "production/book-frame-chain.json",
+    "inputRelayAndOutputVerificationPassed": true,
+    "evidenceArtifacts": [
+      {
+        "role": "previousTail",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\actual-tail.png",
+        "exists": true,
+        "hashMatches": true
+      },
+      {
+        "role": "nextFirst",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\first.png",
+        "exists": true,
+        "hashMatches": true
+      },
+      {
+        "role": "previousTail",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\book-chain-evidence\\segment-01-tail.png",
+        "exists": true,
+        "hashMatches": true
+      },
+      {
+        "role": "nextHead",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\book-chain-evidence\\segment-02-head.png",
+        "exists": true,
+        "hashMatches": true
+      },
+      {
+        "role": "previousVideo",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m01\\master.mp4",
+        "exists": true,
+        "hashMatches": true
+      },
+      {
+        "role": "nextVideo",
+        "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m02\\master.mp4",
+        "exists": true,
+        "hashMatches": true
+      }
+    ],
+    "recordedOutputMetrics": {
+      "ssim": 0.975273,
+      "normalizedMae": 0.024203
+    },
+    "expectedFrames": 248
+  },
+  "durationAccounting": {
+    "presentationDesktopVideoStreamTotalSeconds": 41.335936,
+    "presentationMobileVideoStreamTotalSeconds": 41.335936,
+    "presentationTimelineFrameTotalSeconds": 41.333333333333336,
+    "presentationChapterMotionSegments": 8,
+    "note": "One device version per presentation; book contains M01 and M02. Desktop/mobile versions are not added together. Replays and playback-rate adjustments alter actual talk time.",
+    "generatedOriginals": [
+      {
+        "path": "production/m01/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m02/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m03/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m04/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m05/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m06/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m07/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m08/master-v2.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": true
+      },
+      {
+        "path": "production/m08/master.mp4",
+        "videoStreamDurationSeconds": 5.167,
+        "formatDurationSeconds": 5.184,
+        "frames": 124,
+        "fps": 24.0,
+        "selectedForPresentation": false
+      }
+    ],
+    "allGeneratedOriginalVideoStreamTotalSeconds": 46.503,
+    "extraGeneratedVersionVideoStreamSeconds": 5.167,
+    "transcodesAndJoinedCopiesExcluded": true
+  },
+  "extraPublicMp4NotUsedByDeclaredGroups": [
+    "public/media/m01.mp4"
+  ],
+  "promptAndSourceIndex": [
+    "production/m01/prompt.txt",
+    "production/m02/prompt.txt",
+    "production/m03/video-prompt.txt",
+    "production/m04/video-prompt.txt",
+    "production/m05/prompts.md",
+    "production/m05/runtime-image-prompt.md",
+    "production/m05/video-prompt.txt",
+    "production/m06/prompts.md",
+    "production/m06/video-prompt.txt",
+    "production/m07/video-prompt.txt",
+    "production/m08/prompts.md",
+    "production/m08/video-prompt-v2.txt",
+    "production/m08/video-prompt.txt"
+  ],
+  "visualReviewScope": {
+    "thisAgentReviewed": [
+      "M05 first/last, 4fps contact sheet, all 124 frames contact sheet, actual decoded tail",
+      "M06 first/last, 4fps contact sheet, all 124 frames contact sheet, actual decoded tail",
+      "M08 v1 and v2 all 124 frames contact sheets and decoded tails; selected v2 has no roof escaping frame",
+      "M05/M06/M08 original ImageGen stills and cultural-street-runtime.png"
+    ],
+    "otherGroups": "M01/M02/M03/M04/M07 content and page playback reviewed separately by root/other agents; this audit checks their encoded assets and evidence records only",
+    "browserPlayback": "Not claimed by this audit; root task verifies UI playback, reverse, reduced motion and mobile layout"
+  }
+}

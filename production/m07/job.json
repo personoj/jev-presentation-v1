@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "model": "minimax/minimax-h3-max",
+    "content": [
+      {
+        "type": "text",
+        "text": "Animate ONLY the vermilion-faced paper latch on the approved bookstore counter, raising it from closed to the supplied open target pose around the fixed circular hinge on the LEFT support. Preserve the exact counter, both supports, one cream closed book with narrow red bookmark, and one stationary cultural voucher. The book, voucher and typography do not move. Text must remain readable and identical: 阅读 / 消费券 / 书店. One plausible gentle paper-hinge opening, then settle; locked camera and constant warm-white upper-left lighting. No successful transaction text or symbols, no additional book, no funds, numbers, inventory change, hands, arrows, particles or effects. Do not simulate an exchange or slide the voucher."
+      },
+      {
+        "type": "image_url",
+        "role": "first_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      },
+      {
+        "type": "image_url",
+        "role": "last_frame",
+        "image_url": {
+          "url": "<local-image-data-uri>"
+        }
+      }
+    ],
+    "resolution": "768p",
+    "generate_audio": false,
+    "watermark": false,
+    "return_last_frame": true,
+    "duration": 5,
+    "ratio": "1:1"
+  },
+  "submit": {
+    "id": "cbf6e26d927a450580dcce40bb18a1eb",
+    "status": "queued",
+    "model": "minimax/minimax-h3-max"
+  },
+  "final": {
+    "id": "cbf6e26d927a450580dcce40bb18a1eb",
+    "status": "succeeded",
+    "content": {
+      "video_url": "<remote-url-redacted>"
+    },
+    "model": "minimax/minimax-h3-max"
+  },
+  "productionGate": {
+    "stage": "pilot",
+    "segmentIndex": 1
+  },
+  "lastFrame": {
+    "path": "D:\\1a_work\\9.25\\jev-presentation-v1\\production\\m07\\actual-tail.png",
+    "source": "video-fallback"
+  }
+}

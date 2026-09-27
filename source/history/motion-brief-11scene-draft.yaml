@@ -1,0 +1,93 @@
+concept_contract: concept-contract.yaml
+identity_bible: identity-bible.md
+prompt_source: motion-prompts-v2.md
+parameter_space: discrete
+media_access: sequential
+gesture_policy:
+  unit: one-gesture-one-step
+  inertia: coalesce
+  while_active: retarget
+  boundary: clamp
+  programmatic_navigation: ignore
+production_order:
+  - 制作 M01 独立首尾帧、视频与实际网页 Pilot，验收后继续
+  - M02 依赖 M01 成片的实际尾帧，逐项验证输入接力与输出接缝
+  - M03–M08 在 Pilot 后按各组首尾帧与状态制作；独立组之间没有视频尾帧接力依赖
+  - M03 先验证一种页签，按形态差异决定是否需要三条母版
+duration_budget: 母版总量约 40–55 秒为设计估计；拆段使用，最终时长以实片测量为准
+groups:
+  - id: M01
+    parameter_space: linear
+    keyframes: [M01-K0, M01-K1]
+    storyboard: [有书名的闭合书本, 自然开书, 完整原创导读跨页停留]
+    clip_chain:
+      - M01-K0 → M01-K1；先完成约 5 秒 Pilot
+    rest_state: 完整可读的封面或导读跨页
+    anchor: fixed-body
+    pixel_dimensions: '1920x1080 目标，核验实际生成尺寸'
+  - id: M02
+    parameter_space: linear
+    keyframes: [M01-actual-tail, M02-K1]
+    storyboard: [承接 M01 实际尾帧, 向右页判断下划线推进, 图解与网页精确接合]
+    clip_chain:
+      - M01-actual-tail → M02-K1；约 4–5 秒，不得用设计 M01-K1 代替真实尾帧
+    rest_state: 可读且可操作的原理工作区
+    anchor: free
+    pixel_dimensions: '1920x1080 目标，核验实际生成尺寸'
+  - id: M03
+    parameter_space: discrete
+    keyframes: [M03-flat, M03-choice-open, M03-noul-open, M03-score-open]
+    storyboard: [平面印刷插图, 所选页签展开, 操作区稳定]
+    transitions: 每类平面态与展开态分别建立短段，收起动作独立验收
+    rest_state: 当前页签稳定，其他类型仍可见
+    anchor: bottom
+    pixel_dimensions: '1024x1024 初始制作目标，按实际局部容器与 DPR 验证'
+  - id: M04
+    parameter_space: discrete
+    keyframes: [M04-neutral, M04-follow, M04-paused]
+    storyboard: [中立装置, 对应稿件姿态, 暂停姿态]
+    transitions: 按真实匹配事件选择姿态；不把状态压成随机访问的一条视频
+    rest_state: 等待或暂停时静止，正文与位置由网页保留
+    anchor: fixed-body
+    pixel_dimensions: '1024x1024 初始制作目标，按实际辅助视窗与 DPR 验证'
+  - id: M05
+    parameter_space: linear
+    keyframes: [M05-policy-flat, M05-district-open]
+    storyboard: [政策摘要阅读, 文件展开, 街区立起并停稳]
+    transitions: 独立首尾状态生成约 5 秒展开片段
+    rest_state: 可点击街区，角落保留政策卡
+    anchor: bottom
+    pixel_dimensions: '1920x1080 目标，核验实际生成尺寸'
+  - id: M06
+    parameter_space: linear
+    keyframes: [M06-shop-exterior, M06-shop-interior]
+    storyboard: [选中书店外景, 门框遮挡与外墙折开, 经营空间停留]
+    transitions: 独立约 4–5 秒片段；外观引用街区身份，不依赖 M05 实际尾帧
+    rest_state: 经营空间稳定供查看，退出返回原街区位置
+    anchor: free
+    pixel_dimensions: '1920x1080 目标，核验实际生成尺寸'
+  - id: M07
+    parameter_space: discrete
+    keyframes: [M07-neutral, M07-accepted, M07-held]
+    storyboard: [意向待检查, 实际成交打开夹扣或未成交保持闭合]
+    transitions: 分别制作通过与暂缓短物理过渡；请求失败使用独立静态提示，不借用未成交动画
+    rest_state: 事件对应的真实终态，无结果时中立静止
+    anchor: fixed-body
+    pixel_dimensions: '1024x1024 初始制作目标，按柜台局部容器与 DPR 验证'
+  - id: M08
+    parameter_space: linear
+    keyframes: [M08-single-base, M08-paired-base]
+    storyboard: [同一街区底座, 沿中缝展开, 初始状态一致的对照视图]
+    transitions: 独立约 4–5 秒片段，展开后才加载所选实验记录
+    rest_state: 双视图稳定，结果由网页展示
+    anchor: center
+    pixel_dimensions: '1920x1080 目标，核验实际生成尺寸'
+loop: none
+frame_policy: native
+target_fps: 待母版实际帧率和播放检查后确定
+quality_target: 目标投影清晰度；逐组验收字面、动作、接缝，再计算交付预算
+aspect_ratio_policy: 逐组严格继承 concept-contract.yaml；全景为 16:9，局部视窗为 1:1，不拉伸混用
+alpha_workflow: M03/M04 先直接生成真实 Alpha 原图，后按 oil-motion 预算流程选择交付形式
+reduced_motion: 使用各组完整静态状态，直接切换正文与结果；仍需准确表示实际业务状态
+fallback: 单组失败使用该组可读静帧，保留交互功能和运行模式标识
+production_status: 生产计划；不声明视频生成、Pilot 验收或性能测试已经完成

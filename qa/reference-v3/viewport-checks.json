@@ -1,0 +1,145 @@
+[
+  {
+    "beat": "0",
+    "missingImages": [],
+    "scene": "opening",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "0",
+    "missingImages": [],
+    "scene": "system-one",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "3",
+    "missingImages": [],
+    "scene": "system-one",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "judgment",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "comparison",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "training",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "primitives",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "choice",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "noul",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "2",
+    "missingImages": [],
+    "scene": "score",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  },
+  {
+    "beat": "0",
+    "missingImages": [],
+    "scene": "economy",
+    "scroll": [
+      1672,
+      941
+    ],
+    "viewport": [
+      1672,
+      941
+    ]
+  }
+]
