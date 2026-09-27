@@ -1,4 +1,4 @@
-import {findCandidate,findExactReadingTail,findShortPreview,findSemanticCandidate,normalized,type Candidate} from './engine';
+import {findCandidate,findExactReadingTail,findShortPreview,findUniqueShortPhrase,findSemanticCandidate,normalized,type Candidate} from './engine';
 
 /** Hold through ASR retractions, but relocate when sustained lexical evidence
  * identifies a deliberate reread or a different place in the manuscript. */
@@ -11,15 +11,20 @@ export class ReadingProgress {
  private lockedStart:number|null=null;
  private pending:{start:number;end:number;text:string}|null=null;
  private relocating=false;
+ private lastText='';
 
  begin(id:string){
   if(this.retired.has(id))return false;
-  if(id!==this.id){if(this.id)this.retired.add(this.id);this.id=id;this.anchor=this.position;this.lockedStart=null;this.pending=null;}
+  if(id!==this.id){if(this.id)this.retired.add(this.id);this.id=id;this.anchor=this.position;this.lockedStart=null;this.pending=null;this.lastText='';}
   return true;
  }
  select(script:string,text:string,final:boolean,stableText=''):Candidate|null{
+  const previous=this.lastText;this.lastText=text;
   const found=findCandidate(script,text,this.anchor)??findShortPreview(script,text,this.anchor);
+  const short=findUniqueShortPhrase(script,text,previous,this.anchor);
+  if(short&&(short.end<this.position||!this.allows(script,short))){this.anchor=short.start;this.lockedStart=short.start;this.relocating=short.end!==this.position;this.pending=null;return short;}
   if(this.allows(script,found)&&found?.exact){this.pending=null;return found;}
+  if(short){this.pending=null;return short;}
   const target=findExactReadingTail(script,text,this.anchor);
   if(!target){this.pending=null;if(this.allows(script,found)&&found&&found.similarity>=.6)return found;const nearby=findSemanticCandidate(script,text,this.anchor);return this.allows(script,nearby)?nearby:null;}
   if(this.allows(script,target)){this.pending=null;return target;}
@@ -40,7 +45,11 @@ export class ReadingProgress {
   // Small overlap between ASR segments is useful; returning to a previous
   // sentence is not. A cumulative revision uses the same segment anchor.
   if(candidate.start<this.anchor&&count(candidate.start,this.anchor)>6)return false;
-  if(this.lockedStart!==null&&count(this.lockedStart,candidate.start)>1)return false;
+  if(this.lockedStart!==null&&count(this.lockedStart,candidate.start)>1){
+   // After locating by a word, a corrected cumulative prefix may extend to its
+   // left. Accept that enclosing exact span without changing occurrences.
+   if(!candidate.exact||candidate.start>this.lockedStart||candidate.end<this.position)return false;
+  }
   return true;
  }
  preview(script:string,candidate:Candidate|null,semanticAccepted=false){
@@ -57,5 +66,5 @@ export class ReadingProgress {
   this.confirmed=Math.max(this.confirmed,candidate.end);
   return true;
  }
- reset(){this.position=0;this.confirmed=0;this.anchor=0;this.id='';this.retired.clear();this.lockedStart=null;this.pending=null;this.relocating=false;}
+ reset(){this.position=0;this.confirmed=0;this.anchor=0;this.id='';this.retired.clear();this.lockedStart=null;this.pending=null;this.relocating=false;this.lastText='';}
 }

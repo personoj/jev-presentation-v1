@@ -35,6 +35,24 @@ export function findExactReadingTail(script:string,heard:string,anchor:number):C
   }
   return null;
 }
+/** A unique short phrase is enough to locate a deliberate reread. Use a whole
+ * short utterance, a repeated utterance, or newly appended words, not an
+ * arbitrary three-character suffix of unrelated speech. */
+export function findUniqueShortPhrase(script:string,heard:string,previous:string,anchor:number):Candidate|null{
+  const source=normalized(script),query=normalized(heard).text,old=normalized(previous).text;
+  if(old.startsWith(query)&&query.length<old.length)return null; // ASR retraction
+  const clause=normalized(heard.split(/[，。！？；\n,.!?;]/).filter(s=>normalized(s).text).at(-1)||'').text;
+  const appended=old&&query.startsWith(old)?query.slice(old.length):'';
+  for(let size=Math.min(5,query.length);size>=3;size--){
+    const phrase=query.slice(-size),repeated=query.length%size===0&&phrase.repeat(query.length/size)===query;
+    if(query!==phrase&&!repeated&&clause!==phrase&&appended!==phrase)continue;
+    const index=source.text.indexOf(phrase);
+    if(index<0||source.text.indexOf(phrase,index+1)>=0)continue;
+    const start=source.positions[index],end=source.positions[index+size-1]+1;
+    return {start,end,text:script.slice(start,end),exact:true,similarity:1,distance:Math.abs(start-anchor)};
+  }
+  return null;
+}
 /** A two/three-character preview is allowed only at the expected reading head,
  * never by finding a coincidental short word elsewhere in the manuscript. */
 export function findShortPreview(script:string,heard:string,anchor:number):Candidate|null{

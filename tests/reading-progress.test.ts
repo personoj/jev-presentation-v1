@@ -81,3 +81,37 @@ test('a low-overlap paraphrase offers a local semantic hypothesis but cannot adv
  assert.equal(acceptJudgment(c,'no_match',.99),false);assert.equal(acceptJudgment(c,'match',.69),false);
  assert.equal(acceptJudgment(c,'match',.99),true);assert.equal(p.confirm(s,c,true),true);assert.equal(p.position,16);
 });
+
+const presentation='接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。';
+function nearEnd(){const p=new ReadingProgress();p.begin('later');p.confirm(presentation,p.select(presentation,'如果我临时补充几句话标记会停住',true));assert.ok(p.position>35);return p;}
+test('one partial 接下来 immediately relocates to the unique three-character phrase',()=>{
+ const p=nearEnd();p.begin('reread');const c=p.select(presentation,'接下来',false);
+ assert.ok(c?.exact);assert.equal(c.text,'接下来');p.preview(presentation,c);assert.equal(p.position,3);
+ p.preview(presentation,p.select(presentation,'接下来我用跟读',false));assert.equal(p.position,8);
+});
+test('repeated short phrases in one cumulative segment return without a full sentence or final',()=>{
+ for(const text of ['接下来接下来','接下来，接下来。','我补充一句，接下来','如果我临时补充几句话标记会停住接下来']){
+  const p=nearEnd();if(!text.startsWith('如果'))p.begin('repeat');p.preview(presentation,p.select(presentation,text,false));assert.equal(p.position,3,text);
+ }
+});
+test('a short unique phrase can deliberately move backward within the same sentence',()=>{
+ const p=new ReadingProgress();p.begin('a');p.confirm(presentation,p.select(presentation,'接下来我用跟读',true));
+ p.begin('reread');p.preview(presentation,p.select(presentation,'我用跟读',false));assert.equal(p.position,8);
+ p.begin('again');p.preview(presentation,p.select(presentation,'接下来',false));assert.equal(p.position,3);
+});
+test('a short ASR retraction does not masquerade as deliberate rereading',()=>{
+ const p=new ReadingProgress();p.begin('a');p.preview(presentation,p.select(presentation,'接下来我用跟读',false));assert.equal(p.position,8);
+ p.preview(presentation,p.select(presentation,'接下来',false));assert.equal(p.position,8);
+ p.preview(presentation,p.select(presentation,'接下来接下来',false));assert.equal(p.position,3,'actual repetition is fresh evidence');
+});
+test('ambiguous short phrases and isolated two-character words do not relocate',()=>{
+ const s='接下来介绍模型。\n接下来介绍应用。\n最后完成演示。',p=new ReadingProgress();p.begin('last');p.confirm(s,p.select(s,'最后完成演示',true));const before=p.position;
+ p.begin('ambiguous');p.preview(s,p.select(s,'接下来',false));assert.equal(p.position,before);
+ p.begin('too-short');p.preview(s,p.select(s,'模型',false));assert.equal(p.position,before);
+});
+test('a corrected cumulative prefix continues from a short word without getting locked out',()=>{
+ const p=new ReadingProgress();p.begin('a');p.select(presentation,'我案搞',false);
+ p.preview(presentation,p.select(presentation,'我案搞件朗读',false));assert.equal(p.position,24);
+ p.preview(presentation,p.select(presentation,'我按稿件朗读，标',false));assert.equal(p.position,26);
+ p.preview(presentation,p.select(presentation,'我按稿件朗读，标记就跟随',false));assert.equal(p.position,30);
+});

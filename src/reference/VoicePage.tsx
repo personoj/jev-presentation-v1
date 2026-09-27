@@ -8,7 +8,8 @@ import {Heading} from './ConceptPages';
 const lines=['接下来，我用跟读场景演示这套流程。','我按稿件朗读，标记就跟随我的位置。','如果我临时补充几句话，标记会停住。','等我回到原文，系统再继续跟随。','Jev 辅助判断，我是否还在按稿朗读。'];
 const aside='这里我补充一下，大家可以看看这个演示的效果。';
 const audioQA=new URLSearchParams(location.search).has('audio-qa');
-export function VoicePage(props:FeatureProps){return <VoiceLab {...props} sampleUrl={audioQA?'/fixtures/reading-chain.wav':undefined} initialScript={audioQA?'我们使用语音识别模型。\n把声音转换成文字。\n然后继续按照稿件朗读。':lines.join('\n')} render={data=><VoiceCanvas data={data}/>}/>}
+const shortReturnQA=new URLSearchParams(location.search).get('audio-qa')==='return';
+export function VoicePage(props:FeatureProps){return <VoiceLab {...props} sampleUrl={audioQA?(shortReturnQA?'/fixtures/short-return.wav':'/fixtures/reading-chain.wav'):undefined} initialScript={audioQA&&!shortReturnQA?'我们使用语音识别模型。\n把声音转换成文字。\n然后继续按照稿件朗读。':lines.join('\n')} render={data=><VoiceCanvas data={data}/>}/>}
 function VoiceCanvas({data:d}:{data:VoiceView}){
  const [details,setDetails]=useState(false);
  const chunks=d.script.split('\n');
