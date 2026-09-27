@@ -9,6 +9,18 @@ export function normalized(text: string) {
 const soundGroups = ['的地得', '在再', '是事式试', '以已', '做作', '音因阴', '义意易', '识时实', '跟根', '型形'];
 const substitution = (a: string, b: string) => a === b ? 0 : soundGroups.some(g => g.includes(a) && g.includes(b)) ? 0.45 : 1;
 export type Candidate = {start: number; end: number; text: string; similarity: number; exact: boolean; distance: number};
+/** Recover the words being spoken now, including after an aside inside the
+ * same ASR segment. Only a unique, substantial exact suffix can relocate. */
+export function findExactReadingTail(script:string,heard:string,anchor:number):Candidate|null{
+  const source=normalized(script),query=normalized(heard).text;
+  for(let length=Math.min(80,query.length);length>=6;length--){
+    const tail=query.slice(-length),index=source.text.indexOf(tail);
+    if(index<0||source.text.indexOf(tail,index+1)>=0)continue;
+    const start=source.positions[index],end=source.positions[index+length-1]+1;
+    return {start,end,text:script.slice(start,end),exact:true,similarity:1,distance:Math.abs(start-anchor)};
+  }
+  return null;
+}
 /** A two/three-character preview is allowed only at the expected reading head,
  * never by finding a coincidental short word elsewhere in the manuscript. */
 export function findShortPreview(script:string,heard:string,anchor:number):Candidate|null{

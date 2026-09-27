@@ -1,8 +1,9 @@
 import {useEffect, useLayoutEffect, useRef, useState,type ReactNode} from 'react';
 import {APIError, evaluate} from '../../shared/api';
 import type {Evaluation, FeatureProps} from '../../shared/types';
-import {acceptJudgment, classifyCandidate, commitPosition, DEFAULT_SCRIPT, findCandidate, findShortPreview, Freshness, normalized, type Candidate} from './engine';
+import {acceptJudgment, classifyCandidate, commitPosition, DEFAULT_SCRIPT, findCandidate, Freshness, normalized, type Candidate} from './engine';
 import {LatestReviewQueue} from './review-queue';
+import {ReadingProgress} from './reading-progress';
 import {openMicrophone, type MicrophoneSession} from './microphone';
 import {ALIGNMENT_QUESTION} from './judgment';
 import './voice.css';
@@ -39,7 +40,12 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     const measure=()=>{const origin=element.getBoundingClientRect();const rects=[...element.querySelectorAll<HTMLElement>('[data-script-start]')].map(span=>{const box=span.getBoundingClientRect();return {start:Number(span.dataset.scriptStart),end:Number(span.dataset.scriptEnd),left:box.left-origin.left,right:box.right-origin.left,top:box.top-origin.top,bottom:box.bottom-origin.top};});setLineFocus(locateReadingLine(rects,focusPosition));};
     measure();const observer=new ResizeObserver(measure);observer.observe(element);return()=>observer.disconnect();
   },[focusPosition,script,editing]);
-  function showFocus(start:number,end:number,isConfirmed:boolean){setActiveSpan({start,end,confirmed:isConfirmed});setFocusPosition(end);setFocusConfirmed(isConfirmed);}
+  const progress=useRef(new ReadingProgress());
+  function showFocus(match:Candidate,isConfirmed:boolean,semanticAccepted=false){
+    const tracker=progress.current;const accepted=isConfirmed?tracker.confirm(script,match,semanticAccepted):tracker.preview(script,match,semanticAccepted);if(!accepted)return;
+    positions.current.confirmed=tracker.confirmed;setConfirmed(tracker.confirmed);setTentative(tracker.position);
+    setActiveSpan({start:match.start,end:tracker.position,confirmed:tracker.confirmed>=tracker.position});setFocusPosition(tracker.position);setFocusConfirmed(tracker.confirmed>=tracker.position);
+  }
   const positions = useRef({confirmed:0, baseline:0}), segment = useRef({id:'', anchor:0});
   const freshness = useRef(new Freshness()),lastInput=useRef('');
   const reviews=useRef<LatestReviewQueue<{state:unknown;version:number},Evaluation>|null>(null);
@@ -50,24 +56,26 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   function invalidate() { freshness.current.next();reviews.current?.cancel();lastInput.current=''; }
   function cancelPreview(){previewGeneration.current++;clearTimeout(previewTimer.current);setPreviewing(false);}
   function clearPreviewInput(){cancelPreview();invalidate();setTentative(positions.current.confirmed);setActiveSpan(null);setHeard('');setHeardPhase('empty');setCandidate(null);setResult(null);setStatus('等待新的转写片段');}
-  function reset() { cancelPreview();invalidate(); positions.current={confirmed:0,baseline:0}; segment.current={id:'',anchor:0}; setConfirmed(0);setBaseline(0);setTentative(0);setFocusPosition(0);setFocusConfirmed(false);setCandidate(null);setResult(null);setHeard('');setHeardPhase('empty');setActiveSpan(null);setError('');setTrace([]);setStatus('已回到稿件开头'); }
+  function reset() { cancelPreview();invalidate();progress.current.reset(); positions.current={confirmed:0,baseline:0}; segment.current={id:'',anchor:0}; setConfirmed(0);setBaseline(0);setTentative(0);setFocusPosition(0);setFocusConfirmed(false);setCandidate(null);setResult(null);setHeard('');setHeardPhase('empty');setActiveSpan(null);setError('');setTrace([]);setStatus('已回到稿件开头'); }
   useEffect(()=>()=>{mounted.current=false;micGeneration.current++;previewGeneration.current++;clearTimeout(previewTimer.current);session.current?.dispose();invalidate();},[]);
   // React StrictMode remounts effects in development.
   useEffect(()=>{mounted.current=true;},[]);
 
   receiver.current = (text, final, id,stableText='') => {
     const receivedAt=performance.now(),spoken=normalized(text).text;
+    if(!progress.current.begin(id))return;
     setHeard(text);setHeardPhase(final?'final':'partial');
     const signature=JSON.stringify([id,spoken,final,normalized(stableText).text]);
     if(lastInput.current===signature)return;
-    if(segment.current.id !== id){invalidate();segment.current={id,anchor:positions.current.confirmed}}
+    if(segment.current.id !== id){invalidate();segment.current={id,anchor:progress.current.anchor}}
     lastInput.current=signature;const version=freshness.current.next();setError('');
-    const match = findCandidate(script,text,segment.current.anchor)??findShortPreview(script,text,segment.current.anchor), decision=classifyCandidate(match,text);
+    const match=progress.current.select(script,text,final,stableText),decision=classifyCandidate(match,text);
+    segment.current.anchor=progress.current.anchor;
     setLatency(old=>({...old,localMs:Math.round((performance.now()-receivedAt)*100)/100}));
     setCandidate(match);setResult(null);
     // The cloud supplies an immutable prefix independently of the revisable stash.
     // Commit only a substantial, exact manuscript match, not merely stable ASR text.
-    if(!final&&match&&match.similarity>=.8&&normalized(stableText).text.length>=6){const stable=findCandidate(script,stableText,segment.current.anchor);if(stable?.exact&&stable.start===match.start&&stable.distance<=60&&stable.end<=match.end){positions.current.confirmed=commitPosition(positions.current.confirmed,stable.end);setConfirmed(positions.current.confirmed)}}
+    if(!final&&match&&match.similarity>=.8&&normalized(stableText).text.length>=6){const stable=findCandidate(script,stableText,segment.current.anchor);if(stable?.exact&&stable.start===match.start&&stable.distance<=60&&stable.end<=match.end){showFocus(stable,true)}}
     const baselineMatch=final?findCandidate(script,text,positions.current.baseline):null;
     if(final && baselineMatch && baselineMatch.similarity>=0.85 && normalized(text).text.length>=6) {
       positions.current.baseline=commitPosition(positions.current.baseline,baselineMatch.end);setBaseline(positions.current.baseline);
@@ -80,17 +88,17 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     };
     const apply = (accepted:boolean,label:string, output?:Evaluation) => {
       if(!freshness.current.isCurrent(version))return;
-      if(accepted&&match){setTentative(match.end);showFocus(match.start,match.end,final||match.end<=positions.current.confirmed);if(final){positions.current.confirmed=commitPosition(positions.current.confirmed,match.end);setConfirmed(positions.current.confirmed);}}
+      if(accepted&&match){showFocus(match,final||match.end<=positions.current.confirmed,!!output);}
       else {setTentative(positions.current.confirmed);setActiveSpan(null);}
       setStatus(label);record(label,output);
     };
-    if(decision==='short'){reviews.current?.cancel();if(match?.exact){setTentative(match.end);showFocus(match.start,match.end,false);setStatus('暂定 · 短词连续匹配')}else{setTentative(positions.current.confirmed);setActiveSpan(null);setStatus(old=>old.startsWith('暂停')||old.startsWith('保持')?'保持位置 · 等待更多文字':'片段较短，等待更多文字')}record('短片段，仅作临时预览');return;}
-    if(decision==='exact'||(!final&&match?.exact&&match.distance<=60)){reviews.current?.cancel();apply(true,final?'已确认 · 对应原文':'暂定 · 等待转写稳定');return;}
+    if(decision==='short'){reviews.current?.cancel();if(match?.exact){showFocus(match,false);setStatus('暂定 · 短词连续匹配')}else{setTentative(positions.current.confirmed);setActiveSpan(null);setStatus(old=>old.startsWith('暂停')||old.startsWith('保持')?'保持位置 · 等待更多文字':'片段较短，等待更多文字')}record('短片段，仅作临时预览');return;}
+    if(decision==='exact'||match?.exact){reviews.current?.cancel();apply(true,final?'已确认 · 对应原文':'暂定 · 等待转写稳定');return;}
     // An unrelated fragment cannot pass the lexical gate. Hold immediately instead of
     // spending a model call whose answer could never be accepted by acceptJudgment.
     if(decision==='pause'){reviews.current?.cancel();apply(false,'暂停 · 这段内容不在稿件中');return;}
-    setTentative(match&&match.similarity>=0.8?match.end:positions.current.confirmed);
-    if(match&&match.similarity>=0.8)showFocus(match.start,match.end,false);else setActiveSpan(null);
+    setTentative(progress.current.position);
+    setActiveSpan(null);
     setStatus('暂缓推进 · 正在核对局部差异');
     reviews.current!.enqueue({
       key:JSON.stringify([id,spoken,match?.start,match?.end]),

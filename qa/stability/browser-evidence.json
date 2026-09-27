@@ -1,0 +1,138 @@
+{
+  "interruptedPreview": {
+    "beforeAside": {
+      "confirmed": 0,
+      "position": 8
+    },
+    "duringAside": {
+      "confirmed": 0,
+      "position": 8
+    }
+  },
+  "forwardTrace": [
+    {
+      "at": 1790507031220,
+      "confirmed": 0,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 短词连续匹配 · 确认位置 0\n\n我们。\n\n首段 ASR\n428 ms\n最近更新间隔\n— ms\n本地匹配\n1.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 2
+    },
+    {
+      "at": 1790507032216,
+      "confirmed": 0,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音。\n\n首段 ASR\n428 ms\n最近更新间隔\n5 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 6
+    },
+    {
+      "at": 1790507032892,
+      "confirmed": 0,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 0\n\n我们使用语音识别模型\n\n首段 ASR\n428 ms\n最近更新间隔\n8 ms\n本地匹配\n0.3 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 10
+    },
+    {
+      "at": 1790507034144,
+      "confirmed": 10,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 短词连续匹配 · 确认位置 10\n\n把声音。\n\n首段 ASR\n428 ms\n最近更新间隔\n327 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 15
+    },
+    {
+      "at": 1790507034781,
+      "confirmed": 10,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 10\n\n把声音转换\n\n首段 ASR\n428 ms\n最近更新间隔\n650 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 17
+    },
+    {
+      "at": 1790507035508,
+      "confirmed": 10,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 10\n\n把声音转换成文字。\n\n首段 ASR\n428 ms\n最近更新间隔\n5 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 20
+    },
+    {
+      "at": 1790507037496,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂停 · 这段内容不在稿件中 · 确认位置 20\n\n下面先停一。\n\n首段 ASR\n428 ms\n最近更新间隔\n8 ms\n本地匹配\n0.3 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "true",
+      "position": 20
+    },
+    {
+      "at": 1790507040983,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 短词连续匹配 · 确认位置 20\n\n然后。\n\n首段 ASR\n428 ms\n最近更新间隔\n332 ms\n本地匹配\n0.3 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 24
+    },
+    {
+      "at": 1790507041641,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按。\n\n首段 ASR\n428 ms\n最近更新间隔\n11 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 27
+    },
+    {
+      "at": 1790507042304,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按照\n\n首段 ASR\n428 ms\n最近更新间隔\n672 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 28
+    },
+    {
+      "at": 1790507042361,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按照稿件。\n\n首段 ASR\n428 ms\n最近更新间隔\n7 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 30
+    },
+    {
+      "at": 1790507042970,
+      "confirmed": 20,
+      "done": false,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 20\n\n然后继续按照稿件朗读\n\n首段 ASR\n428 ms\n最近更新间隔\n6 ms\n本地匹配\n0.1 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 32
+    },
+    {
+      "at": 1790507043429,
+      "confirmed": 32,
+      "done": true,
+      "panel": "×\n转写与稿件\n\n已确认 · 对应原文 · 确认位置 32\n\n然后继续按照稿件朗读。\n\n首段 ASR\n428 ms\n最近更新间隔\n6 ms\n本地匹配\n0.2 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "paused": "false",
+      "position": 32
+    }
+  ],
+  "rereadTrace": [
+    {
+      "at": 1790507064299,
+      "confirmed": 32,
+      "panel": "×\n转写与稿件\n\n正在识别样本音频 · 确认位置 32\n\n尚无转写\n\n首段 ASR\n— ms\n最近更新间隔\n— ms\n本地匹配\n— ms\nJev 请求\n— ms\n上传积压\n— ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "position": 32
+    },
+    {
+      "at": 1790507066141,
+      "confirmed": 8,
+      "panel": "×\n转写与稿件\n\n暂定 · 等待转写稳定 · 确认位置 8\n\n我们使用语音识别模型。\n\n首段 ASR\n453 ms\n最近更新间隔\n6 ms\n本地匹配\n0 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "position": 10
+    },
+    {
+      "at": 1790507066651,
+      "confirmed": 10,
+      "panel": "×\n转写与稿件\n\n已确认 · 对应原文 · 确认位置 10\n\n我们使用语音识别模型。\n\n首段 ASR\n453 ms\n最近更新间隔\n6 ms\n本地匹配\n0.5 ms\nJev 请求\n— ms\n上传积压\n0 ms\n\n样本音频 → 浏览器音频处理 → 云端 ASR → 稿件定位。未采集麦克风。\n\n朗读稿\n从头开始测试一处差异",
+      "position": 10
+    }
+  ]
+}
