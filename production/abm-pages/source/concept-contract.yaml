@@ -1,0 +1,14 @@
+subject_count: 8
+identity_source: src/features/abm/personas.ts
+approved_references: visuals/abm-review-v1
+style: 接近四张参考图的纸张、复古地图、朱红与墨蓝配色；所有文字为可读原生元素
+motion_intent: 选择居民贯穿四页；概率从同一零点展开；道路行走后显示成交；配对实验同步回放
+background_owner: page
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: independent
+continuity: [八位居民身份, 当前选中居民, 当前实验轮次, 保存实验原始数据]
+aspect_ratio: 1672:941
+destination: 浏览器全屏讲解，第11至14页，无页面滚动

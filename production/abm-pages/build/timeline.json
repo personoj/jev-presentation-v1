@@ -1,0 +1,14 @@
+{
+  "renderer":"native-dom-svg-with-alpha-plates",
+  "navigation":"four-pages-with-click-beats",
+  "loop":false,
+  "walkMs":1600,
+  "compactWalkMs":430,
+  "settleMs":250,
+  "countMs":500,
+  "autoplayRoundMs":2600,
+  "compareRoundMs":620,
+  "probabilityMs":950,
+  "revealMs":600,
+  "selectionMs":300
+}

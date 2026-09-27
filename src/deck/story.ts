@@ -1,5 +1,5 @@
 import {openingContent} from './opening';
-export type SceneId = 'opening'|'system-one'|'judgment'|'comparison'|'training'|'primitives'|'choice'|'noul'|'score'|'voice'|'economy';
+export type SceneId = 'opening'|'system-one'|'judgment'|'comparison'|'training'|'primitives'|'choice'|'noul'|'score'|'voice'|'economy'|'economy-person'|'economy-round'|'economy-compare';
 export type Scene = {id:SceneId; section:string; title:string; subtitle:string; beats:string[]; note:string};
 export const story:Scene[] = [
  {id:'opening',section:'组会汇报',title:openingContent.title,subtitle:openingContent.definition,beats:['从《思考，快与慢》中的系统一讲起'],note:openingContent.speech.join('\n\n')},
@@ -12,7 +12,10 @@ export const story:Scene[] = [
  {id:'noul',section:'05 / 简单应用 · Noul',title:'这场讲座，可以线上参加吗？',subtitle:'把一个明确的问题，变成可读取的概率。',beats:['读一则活动通知','问：通知是否明确支持线上参加？','看结果，再决定怎样标注活动'],note:'本页询问通知是否明确支持线上参加，不是预测活动最终是否会直播。没有提到直播的通知，不等于确认没有直播；因此程序标签使用“未明确”。强调句是预设讲解标注，不是模型返回的推理。示意概率与真实调用严格区分。'},
  {id:'score',section:'05 / 简单应用 · Score',title:'先处理哪一条求助？',subtitle:'先定义紧急程度，再用分数安排顺序。',beats:['三条消息，需要不同程度的关注','用相同的标准，分别评分','按分数排序，安排处理顺序'],note:'等级为 0 普通咨询、1 影响使用、2 持续损失。示意为 0.2、1.1、1.9，不是公式计算或真实结果。真实请求会同时评价三条消息，按实际分数排序。此页说明工作队列，不用于真实安全事件分诊。'},
  {id:'voice',section:'06 / 连续应用',title:'Jev 的具体应用',subtitle:'按稿朗读时，文字逐步高亮；临时插话时停住，回到原文后继续跟随。',beats:['声音 → 文字 → 对齐与判断 → 稿件位置'],note:'先按稿读第一句，再插话，最后回到原文。声音由千问 ASR 转成文字，Jev 仅接收文本。精确对齐由程序处理，存在局部差异时由 Jev 辅助检查。下面三个快捷演示使用固定转写，不采集声音；需要真实语音时开启麦克风。'},
- {id:'economy',section:'07 / 主体模拟',title:'当判断进入一座小镇。',subtitle:'八位居民，同一张消费券，不同的打算。',beats:['认识居民，再观察他们的选择'],note:'保留现有八人小镇。先介绍居民差异，再运行同一政策。自由实验、政策对照、真实调用与保存轨迹仍沿用原机制。用单人 Jev 按钮时，其余居民按规则运行，不等同全体 Jev 实验。'}
+ {id:'economy',section:'07 / 主体模拟',title:'让 Jev 为小镇居民做选择',subtitle:'八位居民各自行动，观察这些选择怎样改变小镇。',beats:['认识八位居民、三家商店和文化消费券'],note:'ABM 从每个主体的选择观察整体变化。八位居民是虚构的实验人物，各有预算、偏好与计划。点击地图上的任意居民，或打开居民选择器，后续页面会沿用该居民。'},
+ {id:'economy-person',section:'07 / 主体模拟',title:'这一轮，他会怎么选？',subtitle:'把个人情况交给 Jev，从四个行动中选择一个。',beats:['居民的背景、余额与消费券','Jev 给出四个行动的概率','程序检查条件，完成交易或保留预算'],note:'默认展示第17组保存的全体 Jev 实验。人物和轮次可以切换。概率来自保存请求；约束检查直接等待时没有模型概率。意向不等同成交，交易结果以程序结算为准。金额为模拟货币。'},
+ {id:'economy-round',section:'07 / 主体模拟',title:'八个人的选择，让小镇运转起来',subtitle:'居民作出选择，交易逐笔发生，小镇进入下一轮。',beats:['从相同的初始状态出发','推进轮次，观察交易与消费券核销'],note:'地图中的八位居民均可选择。点击下一轮或轮次刻度，可查看12轮保存轨迹；连续回放可暂停。右侧是当轮成交、交易额与核销，不是累计值。消费券在第6轮结束后到期。'},
+ {id:'economy-compare',section:'07 / 主体模拟',title:'发放消费券，改变了什么？',subtitle:'同一组居民、相同的初始条件，对比两种情景。',beats:['相同居民、相同初始条件','同步回放有券与无券两组实验','比较最终结果与差异出现的轮次'],note:'第17组保存的 Jev 配对实验：无券9件、交易额640；有券11件、交易额770、核销210。第4轮累计相差1件，第9轮相差2件。这是本组模拟结果，不是现实政策效果的估计。实验台保留其他种子、自由实验和真实调用。'}
 ];
 
 export const resources = [
@@ -28,7 +31,7 @@ export const resources = [
 
 export function readLocation(hash:string){
  const [raw,part]=hash.replace(/^#/,'').split('/');
- const aliases:Record<string,string>={round:'economy',compare:'economy',uncertainty:'training',workflow:'judgment',text:'score',discussion:'economy'};
+ const aliases:Record<string,string>={round:'economy-round',compare:'economy-compare',uncertainty:'training',workflow:'judgment',text:'score',discussion:'economy'};
  const index=Math.max(0,story.findIndex(s=>s.id===(aliases[raw]??raw)));
  const beat=Math.max(0,Math.min(story[index].beats.length-1,Math.floor(Number(part))||0));
  return {index,beat};

@@ -1,0 +1,254 @@
+{
+  "checkedAt": "2026-09-27T18:23:40.100Z",
+  "selectionChecks": [
+    {
+      "name": "林澈",
+      "selected": true,
+      "content": [
+        "纸间书店3%",
+        "南街书店0%",
+        "街角剧场0%",
+        "暂不消费97%"
+      ]
+    },
+    {
+      "name": "苏禾",
+      "selected": true,
+      "content": [
+        "纸间书店8%",
+        "南街书店6%",
+        "街角剧场82%",
+        "暂不消费4%"
+      ]
+    },
+    {
+      "name": "周谨",
+      "selected": true,
+      "content": [
+        "纸间书店32%",
+        "南街书店35%",
+        "街角剧场0%",
+        "暂不消费33%"
+      ]
+    },
+    {
+      "name": "唐梨",
+      "selected": true,
+      "content": [
+        "纸间书店31%",
+        "南街书店33%",
+        "街角剧场22%",
+        "暂不消费14%"
+      ]
+    },
+    {
+      "name": "许砚",
+      "selected": true,
+      "content": [
+        "纸间书店72%",
+        "南街书店1%",
+        "街角剧场2%",
+        "暂不消费25%"
+      ]
+    },
+    {
+      "name": "顾宁",
+      "selected": true,
+      "content": [
+        "纸间书店1%",
+        "南街书店0%",
+        "街角剧场80%",
+        "暂不消费19%"
+      ]
+    },
+    {
+      "name": "叶岚",
+      "selected": true,
+      "content": [
+        "纸间书店97%",
+        "南街书店0%",
+        "街角剧场0%",
+        "暂不消费3%"
+      ]
+    },
+    {
+      "name": "陈朔",
+      "selected": true,
+      "content": [
+        "纸间书店1%",
+        "南街书店0%",
+        "街角剧场0%",
+        "暂不消费99%"
+      ]
+    }
+  ],
+  "mapSelectionChecks": [
+    {
+      "name": "林澈",
+      "selected": "R01"
+    },
+    {
+      "name": "苏禾",
+      "selected": "R02"
+    },
+    {
+      "name": "周谨",
+      "selected": "R03"
+    },
+    {
+      "name": "唐梨",
+      "selected": "R04"
+    },
+    {
+      "name": "顾宁",
+      "selected": "R06"
+    },
+    {
+      "name": "叶岚",
+      "selected": "R07"
+    },
+    {
+      "name": "陈朔",
+      "selected": "R08"
+    },
+    {
+      "name": "许砚",
+      "selected": "R05"
+    }
+  ],
+  "pages720": [
+    {
+      "brokenImages": 0,
+      "people": 8,
+      "scene": "economy",
+      "scroll": 0,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "brokenImages": 0,
+      "people": 0,
+      "scene": "economy-person",
+      "scroll": 0,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "brokenImages": 0,
+      "people": 8,
+      "scene": "economy-round",
+      "scroll": 0,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "brokenImages": 0,
+      "people": 16,
+      "scene": "economy-compare",
+      "scroll": 0,
+      "viewport": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "pages1080": [
+    {
+      "name": "11-town",
+      "canvas": {
+        "bottom": 1080,
+        "height": 1080,
+        "left": 0.5,
+        "right": 1919.4798583984375,
+        "top": 0,
+        "width": 1918.9798583984375,
+        "x": 0.5,
+        "y": 0
+      },
+      "scroll": 0,
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "12-choice",
+      "canvas": {
+        "bottom": 1080,
+        "height": 1080,
+        "left": 0.5,
+        "right": 1919.4798583984375,
+        "top": 0,
+        "width": 1918.9798583984375,
+        "x": 0.5,
+        "y": 0
+      },
+      "scroll": 0,
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "13-round",
+      "canvas": {
+        "bottom": 1080,
+        "height": 1080,
+        "left": 0.5,
+        "right": 1919.4798583984375,
+        "top": 0,
+        "width": 1918.9798583984375,
+        "x": 0.5,
+        "y": 0
+      },
+      "scroll": 0,
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "name": "14-comparison",
+      "canvas": {
+        "bottom": 1080,
+        "height": 1080,
+        "left": 0.5,
+        "right": 1919.4798583984375,
+        "top": 0,
+        "width": 1918.9798583984375,
+        "x": 0.5,
+        "y": 0
+      },
+      "scroll": 0,
+      "viewport": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "reducedMotion": {
+    "round": 9,
+    "animations": 0,
+    "counts": [
+      1,
+      70,
+      0
+    ]
+  },
+  "pairedReplayFinal": [
+    9,
+    640,
+    11,
+    770
+  ],
+  "networkRetry": "blocked resource produced retry UI; unblocked retry restored chapter",
+  "normalConsoleErrors": [],
+  "motionCheck": "round 1 metrics held at 0 while seven old-layout walks paused at 800ms; settled to 6/440/180. Final layout waits only six purchasers; rapid 9→2→1 cancels superseded walks.",
+  "viewportRestored": true
+}

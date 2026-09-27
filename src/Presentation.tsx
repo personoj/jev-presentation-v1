@@ -63,7 +63,7 @@ export function App(){
      {scene.id==='primitives'&&<PrimitivesOverview beat={beat} onSelect={step=>go(index,step)}/>}
      {(['choice','noul','score'] as string[]).includes(scene.id)&&<Example kind={scene.id as 'choice'|'noul'|'score'} beat={beat} setBeat={step=>go(index,step)} {...props}/>}
      {scene.id==='voice'&&<><div className="voice-flow"><span>声音</span><i>→</i><span>ASR 转写</span><i>→</i><span>对齐 ＋ Jev 判断</span><i>→</i><span>稿件位置</span></div><VoiceLab {...props}/></>}
-     {scene.id==='economy'&&<div className="town-scroll"><EconomyLab {...props}/></div>}
+     {scene.id.startsWith('economy')&&<div className="town-scroll"><EconomyLab {...props}/></div>}
     </div>}
    </div>
   </main>
