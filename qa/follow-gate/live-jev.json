@@ -1,0 +1,220 @@
+[
+  {
+    "name": "正常朗读",
+    "expected": true,
+    "accepted": true,
+    "localCandidate": {
+      "start": 0,
+      "end": 16,
+      "text": "接下来，我用跟读场景演示这套流程",
+      "similarity": 1,
+      "exact": true,
+      "distance": 0
+    },
+    "position": 16,
+    "state": {
+      "transcript": "接下来我用跟读场景演示这套流程",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "接下来，我用跟读场景演示这套流程",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "5bd4c62d-f911-4f9d-bd1c-433d00419395",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.77
+        }
+      },
+      "usage": {
+        "input_tokens": 616,
+        "output_tokens": 20
+      },
+      "elapsedMs": 462,
+      "source": "live"
+    }
+  },
+  {
+    "name": "同音错字",
+    "expected": true,
+    "accepted": true,
+    "localCandidate": {
+      "start": 21,
+      "end": 34,
+      "text": "件朗读，标记就跟随我的位置",
+      "exact": true,
+      "similarity": 1,
+      "distance": 3
+    },
+    "position": 34,
+    "state": {
+      "transcript": "我按搞件朗读，标记就跟随我的位置",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "件朗读，标记就跟随我的位置",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "005c5ebd-b895-4b60-8431-ea29e00a8889",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.83
+        }
+      },
+      "usage": {
+        "input_tokens": 614,
+        "output_tokens": 20
+      },
+      "elapsedMs": 265,
+      "source": "live"
+    }
+  },
+  {
+    "name": "近义表达",
+    "expected": true,
+    "accepted": true,
+    "localCandidate": {
+      "start": 18,
+      "end": 34,
+      "text": "我按稿件朗读，标记就跟随我的位置",
+      "similarity": 0,
+      "exact": false,
+      "distance": 0,
+      "semantic": true
+    },
+    "position": 34,
+    "state": {
+      "transcript": "我照着稿子念，屏幕会标出我正在读的位置",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "我按稿件朗读，标记就跟随我的位置",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "1473ac61-27a5-4586-9f89-b4cdd7054fbd",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.77
+        }
+      },
+      "usage": {
+        "input_tokens": 620,
+        "output_tokens": 20
+      },
+      "elapsedMs": 269,
+      "source": "live"
+    }
+  },
+  {
+    "name": "引用开场词的插话",
+    "expected": false,
+    "accepted": false,
+    "localCandidate": {
+      "start": 36,
+      "end": 52,
+      "text": "如果我临时补充几句话，标记会停住",
+      "similarity": 0,
+      "exact": false,
+      "distance": 2,
+      "semantic": true
+    },
+    "position": 34,
+    "state": {
+      "transcript": "接下来我补充一下，大家有没有用过这种软件？",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "如果我临时补充几句话，标记会停住",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "e6696591-7d41-4e55-8c72-3973fbeb03ca",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.11
+        }
+      },
+      "usage": {
+        "input_tokens": 622,
+        "output_tokens": 20
+      },
+      "elapsedMs": 250,
+      "source": "live"
+    }
+  },
+  {
+    "name": "短语回读",
+    "expected": true,
+    "accepted": true,
+    "localCandidate": {
+      "start": 0,
+      "end": 3,
+      "text": "接下来",
+      "exact": true,
+      "similarity": 1,
+      "distance": 34
+    },
+    "position": 3,
+    "state": {
+      "transcript": "接下来",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "接下来",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "324d32d0-dcad-439a-92ba-cd837ea8209f",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.47
+        }
+      },
+      "usage": {
+        "input_tokens": 591,
+        "output_tokens": 20
+      },
+      "elapsedMs": 288,
+      "source": "live"
+    }
+  },
+  {
+    "name": "意思相反",
+    "expected": false,
+    "accepted": false,
+    "localCandidate": {
+      "start": 28,
+      "end": 34,
+      "text": "跟随我的位置",
+      "exact": true,
+      "similarity": 1,
+      "distance": 10
+    },
+    "position": 18,
+    "state": {
+      "transcript": "我没有按稿件朗读，标记也不会跟随我的位置",
+      "manuscript": "接下来，我用跟读场景演示这套流程。\n我按稿件朗读，标记就跟随我的位置。\n如果我临时补充几句话，标记会停住。",
+      "localAlignedText": "跟随我的位置",
+      "recentTranscripts": []
+    },
+    "output": {
+      "requestId": "adfe8934-545f-4fd5-91d9-d4659a8ae440",
+      "model": "jev-1.13.0",
+      "answers": {
+        "following": {
+          "type": "noul",
+          "noul": 0.09
+        }
+      },
+      "usage": {
+        "input_tokens": 611,
+        "output_tokens": 20
+      },
+      "elapsedMs": 264,
+      "source": "live"
+    }
+  }
+]

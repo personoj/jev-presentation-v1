@@ -1,7 +1,7 @@
 import {memo,useLayoutEffect,useMemo,useRef,useState} from 'react';
 import {locateReadingCharacter,scriptCharacters,type ReadingRect} from '../features/alignment/reading-visual';
 
-export const ReadingManuscript=memo(function ReadingManuscript({script,position,confirmed,paused,settled}:{script:string;position:number;confirmed:number;paused:boolean;settled:boolean}){
+export const ReadingManuscript=memo(function ReadingManuscript({script,position,confirmed,paused,settled,range,onSeek}:{script:string;position:number;confirmed:number;paused:boolean;settled:boolean;range?:{start:number;end:number}|null;onSeek?:(position:number)=>void}){
  const content=useRef<HTMLDivElement>(null),viewport=useRef<HTMLDivElement>(null);
  const [rectangles,setRectangles]=useState<ReadingRect[]>([]);
  const geometry=useMemo(()=>locateReadingCharacter(rectangles,position),[rectangles,position]);
@@ -33,12 +33,13 @@ export const ReadingManuscript=memo(function ReadingManuscript({script,position,
   <div ref={content} className="r-reading-content">
    {geometry&&<div className="r-reading-guides" aria-hidden="true">
     <div className="r-reading-line-wash" style={{left:geometry.left-14,top:geometry.top-2,width:geometry.width+28,height:geometry.height+4}}/>
-    <div className="r-reading-character-wash" style={{left:geometry.character.left-2,top:geometry.character.top+3,width:geometry.character.width+4,height:geometry.character.height-5}}/>
-    <div key={geometry.start} className="r-reading-underline" style={{left:geometry.left,top:geometry.top+geometry.height-2,width:geometry.progress}}/>
+    {!range&&<div className="r-reading-character-wash" style={{left:geometry.character.left-2,top:geometry.character.top+3,width:geometry.character.width+4,height:geometry.character.height-5}}/>}
+    {!range&&<div key={geometry.start} className="r-reading-underline" style={{left:geometry.left,top:geometry.top+geometry.height-2,width:geometry.progress}}/>}
    </div>}
-   {rows.map((chars,row)=><div className="r-reading-line" key={row}>{chars.map(({char,start,end})=><span key={start} data-script-start={start} data-script-end={end} className={[
+   {rows.map((chars,row)=><div className="r-reading-line" key={row} role={onSeek?'button':undefined} tabIndex={onSeek?0:undefined} aria-label={onSeek?`从本句继续：${chars.map(c=>c.char).join('')}`:undefined} title={onSeek?'点击从这一句继续':undefined} onClick={()=>onSeek?.(chars[0]?.start??0)} onKeyDown={event=>{if(onSeek&&(event.key==='Enter'||event.key===' ')){event.preventDefault();event.stopPropagation();onSeek(chars[0]?.start??0)}}}>{chars.map(({char,start,end})=><span key={start} data-script-start={start} data-script-end={end} className={[
     end<=confirmed?'is-confirmed':'',end<=position?'is-traced':'',
-    geometry&&start===geometry.character.start?'is-current':'',
+    !range&&geometry&&start===geometry.character.start?'is-current':'',
+    range&&start>=range.start&&end<=range.end?'is-semantic':'',
     geometry&&start>=geometry.start&&end<=geometry.end?'on-current-line':'',
    ].filter(Boolean).join(' ')}>{char}</span>)}</div>)}
   </div>

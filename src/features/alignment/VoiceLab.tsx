@@ -1,11 +1,11 @@
-import {useEffect, useLayoutEffect, useRef, useState,type ReactNode} from 'react';
+import {useCallback, useEffect, useLayoutEffect, useRef, useState,type ReactNode} from 'react';
 import {APIError, evaluate} from '../../shared/api';
 import type {Evaluation, FeatureProps} from '../../shared/types';
-import {acceptJudgment, classifyCandidate, commitPosition, DEFAULT_SCRIPT, findCandidate, Freshness, normalized, type Candidate} from './engine';
+import {commitPosition, DEFAULT_SCRIPT, findCandidate, Freshness, normalized, type Candidate} from './engine';
 import {LatestReviewQueue} from './review-queue';
-import {ReadingProgress} from './reading-progress';
+import {Teleprompter,FollowGate,type TrackingUpdate} from './teleprompter';
 import {openMicrophone, type MicrophoneSession} from './microphone';
-import {ALIGNMENT_QUESTION} from './judgment';
+import {FOLLOWING_QUESTION} from './judgment';
 import './voice.css';
 import {locateReadingLine,scriptCharacters} from './reading-visual';
 
@@ -18,7 +18,7 @@ const defaultSamples = [
 type Trace = {segmentId:string; heard: string; candidate: string; baseline: number; enhanced: number; state: string};
 
 type LiveLatency={localMs:number|null;jevMs:number|null;firstTextMs:number|null;updateGapMs:number|null;queueMs:number|null;chunkMs:number};
-export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;focusConfirmed:boolean;latency:LiveLatency;asrModel:string;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
+export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;focusConfirmed:boolean;latency:LiveLatency;asrModel:string;gateState:string;followingProbability:number|null;focusRange:{start:number;end:number}|null;seek:(position:number)=>void;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
 export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples=defaultSamples,render,sampleUrl}: FeatureProps&{initialScript?:string;samples?:ReadonlyArray<readonly[string,string]>;render?:(data:VoiceView)=>ReactNode;sampleUrl?:string}) {
   const [script, setScript] = useState(initialScript), [editing, setEditing] = useState(false);
   const [confirmed, setConfirmed] = useState(0), [tentative, setTentative] = useState(0), [baseline, setBaseline] = useState(0);
@@ -28,6 +28,9 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   const [error, setError] = useState(''), [mode, setMode] = useState<'test'|'live'>('test'), [trace, setTrace] = useState<Trace[]>([]);
   const [latency,setLatency]=useState<LiveLatency>({localMs:null,jevMs:null,firstTextMs:null,updateGapMs:null,queueMs:null,chunkMs:40});
   const [asrModel,setAsrModel]=useState('');
+  const gate=useRef(new FollowGate());
+  const [gateState,setGateState]=useState('unknown'),[followingProbability,setFollowingProbability]=useState<number|null>(null);
+  const [focusRange,setFocusRange]=useState<{start:number;end:number}|null>(null);
   const [view, setView] = useState<'enhanced'|'baseline'>('enhanced');
   const [heardPhase,setHeardPhase]=useState<'empty'|'partial'|'final'|'cancelled'>('empty');
   const [activeSpan,setActiveSpan]=useState<{start:number;end:number;confirmed:boolean}|null>(null);
@@ -41,81 +44,73 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     const measure=()=>{const origin=element.getBoundingClientRect();const rects=[...element.querySelectorAll<HTMLElement>('[data-script-start]')].map(span=>{const box=span.getBoundingClientRect();return {start:Number(span.dataset.scriptStart),end:Number(span.dataset.scriptEnd),left:box.left-origin.left,right:box.right-origin.left,top:box.top-origin.top,bottom:box.bottom-origin.top};});setLineFocus(locateReadingLine(rects,focusPosition));};
     measure();const observer=new ResizeObserver(measure);observer.observe(element);return()=>observer.disconnect();
   },[focusPosition,script,editing]);
-  const progress=useRef(new ReadingProgress());
-  function showFocus(match:Candidate,isConfirmed:boolean,semanticAccepted=false){
-    const tracker=progress.current;const accepted=isConfirmed?tracker.confirm(script,match,semanticAccepted):tracker.preview(script,match,semanticAccepted);if(!accepted)return;
+  const progress=useRef(new Teleprompter());
+  function showFocus(update:TrackingUpdate){
+    const tracker=progress.current;if(!tracker.commit(update)||!update.candidate)return;
+    const match=update.candidate;
     positions.current.confirmed=tracker.confirmed;setConfirmed(tracker.confirmed);setTentative(tracker.position);
     setActiveSpan({start:match.start,end:tracker.position,confirmed:tracker.confirmed>=tracker.position});setFocusPosition(tracker.position);setFocusConfirmed(tracker.confirmed>=tracker.position);
+    setFocusRange(match.semantic?{start:match.start,end:match.end}:null);
   }
   const positions = useRef({confirmed:0, baseline:0}), segment = useRef({id:'', anchor:0});
   const freshness = useRef(new Freshness()),lastInput=useRef('');
   const reviews=useRef<LatestReviewQueue<{state:unknown;version:number},Evaluation>|null>(null);
-  if(!reviews.current)reviews.current=new LatestReviewQueue((job,signal)=>evaluate(job.state,{alignment:ALIGNMENT_QUESTION},{signal,stateVersion:job.version}));
+  if(!reviews.current)reviews.current=new LatestReviewQueue((job,signal)=>evaluate(job.state,{following:FOLLOWING_QUESTION},{signal,stateVersion:job.version}));
   const session = useRef<MicrophoneSession|null>(null), mounted = useRef(true), micGeneration = useRef(0);
   const receiver = useRef<(text:string, final:boolean, id:string,stableText?:string)=>void>(()=>{});
   const inputMode=useRef<'test'|'live'>('test');
   function invalidate() { freshness.current.next();reviews.current?.cancel();lastInput.current=''; }
   function cancelPreview(){previewGeneration.current++;clearTimeout(previewTimer.current);setPreviewing(false);}
   function clearPreviewInput(){cancelPreview();invalidate();setTentative(positions.current.confirmed);setActiveSpan(null);setHeard('');setHeardPhase('empty');setCandidate(null);setResult(null);setStatus('等待新的转写片段');}
-  function reset() { cancelPreview();invalidate();progress.current.reset(); positions.current={confirmed:0,baseline:0}; segment.current={id:'',anchor:0}; setConfirmed(0);setBaseline(0);setTentative(0);setFocusPosition(0);setFocusConfirmed(false);setCandidate(null);setResult(null);setHeard('');setHeardPhase('empty');setActiveSpan(null);setError('');setTrace([]);setStatus('已回到稿件开头'); }
+  function reset() { cancelPreview();invalidate();progress.current.reset();gate.current.reset();setGateState('unknown');setFollowingProbability(null);setFocusRange(null); positions.current={confirmed:0,baseline:0}; segment.current={id:'',anchor:0}; setConfirmed(0);setBaseline(0);setTentative(0);setFocusPosition(0);setFocusConfirmed(false);setCandidate(null);setResult(null);setHeard('');setHeardPhase('empty');setActiveSpan(null);setError('');setTrace([]);setStatus('已回到稿件开头'); }
   useEffect(()=>()=>{mounted.current=false;micGeneration.current++;previewGeneration.current++;clearTimeout(previewTimer.current);session.current?.dispose();invalidate();},[]);
   // React StrictMode remounts effects in development.
   useEffect(()=>{mounted.current=true;},[]);
 
-  receiver.current = (text, final, id,stableText='') => {
+  receiver.current = (text, final, id) => {
     const receivedAt=performance.now(),spoken=normalized(text).text;
-    if(!progress.current.begin(id))return;
-    setHeard(text);setHeardPhase(final?'final':'partial');
-    const signature=JSON.stringify([id,spoken,final,normalized(stableText).text]);
-    if(lastInput.current===signature)return;
-    if(segment.current.id !== id){invalidate();segment.current={id,anchor:progress.current.anchor}}
+    const signature=JSON.stringify([id,spoken,final]);if(lastInput.current===signature)return;
+    const update=progress.current.propose(script,text,final,id);if(!update)return;
+    if(segment.current.id!==id){invalidate();segment.current={id,anchor:progress.current.anchor}}
     lastInput.current=signature;const version=freshness.current.next();setError('');
-    const match=progress.current.select(script,text,final,stableText),decision=classifyCandidate(match,text);
-    segment.current.anchor=progress.current.anchor;
+    setHeard(text);setHeardPhase(final?'final':'partial');setCandidate(update.candidate);
     setLatency(old=>({...old,localMs:Math.round((performance.now()-receivedAt)*100)/100}));
-    setCandidate(match);setResult(null);
-    // The cloud supplies an immutable prefix independently of the revisable stash.
-    // Commit only a substantial, exact manuscript match, not merely stable ASR text.
-    if(!final&&match&&match.similarity>=.8&&normalized(stableText).text.length>=6){const stable=findCandidate(script,stableText,segment.current.anchor);if(stable?.exact&&stable.start===match.start&&stable.distance<=60&&stable.end<=match.end){showFocus(stable,true)}}
     const baselineMatch=final?findCandidate(script,text,positions.current.baseline):null;
-    if(final && baselineMatch && baselineMatch.similarity>=0.85 && normalized(text).text.length>=6) {
-      positions.current.baseline=commitPosition(positions.current.baseline,baselineMatch.end);setBaseline(positions.current.baseline);
-    }
-    const record = (state:string, output?:Evaluation, failed=false) => {
-      const item={segmentId:id,heard:text,candidate:match?.text??'',baseline:positions.current.baseline,enhanced:positions.current.confirmed,state};
-      // Revisions replace this segment's local preview; they never crowd out whole experiments.
+    if(final&&baselineMatch&&baselineMatch.similarity>=.85){positions.current.baseline=commitPosition(positions.current.baseline,baselineMatch.end);setBaseline(positions.current.baseline)}
+    const record=(state:string,output?:Evaluation)=>{
+      const item={segmentId:id,heard:text,candidate:update.candidate?.text??'',baseline:positions.current.baseline,enhanced:positions.current.confirmed,state};
       setTrace(old=>[...old.filter(entry=>entry.segmentId!==id).slice(-11),item]);
-      if(final||output||failed)onRecord?.({id:output?.requestId??crypto.randomUUID(),label:inputMode.current==='live'?(sampleUrl?'样本音频真实链路':'实时跟读定位'):'转写测试',at:new Date().toISOString(),input:{text,script,segmentId:id,candidate:match,final,inputSource:sampleUrl&&inputMode.current==='live'?'sample-audio':inputMode.current},output:output??item,source:output?'live':'rules'});
+      if(final||output)onRecord?.({id:output?.requestId??crypto.randomUUID(),label:sampleUrl&&inputMode.current==='live'?'样本音频真实链路':'跟读状态监测',at:new Date().toISOString(),input:{text,script,segmentId:id,final,inputSource:inputMode.current,candidate:update.candidate},output:output??item,source:output?'live':'rules'});
     };
-    const apply = (accepted:boolean,label:string, output?:Evaluation) => {
-      if(!freshness.current.isCurrent(version))return;
-      if(accepted&&match){showFocus(match,final||match.end<=positions.current.confirmed,!!output);}
-      else {setTentative(positions.current.confirmed);setActiveSpan(null);}
-      setStatus(label);record(label,output);
-    };
-    if(decision==='short'){reviews.current?.cancel();if(match?.exact){showFocus(match,false);setStatus('暂定 · 短词连续匹配')}else{setTentative(positions.current.confirmed);setActiveSpan(null);setStatus(old=>old.startsWith('暂停')||old.startsWith('保持')?'保持位置 · 等待更多文字':'片段较短，等待更多文字')}record('短片段，仅作临时预览');return;}
-    if(decision==='exact'||match?.exact){reviews.current?.cancel();apply(true,final?'已确认 · 对应原文':'暂定 · 等待转写稳定');return;}
-    // An unrelated fragment cannot pass the lexical gate. Hold immediately instead of
-    // spending a model call whose answer could never be accepted by acceptJudgment.
-    if(decision==='pause'){reviews.current?.cancel();apply(false,'暂停 · 尚无对应的稿件位置');return;}
-    setTentative(progress.current.position);
-    setActiveSpan(null);
-    setStatus('保持位置 · 正在核对语义');
+    gate.current.observe(update);
+    if(gate.current.mayTrack(update)){showFocus(update);setStatus(final?'已确认 · 本地稿件定位':'暂定 · 本地实时跟随')}
+    else setStatus(gate.current.state==='paused'?'暂停 · 等待恢复跟读':'保持位置 · 等待跟读信号');
+    record('本地定位，Jev 独立监测跟读状态');
+    if(normalized(update.text).text.length<3)return;
     reviews.current!.enqueue({
-      key:JSON.stringify([id,spoken,match?.start,match?.end]),
-      value:{version,state:{transcript:text,localScript:script.slice(Math.max(0,segment.current.anchor-45),segment.current.anchor+380),candidate:match?.text??'',task:'语义跟读：允许错字、同音字与意思一致的近义表达；话题相关的插话不等于在读稿件。'}},
+      key:JSON.stringify([id,normalized(update.text).text]),
+      value:{version,state:{transcript:update.text,manuscript:script,localAlignedText:update.candidate?.text??'',recentTranscripts:gate.current.context(update)}},
       apply:output=>{
         if(!freshness.current.isCurrent(version))return;
-        setLatency(old=>({...old,jevMs:output.elapsedMs}));
-        setResult(output);const answer=output.answers.alignment;
-        const matchProbability=answer?.probabilities?.match;const noMatchProbability=answer?.probabilities?.no_match;
-        const preferred=matchProbability!==undefined&&noMatchProbability!==undefined&&matchProbability>noMatchProbability?'match':'no_match';
-        const accepted=acceptJudgment(match,preferred,matchProbability);
-        apply(accepted,accepted?(final?'已确认 · 语义对应':'暂定 · 语义对应'):'暂停 · 尚不能确认对应原文',output);
+        const probability=output.answers.following?.noul;if(probability===undefined)return;
+        gate.current.decide(probability);setGateState(gate.current.state);setFollowingProbability(probability);
+        setLatency(old=>({...old,jevMs:output.elapsedMs}));setResult(output);
+        if(gate.current.mayTrack(update,true)){showFocus(update);setStatus(final?'已确认 · 正在跟读':'暂定 · 正在跟读')}
+        else if(gate.current.state==='paused')setStatus('暂停 · 当前是插话');
+        else setStatus('保持位置 · 跟读状态尚不明确');
+        record(gate.current.state,output);
       },
-      fail:e=>{if(!freshness.current.isCurrent(version))return;setTentative(positions.current.confirmed);setActiveSpan(null);const message=e instanceof Error?e.message:'判断请求未完成';setError(message);setStatus('保持位置 · 判断未完成');if(e instanceof APIError&&/QUOTA|CREDIT|BALANCE|BUDGET/i.test(e.code))onQuota?.(message);record('请求失败，保持位置',undefined,true);}
+      fail:e=>{
+        if(!freshness.current.isCurrent(version))return;
+        gate.current.unavailable();setGateState('paused');setFollowingProbability(null);
+        const message=e instanceof Error?e.message:'判断请求未完成';setError(message);setStatus('保持位置 · 跟读监测暂不可用');
+        if(e instanceof APIError&&/QUOTA|CREDIT|BALANCE|BUDGET/i.test(e.code))onQuota?.(message);record('跟读监测失败');
+      }
     });
   };
+  const seekRef=useRef<(position:number)=>void>(()=>{});
+  seekRef.current=(position)=>{clearPreviewInput();progress.current.seek(position);gate.current.reset();setGateState('unknown');setFollowingProbability(null);positions.current.confirmed=position;setConfirmed(position);setTentative(position);setFocusPosition(position+1);setFocusRange(null);setFocusConfirmed(false);setStatus('手动定位 · 从这一句继续')};
+  const seek=useCallback((position:number)=>seekRef.current(position),[]);
   function startPreview(text=input){
     clearPreviewInput();inputMode.current='test';setMode('test');setPreviewing(true);
     const generation=previewGeneration.current,id=crypto.randomUUID(),characters=[...text];let count=0;
@@ -148,7 +143,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   const indicator=isPaused?'pause':isContinuing?'continue':isMatching?'match':'listen';
   const indicatorLabel=isPaused?'暂停':isContinuing?'继续':isMatching?'匹配':'收音';
   const signalActive=mic==='on'||previewing;
-  if(render)return render({script,confirmed,tentative,focusPosition,focusConfirmed,latency,asrModel,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
+  if(render)return render({script,confirmed,tentative,focusPosition,focusConfirmed,focusRange,seek,gateState,followingProbability,latency,asrModel,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
   return <section className="voice-lab" aria-label="按稿跟读实验">
     <div className="voice-topline"><span className="voice-source">{mode==='live'?'实时跟读':'固定转写演示'}</span><span className="voice-counter">确认位置 {shown} / {script.length}</span></div>
     <div className="voice-reading">
@@ -166,7 +161,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     <div className="voice-quick-demo" role="group" aria-label="固定转写演示"><span>固定转写</span>{[[0,'① 按稿朗读'],[2,'② 临时插话'],[3,'③ 回到原文']].map(([sample,label])=><button key={sample} disabled={mic!=='off'||editing} onClick={()=>{const text=samples[Number(sample)][1];if(sample===0)reset();setInput(text);startPreview(text);}}>{label}</button>)}</div>
     {error&&<p className="voice-error" role="alert">{error}</p>}
     <details name="voice-details" className="voice-test"><summary>转写测试 <span>原文、局部差异、插话、返回</span></summary><p>人为输入演示，不采集声音。逐字预览会在稿件上显示暂定位置，最后提交稳定文本。</p><div className="voice-presets">{samples.map(([label,text])=><button disabled={mic!=='off'} key={label} onClick={()=>{clearPreviewInput();setInput(text);}}>{label}</button>)}</div><textarea aria-label="测试转写文本" disabled={mic!=='off'} value={input} maxLength={350} onChange={e=>{clearPreviewInput();setInput(e.target.value);}}/><div className="voice-test-actions"><button className="voice-preview-button" disabled={mic!=='off'||editing||!input.trim()} onClick={()=>previewing?stopPreview():startPreview()}>{previewing?'停止预览':'逐字预览'}</button><button className="voice-primary" disabled={mic!=='off'||!input.trim()||editing} onClick={()=>{cancelPreview();inputMode.current='test';setMode('test');receiver.current(input,true,crypto.randomUUID());}}>提交这段转写</button></div></details>
-    <details name="voice-details" className="voice-method"><summary>查看匹配过程与对照</summary><div className="voice-switch"><button aria-pressed={view==='enhanced'} onClick={()=>setView('enhanced')}>局部对齐 ＋ Jev</button><button aria-pressed={view==='baseline'} onClick={()=>setView('baseline')}>仅局部对齐</button></div><p>两种路径读取同一段转写。仅局部对齐按相似度 ≥ 0.85 确认；加入 Jev 后，对有差异的片段额外检查。浅色下划线表示暂定位置，较深下划线表示确认位置；插话时光带保持。允许错字和意思一致的近义表达；单纯话题相关的插话不推进。字面接近的候选按相似度采用 0.5 或 0.8 的判断门槛；只有语义联系的当前局部候选要求对应概率至少 0.7。阈值为演示设定，尚未校准。</p><dl><dt>识别原文 · {heardPhase==='partial'?'暂定':heardPhase==='final'?'最终':'等待'}</dt><dd>{heard||'尚无转写'}</dd><dt>局部候选</dt><dd>{candidate?.text||'尚无候选'}{candidate&&<small>{candidate.semantic?' · 当前局部语义候选':` · 字符相似度 ${(candidate.similarity*100).toFixed(1)}%`}</small>}</dd><dt>确认 / 暂定</dt><dd>{confirmed} / {tentative}</dd><dt>最近 Jev 返回</dt><dd>{result?<><span>{result.model} · {result.elapsedMs} ms</span><pre>{JSON.stringify(result.answers,null,2)}</pre></>:'当前没有模型返回值。精确匹配由程序处理。'}</dd></dl>{trace.length>0&&<div className="voice-trace"><table><thead><tr><th>同一转写</th><th>仅对齐</th><th>＋ Jev</th><th>状态</th></tr></thead><tbody>{trace.map((t,i)=><tr key={i}><td>{t.heard}</td><td>{t.baseline}</td><td>{t.enhanced}</td><td>{t.state}</td></tr>)}</tbody></table></div>}</details>
+    <details name="voice-details" className="voice-method"><summary>查看匹配过程与对照</summary><div className="voice-switch"><button aria-pressed={view==='enhanced'} onClick={()=>setView('enhanced')}>本地跟踪 ＋ 跟读开关</button><button aria-pressed={view==='baseline'} onClick={()=>setView('baseline')}>仅局部对齐</button></div><p>两条路径使用同一份转写和本地文字对齐。Jev 只通过 Noul 判断是否仍在跟读，不返回句子或位置：跟读概率至少 0.65 时继续，不高于 0.35 时暂停，中间区域维持上一次状态。暂停时高亮保持，恢复后继续使用本地匹配位置。近义表达只能近似对应一个片段，因此显示片段高亮。这里的阈值是演示设定。</p><dl><dt>识别原文 · {heardPhase==='partial'?'暂定':heardPhase==='final'?'最终':'等待'}</dt><dd>{heard||'尚无转写'}</dd><dt>局部候选</dt><dd>{candidate?.text||'尚无候选'}{candidate&&<small>{candidate.semantic?' · 当前局部语义候选':` · 字符相似度 ${(candidate.similarity*100).toFixed(1)}%`}</small>}</dd><dt>确认 / 暂定</dt><dd>{confirmed} / {tentative}</dd><dt>最近 Jev 返回</dt><dd>{result?<><span>{result.model} · {result.elapsedMs} ms</span><pre>{JSON.stringify(result.answers,null,2)}</pre></>:'当前没有模型返回值。精确匹配由程序处理。'}</dd></dl>{trace.length>0&&<div className="voice-trace"><table><thead><tr><th>同一转写</th><th>仅对齐</th><th>＋ Jev</th><th>状态</th></tr></thead><tbody>{trace.map((t,i)=><tr key={i}><td>{t.heard}</td><td>{t.baseline}</td><td>{t.enhanced}</td><td>{t.state}</td></tr>)}</tbody></table></div>}</details>
   </section>;
 }
 
