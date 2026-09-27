@@ -1,0 +1,23 @@
+concept_contract: source/concept-contract.yaml
+parameter_space: linear
+media_access: random
+gesture_policy:
+  unit: one-gesture-one-step
+  while_active: retarget
+  boundary: clamp
+storyboard:
+  - existing comparison and result
+  - paper grows from Jev side; background recedes
+  - input branches to models
+  - simultaneous equal-rate clocks, each stopping at its recorded duration
+  - per-call costs appear
+  - paired ratios settle; presenter controls continuation
+rest_state: all final figures visible, no active animation frame loop
+loop: none
+anchor: right result area
+frame_policy: native
+aspect_ratio: '16:9'
+pixel_dimensions: 1920x1080 / responsive fit of existing 1672x941 canvas
+reduced_motion: instant final state, same keyboard controls
+implementation: native DOM/SVG; generated static alpha paper; no generated video needed
+timing_source: build/timeline.json

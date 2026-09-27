@@ -1,0 +1,16 @@
+{
+  "before": {
+    "presence": "0.6087",
+    "motionTime": "1800.0"
+  },
+  "after": {
+    "result": {
+      "type": "object",
+      "value": {
+        "motionTime": "1800.0",
+        "open": "true",
+        "presence": "0.6087"
+      }
+    }
+  }
+}

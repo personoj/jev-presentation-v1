@@ -1,0 +1,43 @@
+.comparison-overlay{position:absolute;inset:0;z-index:24;pointer-events:none;font-family:var(--r-serif);color:#121b1e}
+.comparison-clock{position:absolute;width:1px;height:1px;visibility:hidden;pointer-events:none}
+.comparison-backdrop{position:absolute;inset:0;background:#b0a79330;pointer-events:none}
+.comparison-sheet{position:absolute;inset:0;transform-origin:74% 62%;outline:0;pointer-events:none;will-change:transform,opacity}
+.comparison-sheet button,.comparison-sheet a{pointer-events:auto}
+.comparison-paper-fallback{position:absolute;left:72px;top:87px;width:1528px;height:772px;background:#f6f1e7 url('/reference-art/paper-field.png') center/cover;border-radius:4px;box-shadow:0 20px 40px #3d302340;pointer-events:auto}
+.comparison-paper{position:absolute;inset:0;width:1672px;height:941px;pointer-events:none;user-select:none}
+.comparison-sheet h2{position:absolute;left:128px;top:112px;margin:0;font-size:68px;line-height:1.35;font-weight:750;letter-spacing:1px}
+.comparison-source-label{position:absolute;left:1300px;top:143px;font-size:27px}
+.reference-canvas .comparison-close{position:absolute;left:1511px;top:130px;width:46px;height:46px;padding:7px}
+.comparison-close svg{width:32px;height:32px;stroke:#242725;stroke-width:1.2;fill:none}
+.comparison-close:hover{background:#a33a2010;border-radius:50%}
+.comparison-top-rule,.comparison-bottom-rule{position:absolute;left:128px;width:1420px;height:1px;background:#a49a8c}
+.comparison-top-rule{top:214px}.comparison-bottom-rule{top:812px}
+.comparison-input,.comparison-conclusion{position:absolute;background:#f9f5ec url('/reference-art/paper-field.png') center/cover;box-shadow:0 5px 9px #4a342428,inset 0 0 0 1px #fff9ed;border-radius:2px}
+.comparison-input{left:626px;top:229px;width:420px;height:52px;text-align:center;font-size:27px;line-height:52px;font-weight:550}
+.comparison-branches{position:absolute;inset:0;width:1672px;height:941px;pointer-events:none}
+.comparison-center-rule{position:absolute;left:836px;top:342px;width:1px;height:290px;background:#c3bbae}
+.comparison-model{position:absolute;top:273px;width:492px;height:390px;color:var(--model-ink)}
+.comparison-llm{left:196px}.comparison-jev{left:982px}
+.comparison-model-heading h3{margin:0;text-align:center;font:700 53px/1.12 'Times New Roman',serif;white-space:nowrap}
+.comparison-jev .comparison-model-heading h3{font-size:62px;line-height:.957}
+.comparison-model-heading p{margin:9px 0 0;text-align:center;font-size:27px;line-height:1.4;color:#182023}
+.comparison-timing{position:absolute;top:96px;left:0;width:492px}
+.comparison-metric-label{margin:0 0 0 30px;font-size:25px;line-height:1.4;color:#182023}
+.comparison-time{margin-top:-17px;width:100%;text-align:center;white-space:nowrap;font:700 128px/1 'Times New Roman',serif;font-variant-numeric:tabular-nums;letter-spacing:-2px}
+.comparison-unit{font-size:64px;letter-spacing:0;font-weight:600}
+.comparison-axis{position:absolute;left:-12px;top:129px;width:516px;height:62px;overflow:visible}
+.comparison-cost{position:absolute;left:0;top:291px;width:492px}
+.comparison-money{text-align:center;font:700 76px/1.15 'Times New Roman',serif;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.comparison-cost i{display:block;width:130px;height:2px;margin:0 auto;background:var(--model-ink);opacity:.18;transform-origin:center}
+.comparison-scale-note{position:absolute;left:571px;top:648px;width:530px;text-align:center;margin:0;font-size:20px;color:#676a65}
+.comparison-conclusion{left:194px;top:686px;width:1285px;height:82px;display:flex;justify-content:center;align-items:center;gap:12px;font-size:38px;font-weight:650;white-space:nowrap}
+.comparison-conclusion strong{font:700 62px/1 'Times New Roman',serif;color:#a33a20}
+.comparison-price{position:absolute;left:194px;top:778px;width:1285px;margin:0;text-align:center;font-size:27px;line-height:1.2}
+.comparison-price span{font-family:'Times New Roman',serif}
+.comparison-source{position:absolute;left:128px;top:825px;font-size:19px;color:#383e3d;text-decoration:none}
+.comparison-source:hover{text-decoration:underline}
+.comparison-conditions{position:absolute;left:640px;top:825px;margin:0;font-size:18px;color:#53564f}
+.reference-canvas .comparison-continue{position:absolute;left:1326px;top:817px;width:230px;padding:5px 0;font-size:25px;white-space:nowrap}
+.comparison-continue span{display:inline-block;margin-left:13px;font-family:'Times New Roman',serif;transition:transform .2s}
+.comparison-continue:hover span{transform:translateX(5px)}
+@media(prefers-reduced-motion:reduce){.comparison-sheet{will-change:auto}.comparison-continue span{transition:none}}

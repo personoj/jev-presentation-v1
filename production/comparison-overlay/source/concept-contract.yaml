@@ -1,0 +1,19 @@
+subject_count: 1
+subjects:
+  - identity: approved-reference.png / large paper comparison folio
+style: existing warm ivory paper, Song serif, vermilion and blue-black
+motion_intent: input branches to two models; shared clock; cost reveal; ratio conclusion
+background_owner: page
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: chain
+continuity:
+  - one persistent sheet; reverse or reopen from current pose
+  - no changes to the preceding three comparison steps
+  - paired official example, not a live local measurement
+  - equal time scales without minimum bar lengths
+aspect_ratio: '16:9'
+destination: fourth-slide final step / F11 desktop presentation
+approval: user approved exec-6ea39e0c-66ff-4a3f-8f93-ed6018195480.png

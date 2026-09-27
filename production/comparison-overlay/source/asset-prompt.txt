@@ -1,0 +1,7 @@
+Built-in Image Gen edit, transparent_background=true.
+Input: approved-reference.png.
+
+Edit target: the approved Jev paper modal reference. Produce a clean production material asset ONLY: the large front-facing warm ivory fibrous paper folio sheet, including its fine irregular natural edges and soft shadow, on a REAL TRANSPARENT background. Erase ALL text, numbers, letters, symbols, rules, dividers, arrows, charts, markings, and the two smaller raised paper label strips. Remove everything outside the single main sheet (background page, Jev logo, footer, shadows of other objects). Reconstruct blank matching paper where the removed content was. Keep the exact subtle ivory color, natural non-distracting fine paper texture, sheet proportions, lighting and main paper silhouette from reference. Do not create a solid colored or checkerboard background. Native alpha transparency outside sheet. One single flat landscape sheet centered, paper boundary at x approximately 4.3%-95.7%, y 9.2%-91.3% of full image, same as reference. Full canvas 16:9. Keep paper opaque inside. This is a material layer under sharp live HTML typography and SVG graphs. NO text at all, NO chart, NO rules, NO decorative graphics, NO folded page or perspective, NO smaller secondary sheets. Preserve accepted visual quality and delicate edge/shadow.
+
+Output copied unchanged to public/reference-art/comparison-paper.png.
+All labels and numeric diagrams are native DOM/SVG; they are not baked into the material.

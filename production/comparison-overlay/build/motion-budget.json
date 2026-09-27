@@ -1,0 +1,8 @@
+{
+  "delivery": {"selected": "native-dom-svg-and-static-alpha", "reason": "Only container transforms and exact numerical diagrams change; no video or sprite sequence is required."},
+  "runtime": {"controller": "segment-playback", "clock": "native WAAPI", "stableFrameLoop": false},
+  "designCanvas": [1672, 941],
+  "targetViewport": [1920, 1080],
+  "maxConcurrentClocks": 1,
+  "reducedMotion": "static-final"
+}

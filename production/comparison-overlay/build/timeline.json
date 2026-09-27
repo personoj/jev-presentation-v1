@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "renderer": "native-dom-svg",
+  "controller": "segment-playback",
+  "durationMs": 3200,
+  "presenceMs": 460,
+  "input": [350, 750],
+  "branches": [620, 1080],
+  "models": [650, 1050],
+  "timerReveal": [900, 1150],
+  "timer": [1150, 2350],
+  "cost": [2370, 2760],
+  "conclusion": [2720, 3150],
+  "footer": [2860, 3200],
+  "axisSeconds": 9,
+  "loop": false
+}
