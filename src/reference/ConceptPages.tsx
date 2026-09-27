@@ -20,7 +20,7 @@ export function Comparison({beat}:{beat:number}){return <div className="r-lesson
  </div>}
 
 export function Training({beat}:{beat:number}){return <div className="r-lesson">
- <Heading center size={66} lead="除了输出方式，我们还要看模型被训练去做好什么。"><span className="r-red">训练目标，</span>也有不同</Heading>
+ <Heading center size={66} lead="理解两者的区别，还需要看它们各自的训练目标。"><span className="r-red">训练目标，</span>也有不同</Heading>
  <Art src="05-training" box={[630,248,420,98]}/><Text x={665} y={269} w={341} size={32} align="center">已有的语言理解能力</Text>
  <Diagram><Ink d="M836 323C815 416 517 279 483 364" color="var(--r-red)" show={beat>=1} width={2} arrow/><Ink d="M836 323C888 419 1178 279 1189 364" color="var(--r-blue)" show={beat>=2} width={2} arrow/></Diagram>
  <Group show={beat>=1}><Text x={240} y={364} w={500} size={58} weight={600} color="var(--r-red)" align="center" className="r-latin">RLHF</Text><Text x={246} y={431} w={520} size={28} line={1.29}>利用人类反馈，让模型更倾向于给出人们<br/>偏好的回答。回答的表达方式、帮助程度等，<br/>都可能影响偏好。</Text><Art src="05-training" box={[200,535,581,172]}/><Text x={254} y={569} size={30}>回答 A</Text><Text x={540} y={569} size={30}>回答 B</Text><Text x={352} y={733} w={300} size={27} align="center">人的偏好反馈</Text></Group>
@@ -29,7 +29,7 @@ export function Training({beat}:{beat:number}){return <div className="r-lesson">
  <Group show={beat>=2}><Text x={981} y={364} w={470} size={58} weight={600} color="var(--r-blue)" align="center" className="r-latin">RLCD</Text><Text x={981} y={431} w={475} size={28} line={1.3}>TypeSafe 将这条训练路线称为 RLCD，<br/>目标是返回明确的决策，以及能反映<br/>不确定性的概率。</Text><Text x={1133} y={525} size={104} color="var(--r-red)" className="r-latin" weight={600}>80<span style={{fontSize:80}}>%</span></Text>
  <Diagram>{Array.from({length:10},(_,i)=><circle key={i} cx={1000+i*48.3} cy={646} r={18} stroke={i<8?'#b44425':'var(--r-ink)'} strokeWidth="1.6" fill={i<8?'#b94b2b':'none'} className="r-dot-reveal" style={{animationDelay:`${i*90}ms`}}/>)}</Diagram>
  <Text x={997} y={682} w={465} size={28} align="center" line={1.3}>如果许多次判断都给出 80% 的概率，<br/>实际结果的发生比例也应接近 80%。</Text>
- <Art src="05-training" box={[389,765,907,96]}/><Text x={472} y={790} size={35} color="var(--r-green)" weight={700}>要点</Text><i className="r-divider" style={{left:575,top:791,height:42}}/><Text x={600} y={797} size={29}>校准描述的是一组预测，不保证某一次判断正确。</Text><Text x={1551} y={806} size={22} color="#827b71">示意</Text></Group>
+ <Art src="05-training" box={[389,765,907,96]}/><Text x={472} y={790} size={35} color="var(--r-green)" weight={700}>要点</Text><i className="r-divider" style={{left:575,top:791,height:42}}/><Text x={600} y={797} size={29}>校准描述的是一组预测，不保证某一次判断正确。</Text></Group>
  </div>}
 
 export function Primitives({beat}:{beat:number}){const labels=['Choice','Noul','Score'],questions=['选哪个？','是否成立？','程度多高？'];return <div className="r-lesson">
