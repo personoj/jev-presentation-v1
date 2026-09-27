@@ -1,0 +1,6 @@
+{
+  "delivery": {"selected": "native-svg", "reason": "Only geometric point, label, path and arrow motion; existing raster artwork remains static."},
+  "runtime": {"controller": "segment-playback", "clock": "native WAAPI", "maxConcurrentClocks": 3, "idleFrameLoop": false},
+  "reducedMotion": "static-final",
+  "newMediaBytes": 0
+}

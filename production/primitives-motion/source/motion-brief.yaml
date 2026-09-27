@@ -1,0 +1,19 @@
+concept_contract: source/concept-contract.yaml
+parameter_space: linear
+media_access: random
+gesture_policy:
+  unit: one-gesture-one-step
+  while_active: retarget
+  boundary: clamp
+storyboard:
+  - Choice enter / scan A B C / select B / hold
+  - Noul reveal / right left right / midpoint / hold 500 ms and remain
+  - Score reveal at 0 / hop to 1 / hop to 2 / return to 1 / hold
+rest_state: B selected; p=0.5; score=1; no active frame loop
+frame_policy: native
+loop: none
+aspect_ratio: '16:9'
+pixel_dimensions: existing 1672x941 canvas fitted to viewport
+reduced_motion: show final B, 0.5 and 1 directly
+implementation: native SVG geometry with WAAPI clocks; existing raster stairs reused
+timing_source: build/timeline.json

@@ -1,0 +1,17 @@
+subjects: [Choice routing diagram, Noul probability point and p, Score ball and arrow]
+style: preserve approved paper, serif typography, blue/red/green inks and stair artwork
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+background_owner: page
+aspect_ratio: '16:9'
+motion_intent:
+  choice: paths appear and alternatives pulse, then one packet selects B
+  noul: point and p share one transform; oscillate then hold at 0.5
+  score: 0 -> 1 -> 2 -> 1; arrow follows current ball and next landing
+continuity:
+  - no additional smoothing between diagram parts
+  - freeze hidden column during fade-out; resume on quick reversal
+  - persistent rest after final 500 ms hold; user chose no loop
+destination: sixth slide, existing click order and layout

@@ -1,0 +1,25 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "clocks": [
+        {
+          "kind": "choice",
+          "time": "2900.0"
+        },
+        {
+          "kind": "noul",
+          "time": "2350.0"
+        },
+        {
+          "kind": "score",
+          "time": "3200.0"
+        }
+      ],
+      "overflow": false,
+      "point": "translate(835,591)",
+      "running": 0,
+      "score": "translate(1360,571)"
+    }
+  }
+}

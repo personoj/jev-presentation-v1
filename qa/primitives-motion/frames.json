@@ -1,0 +1,54 @@
+[
+  {
+    "result": {
+      "type": "object",
+      "value": {
+        "arrow": "M1321.3229690595945 543.5818542876663Q1340.6614845297972 525.5818542876663 1360 547",
+        "noul": "translate(984.8,591)",
+        "pParent": true,
+        "score": "translate(1308.4306254127928,549.8553147334466)",
+        "target": "1",
+        "time": 800
+      }
+    }
+  },
+  {
+    "result": {
+      "type": "object",
+      "value": {
+        "arrow": "M1443.75 498Q1468.875 475 1494 493",
+        "noul": "translate(898.8733651620371,591)",
+        "pParent": true,
+        "score": "translate(1427,504)",
+        "target": "2",
+        "time": 1575
+      }
+    }
+  },
+  {
+    "result": {
+      "type": "object",
+      "value": {
+        "arrow": "M1410.25 498Q1385.125 480 1360 547",
+        "noul": "translate(835,591)",
+        "pParent": true,
+        "score": "translate(1427,504)",
+        "target": "1",
+        "time": 2385
+      }
+    }
+  },
+  {
+    "result": {
+      "type": "object",
+      "value": {
+        "arrow": "M0 0",
+        "noul": "translate(835,591)",
+        "pParent": true,
+        "score": "translate(1360,571)",
+        "target": "1",
+        "time": 3200
+      }
+    }
+  }
+]

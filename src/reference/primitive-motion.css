@@ -1,0 +1,3 @@
+.primitive-clock{position:absolute;width:1px;height:1px;visibility:hidden;pointer-events:none}
+.primitive-noul-moving,.primitive-score-ball,.primitive-score-arrow{transition:none!important}
+.primitive-noul-moving text{user-select:none}
