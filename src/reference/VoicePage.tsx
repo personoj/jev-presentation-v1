@@ -15,7 +15,7 @@ function VoiceCanvas({data:d}:{data:VoiceView}){
  const chunks=d.script.split('\n');
  const status=d.status.startsWith('手动定位')?'从这里继续':d.isPaused?'位置保持':d.signalActive||d.confirmed>0?'跟随中':'准备朗读';
  return <div className="r-lesson r-voice-page">
-  <Heading size={75} lead={<>按稿朗读时，文字逐步高亮；临时插话时停住，回到原文后继续跟随。</>}>念稿时跟随，<span className="r-red">插话时停住</span></Heading>
+  <Heading size={75} lead={<>按稿朗读时，文字逐步高亮；临时插话时停住，回到原文后继续跟随。</>}><span className="r-latin">Jev</span> 的<span className="r-red">具体应用</span></Heading>
   <Art src="10-voice" box={[120,270,1450,100]}/>{['声音','转写文字','本地对齐','稿件位置'].map((s,i)=><Text key={s} x={[279,631,983,1368][i]} y={299} size={31} weight={500}>{s}</Text>)}<Diagram>{[427,800,1170].map(x=><Ink key={x} d={`M${x} 316h61`} color="var(--r-red)" width={2} arrow/>)}</Diagram>
   <Art src="10-voice" box={[98,369,877,362]}/><ReadingManuscript script={d.script} position={d.focusPosition} confirmed={d.confirmed} paused={d.isPaused} settled={d.isPaused||d.focusConfirmed} range={d.focusRange} onSeek={d.seek}/>
   <Text x={1080} y={399} w={400} size={62} weight={700} color="var(--r-red)" align="center" style={{transition:'color .4s'}}>{status}</Text>
