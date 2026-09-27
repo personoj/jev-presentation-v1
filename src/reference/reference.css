@@ -39,3 +39,14 @@
 .r-live-latency{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:auto auto;grid-auto-flow:column;gap:3px 12px;margin:8px 0 16px;font:18px/1.5 var(--r-serif);padding:12px 0;border-block:1px solid #c6b9a5}.r-live-latency dt{color:#776d60}.r-live-latency dd{margin:0;color:var(--r-red);font-variant-numeric:tabular-nums}.r-voice-details:has(.r-live-latency){inset:135px 180px 125px;overflow:auto}.r-voice-details .r-audio-qa-label{font-size:18px;color:#746a5e}
 
 .r-reading-line[role="button"]{cursor:pointer;border-radius:3px}.r-reading-line[role="button"]:focus-visible{outline:2px solid var(--r-red);outline-offset:2px}.r-reading-line>span.is-semantic{background:#e0ad5c40;color:var(--r-ink);box-shadow:0 2px var(--r-red)}.r-follow-gate{font-size:20px;color:var(--r-green)}
+
+/* Cover and both leaves now share one measured spine and one reversible clock. */
+.r-book-clock{position:absolute;width:1px;height:1px;left:-10px;top:-10px;visibility:hidden;pointer-events:none}
+.r-cover-surface,.r-open-surface{transform-origin:0 0;transition:none;will-change:transform,opacity}
+.r-book-left-turn,.r-book-right-print{position:absolute;inset:0;transform-origin:0 0}
+.r-cover-title{position:absolute;left:70px;top:207px;width:750px;margin:0;line-height:1.15;font-weight:650}
+.r-cover-title>.r-latin{display:block;font-size:145px;font-weight:400;color:var(--r-red);letter-spacing:-3px}
+.r-cover-title>span:last-child{display:block;margin-top:3px;font-size:64px;letter-spacing:.5px;white-space:nowrap}
+.r-cover-meta{position:absolute;left:72px;top:760px;display:flex;gap:35px;color:#5a544b;font:24px/1.6 var(--r-serif)}
+.r-cover-trigger{position:absolute;left:810px;top:112px;width:750px;height:711px;z-index:4;cursor:pointer!important;border-radius:30px}
+.reference-canvas .r-opening-copy .r-text{white-space:normal;overflow-wrap:normal}

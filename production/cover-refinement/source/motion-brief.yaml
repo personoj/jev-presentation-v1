@@ -1,0 +1,18 @@
+concept_contract: concept-contract.yaml
+parameter_space: linear
+media_access: random
+gesture_policy:
+  unit: one-gesture-one-step
+  while_active: retarget
+  boundary: clamp
+storyboard:
+  - 合上：保持原始封面投影
+  - 翻开：封面和左右页使用同一书脊与同一进度
+  - 落定：文字随纸面稳定出现，回到原有展开页面坐标
+anchor: shared-spine
+frame_policy: native
+implementation: 复用透明图像，使用投影矩阵和原生动画时钟，不生成新媒体
+geometry_source: ../../../src/reference/book-opening.ts
+clock_source: ../../../src/reference/use-book-opening.ts
+reduced_motion: 直接显示目标静态状态
+retarget: 以当前进度为起点，不切换回预设起始帧

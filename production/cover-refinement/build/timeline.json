@@ -1,0 +1,47 @@
+{
+  "source": "src/reference/book-opening.ts",
+  "durationMs": 1800,
+  "parameter": [
+    0,
+    1
+  ],
+  "clock": "native Web Animation; every paper surface reads the same progress",
+  "coverCorners": [
+    [
+      835,
+      151
+    ],
+    [
+      1290,
+      40
+    ],
+    [
+      1542,
+      655
+    ],
+    [
+      1035,
+      790
+    ]
+  ],
+  "openRightCorners": [
+    [
+      837.832,
+      137.528
+    ],
+    [
+      1445.152,
+      124.892
+    ],
+    [
+      1529.02,
+      802.376
+    ],
+    [
+      840.7239999999999,
+      809.18
+    ]
+  ],
+  "delivery": "existing transparent PNG planes",
+  "newMediaGenerated": false
+}

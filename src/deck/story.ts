@@ -1,7 +1,8 @@
+import {openingContent} from './opening';
 export type SceneId = 'opening'|'system-one'|'judgment'|'comparison'|'training'|'primitives'|'choice'|'noul'|'score'|'voice'|'economy';
 export type Scene = {id:SceneId; section:string; title:string; subtitle:string; beats:string[]; note:string};
 export const story:Scene[] = [
- {id:'opening',section:'从一个直观开始',title:'让软件，也能做判断。',subtitle:'认识 Jev，一种面向软件的决策模型。',beats:['从《思考，快与慢》说起'],note:'今天介绍 Jev。先从一个日常判断说起，再比较它与常见生成式语言模型的工作方式，最后看三个小应用和两个完整演示。这里不要求大家有机器学习基础。'},
+ {id:'opening',section:'组会汇报',title:openingContent.title,subtitle:openingContent.definition,beats:['从《思考，快与慢》中的系统一讲起'],note:openingContent.speech.join('\n\n')},
  {id:'system-one',section:'01 / 直观',title:'有些判断，来得很快。',subtitle:'先有一个直观，再认识 System 1。',beats:['翻开书，先看两种思考方式','看到涨价的直观，与计算月度预算','聚焦右页：给它情况，问一个明确的问题','Choice、Noul、Score：三种提问方式'],note:'书本是概念导读，不是原书内页。熟悉的商品涨价时，我们可能迅速觉得贵；安排月度预算则需要逐项比较。System 1 与 System 2 是认知类比，不是对 Jev 内部架构的描述。Jev 借用 System One 命名，强调快速、聚焦的判断。'},
  {id:'judgment',section:'02 / 认识 Jev',title:'给它情况，问一个明确的问题。',subtitle:'把自然语言，变成程序可以使用的判断。',beats:['先告诉它，发生了什么','再明确，要判断什么','得到结果，交给程序继续处理'],note:'用付款后订单未更新的消息说明输入、问题和输出。选项由我们定义，模型负责判断，程序负责后续操作。本页是解释流程的示意，没有发出模型请求。'},
  {id:'comparison',section:'03 / 核心区别',title:'生成一段回答，或返回一个判断。',subtitle:'同一条消息，两种输出方式。',beats:['同一条消息，两种输出方式','常见自回归语言模型：逐个生成 token','Jev：返回预先定义的答案与概率'],note:'左侧示意常见自回归生成：token 是文字片段，不一定是一个完整词。右侧只展示官方已公开的输入输出方式，不推断 Jev 未公开的内部架构。Transformer 是架构概念，不等于自回归。LLM 也能输出结构化内容；Jev 的区别还在于专门的训练目标。本页不表达相对运行速度。'},

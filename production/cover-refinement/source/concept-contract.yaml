@@ -1,0 +1,18 @@
+subject_count: 1
+subjects:
+  - identity: 现有米白布纹《思考，快与慢》，红色书签，现有展开书页
+style: 保留当前纸张配色和参考图视觉
+motion_intent: 第一页合上的书沿书脊翻开，与第二页展开书页连续对位
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: chain
+background_owner: page
+aspect_ratio: '16:9'
+destination: 1672 x 941 固定画布，浏览器全屏等比适配
+continuity:
+  - 保留现有封面和内页图像，不生成或替换书籍素材
+  - 封面与内页共用书脊上下两个锚点
+  - 保留第二页静态排版、正文及后续聚焦动画
+  - 修改范围仅已批准的第一页文案、汇报信息和封面翻开过渡
