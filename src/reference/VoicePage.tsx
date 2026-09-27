@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {VoiceLab,type VoiceView} from '../features/alignment/VoiceLab';
-import {scriptCharacters} from '../features/alignment/reading-visual';
+import {ReadingManuscript} from './ReadingManuscript';
 import type {FeatureProps} from '../shared/types';
 import {Art,Diagram,Ink,Line,Text} from './primitives';
 import {Heading} from './ConceptPages';
@@ -10,12 +10,12 @@ const aside='这里我补充一下，大家可以看看这个演示的效果。'
 export function VoicePage(props:FeatureProps){return <VoiceLab {...props} initialScript={lines.join('\n')} render={data=><VoiceCanvas data={data}/>}/>}
 function VoiceCanvas({data:d}:{data:VoiceView}){
  const [details,setDetails]=useState(false);
- const chunks=d.script.split('\n'),active=d.focusPosition?d.script.slice(0,d.focusPosition).split('\n').length-1:1;
+ const chunks=d.script.split('\n');
  const status=d.isPaused?'位置保持':d.signalActive||d.confirmed>0?'跟随中':'准备朗读';
  return <div className="r-lesson r-voice-page">
   <Heading size={75} lead={<>ASR 先把声音转换成文字，程序结合稿件定位。遇到局部差异时，再由 Jev 辅助判断是否仍在按稿朗读。</>}>念稿时跟随，<span className="r-red">插话时停住</span></Heading>
   <Art src="10-voice" box={[120,270,1450,100]}/>{['声音','转写文字','对齐与判断','稿件位置'].map((s,i)=><Text key={s} x={[279,631,983,1368][i]} y={299} size={31} weight={500}>{s}</Text>)}<Diagram>{[427,800,1170].map(x=><Ink key={x} d={`M${x} 316h61`} color="var(--r-red)" width={2} arrow/>)}</Diagram>
-  <Art src="10-voice" box={[98,369,877,362]}/>{d.script===lines.join('\n')?<><div className="r-manuscript-highlight" style={{top:419+Math.min(2,active)*73,opacity:d.focusPosition>0?1:.55}}/>{chunks.map((line,i)=><Text key={i} x={196} y={416+i*74} size={43} color={active===i?'var(--r-ink)':'#64625a'} style={{transition:'color .4s'}}>{line}</Text>)}</>:<div className="r-custom-manuscript">{scriptCharacters(d.script).map(({char,start,end})=><span key={start} className={end<=d.confirmed?'read':end<=d.tentative?'pending':''}>{char}</span>)}</div>}
+  <Art src="10-voice" box={[98,369,877,362]}/><ReadingManuscript script={d.script} position={d.isPaused?d.confirmed:d.focusPosition} confirmed={d.confirmed} paused={d.isPaused} settled={d.isPaused||d.focusConfirmed}/>
   <Text x={1080} y={399} w={400} size={62} weight={700} color="var(--r-red)" align="center" style={{transition:'color .4s'}}>{status}</Text>
   <svg className={`r-waveform ${d.signalActive?'is-active':''}`} viewBox="0 0 670 128" aria-hidden="true">{Array.from({length:93},(_,i)=>{const envelope=Math.exp(-(((i-19)/8)**2))+.65*Math.exp(-(((i-40)/7)**2))+.4*Math.exp(-(((i-72)/12)**2)),h=3+envelope*(20+Math.sin(i*2.8)**2*76);return <line key={i} x1={i*7.2} x2={i*7.2} y1={64-h/2} y2={64+h/2} stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" opacity={i<65?.95:.25} style={{animationDelay:`${-i*.074}s`,transformOrigin:`${i*7.2}px 64px`,scale:`1 ${d.mic==='on'?.3+Math.min(1,d.level*20):1}`}}/>})}</svg>
   <Text x={1035} y={614} w={220} size={31} align="center">插话时：<br/><span className="r-red">保持位置</span></Text><i className="r-divider" style={{left:1275,top:619,height:63}}/><Text x={1284} y={614} w={220} size={31} align="center">回稿后：<br/><span className="r-red">继续定位</span></Text>

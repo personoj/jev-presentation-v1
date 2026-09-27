@@ -15,7 +15,7 @@ const defaultSamples = [
 ] as const;
 type Trace = {segmentId:string; heard: string; candidate: string; baseline: number; enhanced: number; state: string};
 
-export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
+export type VoiceView={script:string;confirmed:number;tentative:number;focusPosition:number;focusConfirmed:boolean;status:string;mic:'off'|'starting'|'on'|'stopping';level:number;heard:string;error:string;isPaused:boolean;signalActive:boolean;previewing:boolean;start:()=>Promise<void>;stop:()=>void;reset:()=>void;preview:(text:string)=>void;stopPreview:()=>void;edit:(text:string)=>void};
 export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples=defaultSamples,render}: FeatureProps&{initialScript?:string;samples?:ReadonlyArray<readonly[string,string]>;render?:(data:VoiceView)=>ReactNode}) {
   const [script, setScript] = useState(initialScript), [editing, setEditing] = useState(false);
   const [confirmed, setConfirmed] = useState(0), [tentative, setTentative] = useState(0), [baseline, setBaseline] = useState(0);
@@ -126,7 +126,7 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
   const indicator=isPaused?'pause':isContinuing?'continue':isMatching?'match':'listen';
   const indicatorLabel=isPaused?'暂停':isContinuing?'继续':isMatching?'匹配':'收音';
   const signalActive=mic==='on'||previewing;
-  if(render)return render({script,confirmed,tentative,focusPosition,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
+  if(render)return render({script,confirmed,tentative,focusPosition,focusConfirmed,status,mic,level,heard,error,isPaused,signalActive,previewing,start,stop,reset,preview:startPreview,stopPreview,edit:(text)=>{setScript(text);reset()}});
   return <section className="voice-lab" aria-label="按稿跟读实验">
     <div className="voice-topline"><span className="voice-source">{mode==='live'?'实时跟读':'固定转写演示'}</span><span className="voice-counter">确认位置 {shown} / {script.length}</span></div>
     <div className="voice-reading">

@@ -9,3 +9,13 @@ export function locateReadingLine(rects:ReadingRect[],position:number){
   const top=Math.min(...row.map(rect=>rect.top)),bottom=Math.max(...row.map(rect=>rect.bottom));
   return {left,top,width:right-left,height:bottom-top,progress:position<=0?0:Math.min(right-left,Math.max(0,focus.right-left)),start:row[0].start,end:row.at(-1)!.end};
 }
+
+/** UTF-16 positions come from the recognizer/alignment engine, never a timer. */
+export function locateReadingCharacter(rects:ReadingRect[],position:number){
+  if(position<=0||!rects.length)return null;
+  const character=rects.find(rect=>position>rect.start&&position<=rect.end)
+    ?? [...rects].reverse().find(rect=>rect.end<=position);
+  if(!character)return null;
+  const line=locateReadingLine(rects,character.end)!;
+  return {...line,character:{...character,width:character.right-character.left,height:character.bottom-character.top}};
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "confirmed": "0",
+    "position": "0"
+  },
+  {
+    "confirmed": "0",
+    "current": "声",
+    "position": "4",
+    "underline": "left: 14px; top: 58.0417px; width: 174.75px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "音",
+    "position": "5",
+    "underline": "left: 14px; top: 58.0417px; width: 218.438px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "音",
+    "position": "5",
+    "underline": "left: 14px; top: 58.0417px; width: 218.438px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "转",
+    "position": "6",
+    "underline": "left: 14px; top: 58.0417px; width: 262.125px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "换",
+    "position": "7",
+    "underline": "left: 14px; top: 58.0417px; width: 305.812px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "换",
+    "position": "7",
+    "underline": "left: 14px; top: 58.0417px; width: 305.812px;"
+  },
+  {
+    "confirmed": "0",
+    "current": "成",
+    "position": "8",
+    "underline": "left: 14px; top: 58.0417px; width: 349.5px;"
+  }
+]
