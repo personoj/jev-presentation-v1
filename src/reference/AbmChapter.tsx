@@ -87,7 +87,6 @@ export function AbmChapter(props:Props){
     <button className="abm-selected-detail" onClick={()=>go(11,2)}>查看{person.name}这一轮的判断 ↗</button>
    </>}
    {page===3&&<>
-    <span className="abm-demo-label">演示模拟</span>
     <Text x={0} y={75} w={1672} align="center" size={62}>发放消费券，<span className="r-red">改变了什么？</span></Text><Text x={0} y={153} w={1672} align="center" size={29}>同一组居民、相同的初始条件，对比两种情景。</Text>
     <div className={`abm-compare-worlds ${beat===0?'at-intro':''}`}>
     <Art src={`abm/${plate[page]}`} box={[28,188,1620,377]}/>

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-09-28T05:35:50.969Z",
+  "launcher": "D:/1a_work/9.25/jev-presentation-v1/启动演示.cmd",
+  "invokedFrom": "D:/1a_work/9.25",
+  "warmStart": {
+    "exitCode": 0,
+    "reusedPid": 23640
+  },
+  "coldStart": {
+    "exitCode": 0,
+    "previousVerifiedPid": 23640,
+    "newPid": 2328,
+    "httpStatus": 200
+  },
+  "repeatStart": {
+    "exitCode": 0,
+    "reusedExistingServer": true
+  },
+  "launcherUnitTests": 8,
+  "build": "passed",
+  "pageCount": 15,
+  "topBadgeRemoved": true
+}
