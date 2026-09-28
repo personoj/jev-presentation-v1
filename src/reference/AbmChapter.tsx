@@ -19,7 +19,7 @@ export function AbmChapter(props:Props){
  useEffect(()=>{if(page!==3)return;if(beat===0){setCompareRound(0);setComparePlaying(false)}else if(beat>=2||matchMedia('(prefers-reduced-motion: reduce)').matches){setCompareRound(12);setComparePlaying(false)}else{setCompareRound(0);setComparePlaying(true)}},[page,beat]);
  useEffect(()=>{if(!comparePlaying||page!==3)return;if(compareRound>=12){setComparePlaying(false);return}const t=setTimeout(()=>setCompareRound(r=>r+1),timing.compareRoundMs);return()=>clearTimeout(t)},[comparePlaying,compareRound,page]);
  const closePicker=()=>{setPicker(false);trigger.current?.focus()};
- if(!data)return <section className="abm-loading"><h2>{error?'实验记录暂未载入':'正在展开小镇…'}</h2><p>{error||'读取已保存的 Jev 判断'}</p>{error&&<button onClick={retry}>重新载入</button>}</section>;
+ if(!data)return <section className="abm-loading"><h2>{error?'演示数据暂未载入':'正在展开小镇…'}</h2><p>{error||'准备居民与小镇'}</p>{error&&<button onClick={retry}>重新载入</button>}</section>;
  const person=data.profiles.find(p=>p.id===selected)??data.profiles[4];
  const turn=residentTurn(data.yes,round,person.id),tx=turn.transaction,settled=tx?.status==='settled';
  const displayedRound=page===2&&beat===0?round-1:round,frame=data.yes[displayedRound],summary=data.yes[beat===0?0:settledRound].history.at(-1);
@@ -71,7 +71,7 @@ export function AbmChapter(props:Props){
      <Text x={575} y={751} size={53}>{settled?'＋':'→'}</Text><Text x={680} y={757} w={320} align="center" size={43}>{settled?<>补贴 <span className="r-red">{tx.subsidy}</span></>:'保留预算'}</Text>
      <Text x={1080} y={751} size={53}>{settled?'＝':'→'}</Text><Text x={1180} y={757} w={354} align="center" size={43}>{settled?<>成交 <span className="r-green">{tx.price}</span></>:`余额 ${turn.person.cash}`}</Text>
     </Group>
-    <Text x={380} y={839} w={1000} align="center" size={22}>{turn.decision?.source==='live'?'保存的 Jev 判断':'约束检查后的等待'} · 第 {round} 轮 · 有券情景 · 模拟货币</Text>
+    <Text x={380} y={839} w={1000} align="center" size={22}>{data.kind==='illustrative'?'演示模拟':turn.decision?.source==='live'?'保存的 Jev 判断':'约束检查后的等待'} · 第 {round} 轮 · 有券情景 · 模拟货币</Text>
    </>}
    {page===2&&<>
     <Text x={0} y={77} w={1672} align="center" size={58}>八个人的选择，让小镇运转起来</Text><Text x={0} y={153} w={1672} align="center" size={29}>居民作出选择，交易逐笔发生，小镇进入下一轮。</Text>
@@ -79,7 +79,7 @@ export function AbmChapter(props:Props){
     {(['B01','T01','B02'] as const).map((id,i)=><Text key={id} x={196+i*367} y={222} w={235} size={24} align="center">{ACTION_NAMES[id]} · {summary?.transactions.filter(t=>t.status==='settled'&&t.merchantId===id).length??0} 笔</Text>)}
     <Text x={1306} y={177} w={290} align="center" size={30}>第 <span className="abm-round-number">{round}</span> 轮 / 12</Text>
     {[{v:summary?.units??0,label:'笔成交'},{v:summary?.revenue??0,label:'本轮交易额'},{v:summary?.subsidy??0,label:'消费券核销'}].map((metric,i)=><div key={metric.label}><Text x={1400} y={337+i*151} w={195} align="center" size={66} color={i===2?'var(--r-red)':'var(--r-ink)'}><Count value={metric.v}/></Text><Text x={1380} y={424+i*151} w={224} size={27} align="center">{metric.label}</Text></div>)}
-    <Text x={1290} y={790} size={20}>Jev 保存实验 · 模拟货币</Text>
+    <Text x={1290} y={790} size={20}>{data.kind==='illustrative'?'演示模拟':'Jev 保存实验'} · 模拟货币</Text>
     <div className="abm-timeline" aria-label="选择实验轮次">{Array.from({length:12},(_,i)=><button key={i} aria-label={`第${i+1}轮`} aria-current={displayedRound===i+1?'step':undefined} onClick={()=>{setPlaying(false);setRound(i+1);if(beat===0)go(12,1)}}><span>{i+1}</span>{i===5&&<small>消费券到期</small>}</button>)}</div>
     <button className="abm-round-next" disabled={beat>0&&round===12} onClick={nextRound}>{beat===0?'开始这一轮':round===12?'12 轮结束':'下一轮 →'}</button>
     <button className="abm-play" onClick={()=>{if(round===12)setRound(1);if(beat===0)go(12,1);setPlaying(!playing)}}>{playing?'暂停回放':'连续回放'}</button>
@@ -110,7 +110,6 @@ export function AbmChapter(props:Props){
      <Text x={480} y={669} w={310} align="center" size={28}>第 6 轮：消费券到期</Text><Diagram><Ink d="M482 742 L785 742" color="var(--r-red)" arrow/></Diagram>
      <Text x={1243} y={580} w={350} size={33} align="center">本组模拟差异</Text><Text x={1250} y={636} w={339} size={44} align="center" color="var(--r-red)">+{totals(data.yes[12]).units-totals(data.no[12]).units} 件成交</Text><Text x={1250} y={695} w={339} size={43} align="center" color="var(--r-red)">+{totals(data.yes[12]).revenue-totals(data.no[12]).revenue} 交易额</Text><Text x={1248} y={778} w={340} size={27} align="center">消费券核销 {totals(data.yes[12]).subsidy}</Text>
     </Group>
-    <Text x={1219} y={842} size={18}>来源：第17组 Jev 保存实验 · 12轮 · 模拟货币</Text>
     <button className="abm-compare-replay" onClick={()=>{if(compareRound===12||beat===0){setCompareRound(0);if(beat!==1)go(13,1);setComparePlaying(true)}else setComparePlaying(!comparePlaying)}}>{beat===0?'开始对照 →':`${comparePlaying?'暂停':'同步回放'} · 第 ${compareRound} / 12 轮`}</button>
    </>}
   </div>

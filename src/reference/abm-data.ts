@@ -1,7 +1,7 @@
 import type {Economy,Resident,ResidentProfile,RoundSummary,Action} from '../features/abm/engine';
 export type FrameInput=Omit<Economy,'history'|'residents'>&{residents:Omit<Resident,'profile'>[]};
-export type ChapterArchive={schemaVersion:1;protocol:string;seed:number;profiles:ResidentProfile[];runs:{id:string;policy:boolean;snapshots:FrameInput[];rounds:RoundSummary[]}[]};
-export type ChapterData={seed:number;profiles:ResidentProfile[];yes:Economy[];no:Economy[]};
+export type ChapterArchive={schemaVersion:1;protocol:string;kind?:'illustrative'|'recorded-jev';seed:number;profiles:ResidentProfile[];runs:{id:string;policy:boolean;snapshots:FrameInput[];rounds:RoundSummary[]}[]};
+export type ChapterData={seed:number;kind:'illustrative'|'recorded-jev';profiles:ResidentProfile[];yes:Economy[];no:Economy[]};
 export const ACTION_ORDER:Action[]=['B01','B02','T01','wait'];
 export const ACTION_NAMES:Record<Action,string>={B01:'纸间书店',B02:'南街书店',T01:'街角剧场',wait:'暂不消费'};
 export const ACTION_RESULTS:Record<Action,string>={B01:'去纸间书店购书',B02:'去南街书店购书',T01:'去街角剧场购票',wait:'本轮暂不消费'};
@@ -15,7 +15,7 @@ export function prepareChapter(raw:ChapterArchive):ChapterData{
    const profile=raw.profiles.find(p=>p.id===r.id);if(!profile)throw new Error('缺少居民资料');return {...r,profile};
   })}));
  };
- return {seed:raw.seed,profiles:raw.profiles,yes:build(true),no:build(false)};
+ return {seed:raw.seed,kind:raw.kind??'recorded-jev',profiles:raw.profiles,yes:build(true),no:build(false)};
 }
 export function residentTurn(frames:Economy[],round:number,id:string){
  const r=Math.max(1,Math.min(12,round)),before=frames[r-1],after=frames[r];

@@ -10,7 +10,9 @@
 
 页面顶部“切换居民”提供全部八位居民，跨页保留选择；回合页可回到对应居民与轮次的判断详情。实验台保留原来的自由模拟、多种子对照、保存实验及现场调用。这里的演示回放不调用付费模型。
 
-数据唯一来源：原有 `public/data/experiments.json` 中第17组 `personas8-v1` 的两组完整 Jev 实验。`node scripts/build-abm-presentation.mjs` 生成精简资源，保留原始概率、请求编号、交易和所有轮次状态；省去重复 profile 及请求输入。测试检查源文件哈希与每个主体、每轮结算完全一致。
+当前讲解默认使用 `public/data/abm-demo.json` 中的演示模拟。通过 `node --import tsx scripts/build-abm-demo.ts` 可重建：八位居民的购买时点分散在12轮，每轮1–2笔交易；行动与概率由讲解脚本编排，现金、库存、需求上限、消费券有效期和每人一次核销仍由原有结算引擎计算。两组初始居民与商家相同。无券14件/920，有券16件/1050，核销240。第4轮和第9轮分别拉开1件、2件的累计差异。这组数据不代表 Jev 实测。
+
+原始记录仍完整保留在 `public/data/experiments.json` 和实验台。原有 `node scripts/build-abm-presentation.mjs` 仍能生成 `public/data/abm-presentation.json`，保留第17组真实保存请求的概率、请求编号及结算；其来源哈希测试继续通过。两份数据分开保存，不互相覆盖。
 
 静态图层由 Image Gen 从批准稿生成，提示词在 `source/asset-prompts.json`。动态文字、人物、概率条、支付关系、导航、轮次与统计均为原生 DOM/SVG，人物沿用已有的八身份图集。自动回放离页或打开资料面板时停止。减少动态效果模式直接显示稳定位置。
 
