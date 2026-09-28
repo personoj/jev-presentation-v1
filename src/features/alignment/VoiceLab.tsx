@@ -1,11 +1,12 @@
 import {useCallback, useEffect, useLayoutEffect, useRef, useState,type ReactNode} from 'react';
 import {APIError, evaluate} from '../../shared/api';
 import type {Evaluation, FeatureProps} from '../../shared/types';
-import {commitPosition, DEFAULT_SCRIPT, findCandidate, Freshness, normalized, type Candidate} from './engine';
+import {commitPosition, DEFAULT_SCRIPT, findCandidate, normalized, type Candidate} from './engine';
 import {LatestReviewQueue} from './review-queue';
 import {Teleprompter,FollowGate,type TrackingUpdate} from './teleprompter';
 import {openMicrophone, type MicrophoneSession} from './microphone';
 import {FOLLOWING_QUESTION} from './judgment';
+import {FollowReviewWindow,recentFollowSpeech} from './follow-review';
 import './voice.css';
 import {locateReadingLine,scriptCharacters} from './reading-visual';
 
@@ -53,13 +54,13 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     setFocusRange(match.semantic?{start:match.start,end:match.end}:null);
   }
   const positions = useRef({confirmed:0, baseline:0}), segment = useRef({id:'', anchor:0});
-  const freshness = useRef(new Freshness()),lastInput=useRef('');
+  const reviewWindow = useRef(new FollowReviewWindow()),lastInput=useRef('');
   const reviews=useRef<LatestReviewQueue<{state:unknown;version:number},Evaluation>|null>(null);
   if(!reviews.current)reviews.current=new LatestReviewQueue((job,signal)=>evaluate(job.state,{following:FOLLOWING_QUESTION},{signal,stateVersion:job.version}));
   const session = useRef<MicrophoneSession|null>(null), mounted = useRef(true), micGeneration = useRef(0);
   const receiver = useRef<(text:string, final:boolean, id:string,stableText?:string)=>void>(()=>{});
   const inputMode=useRef<'test'|'live'>('test');
-  function invalidate() { freshness.current.next();reviews.current?.cancel();lastInput.current=''; }
+  function invalidate() { reviewWindow.current.reset();reviews.current?.cancel();lastInput.current=''; }
   function cancelPreview(){previewGeneration.current++;clearTimeout(previewTimer.current);setPreviewing(false);}
   function clearPreviewInput(){cancelPreview();invalidate();setTentative(positions.current.confirmed);setActiveSpan(null);setHeard('');setHeardPhase('empty');setCandidate(null);setResult(null);setStatus('等待新的转写片段');}
   function reset() { cancelPreview();invalidate();progress.current.reset();gate.current.reset();setGateState('unknown');setFollowingProbability(null);setFocusRange(null); positions.current={confirmed:0,baseline:0}; segment.current={id:'',anchor:0}; setConfirmed(0);setBaseline(0);setTentative(0);setFocusPosition(0);setFocusConfirmed(false);setCandidate(null);setResult(null);setHeard('');setHeardPhase('empty');setActiveSpan(null);setError('');setTrace([]);setStatus('已回到稿件开头'); }
@@ -72,7 +73,10 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
     const signature=JSON.stringify([id,spoken,final]);if(lastInput.current===signature)return;
     const update=progress.current.propose(script,text,final,id);if(!update)return;
     if(segment.current.id!==id){invalidate();segment.current={id,anchor:progress.current.anchor}}
-    lastInput.current=signature;const version=freshness.current.next();setError('');
+    lastInput.current=signature;
+    let {epoch:version,changed}=reviewWindow.current.observe(update,script,progress.current.position);
+    if(changed)reviews.current?.cancel();
+    setError('');
     setHeard(text);setHeardPhase(final?'final':'partial');setCandidate(update.candidate);
     setLatency(old=>({...old,localMs:Math.round((performance.now()-receivedAt)*100)/100}));
     const baselineMatch=final?findCandidate(script,text,positions.current.baseline):null;
@@ -83,25 +87,34 @@ export function VoiceLab({onRecord, onQuota,initialScript=DEFAULT_SCRIPT,samples
       if(final||output)onRecord?.({id:output?.requestId??crypto.randomUUID(),label:sampleUrl&&inputMode.current==='live'?'样本音频真实链路':'跟读状态监测',at:new Date().toISOString(),input:{text,script,segmentId:id,final,inputSource:inputMode.current,candidate:update.candidate},output:output??item,source:output?'live':'rules'});
     };
     gate.current.observe(update);
+    if(gate.current.tryResume(update,script,progress.current.position)){
+      // A resumed episode must not be closed again by an older pending "aside".
+      reviews.current?.cancel();reviewWindow.current.reset();
+      version=reviewWindow.current.observe(update,script,progress.current.position).epoch;
+      setGateState(gate.current.state);setFollowingProbability(null);
+    }
     if(gate.current.mayTrack(update)){showFocus(update);setStatus(final?'已确认 · 本地稿件定位':'暂定 · 本地实时跟随')}
     else setStatus(gate.current.state==='paused'?'暂停 · 等待恢复跟读':'保持位置 · 等待跟读信号');
     record('本地定位，Jev 独立监测跟读状态');
     if(normalized(update.text).text.length<3)return;
     reviews.current!.enqueue({
       key:JSON.stringify([id,normalized(update.text).text]),
-      value:{version,state:{transcript:update.text,manuscript:script,localAlignedText:update.candidate?.text??'',recentTranscripts:gate.current.context(update)}},
+      value:{version,state:{...recentFollowSpeech(update.text),manuscript:script,localAlignedText:update.candidate?.text??'',recentTranscripts:gate.current.context(update)}},
       apply:output=>{
-        if(!freshness.current.isCurrent(version))return;
+        const latest=reviewWindow.current.current(version);if(!latest)return;
         const probability=output.answers.following?.noul;if(probability===undefined)return;
         gate.current.decide(probability);setGateState(gate.current.state);setFollowingProbability(probability);
         setLatency(old=>({...old,jevMs:output.elapsedMs}));setResult(output);
-        if(gate.current.mayTrack(update,true)){showFocus(update);setStatus(final?'已确认 · 正在跟读':'暂定 · 正在跟读')}
+        // Reuse the gate verdict, never its old cursor. Unseen fuzzy text still
+        // needs its own verdict; an exact continuation can use the current gate.
+        const reviewedLatest=normalized(latest.text).text===normalized(update.text).text;
+        if(gate.current.mayTrack(latest,reviewedLatest)){showFocus(latest);setStatus(latest.final?'已确认 · 正在跟读':'暂定 · 正在跟读')}
         else if(gate.current.state==='paused')setStatus('暂停 · 当前是插话');
         else setStatus('保持位置 · 跟读状态尚不明确');
         record(gate.current.state,output);
       },
       fail:e=>{
-        if(!freshness.current.isCurrent(version))return;
+        if(!reviewWindow.current.current(version))return;
         gate.current.unavailable();setGateState('paused');setFollowingProbability(null);
         const message=e instanceof Error?e.message:'判断请求未完成';setError(message);setStatus('保持位置 · 跟读监测暂不可用');
         if(e instanceof APIError&&/QUOTA|CREDIT|BALANCE|BUDGET/i.test(e.code))onQuota?.(message);record('跟读监测失败');

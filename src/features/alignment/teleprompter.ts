@@ -1,4 +1,5 @@
 import {findCandidate,findExactReadingTail,findShortPreview,findUniqueShortPhrase,findSemanticCandidate,normalized,type Candidate} from './engine';
+import {canResumeNearby} from './follow-review';
 
 export type TrackingUpdate={id:string;revision:number;text:string;final:boolean;candidate:Candidate|null;relocation:boolean;strong:boolean};
 
@@ -53,6 +54,11 @@ export class FollowGate {
   if(this.state==='following')return fresh||update.strong;
   // Before the first yes/no result, preview only a strong local continuation.
   return update.strong&&!update.relocation;
+ }
+ tryResume(update:TrackingUpdate,script:string,position:number){
+  // A provider failure is not a negative reading verdict: keep that explicit hold.
+  if(this.state!=='paused'||this.probability===null||!canResumeNearby(update,script,position))return false;
+  this.state='following';this.probability=null;return true;
  }
  unavailable(){this.state='paused';this.probability=null;}
  reset(){this.state='unknown';this.probability=null;this.history=[];}
