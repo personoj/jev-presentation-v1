@@ -40,7 +40,7 @@ test('reference resident, waiting example, paired totals and milestones match th
  assert.deepEqual(differenceMilestones(data),[{round:4,difference:1},{round:9,difference:2}]);
 });
 test('all four ABM pages and their click beats are reachable, including old links',()=>{
- assert.equal(story.length,14);for(let i=10;i<14;i++)for(let b=0;b<story[i].beats.length;b++)assert.deepEqual(readLocation(`#${story[i].id}/${b}`),{index:i,beat:b});
+ assert.equal(story.length,15);for(let i=10;i<14;i++)for(let b=0;b<story[i].beats.length;b++)assert.deepEqual(readLocation(`#${story[i].id}/${b}`),{index:i,beat:b});
  assert.deepEqual(readLocation('#round'),{index:12,beat:0});assert.deepEqual(readLocation('#compare'),{index:13,beat:0});
  assert.throws(()=>prepareChapter({...raw,runs:[]}));
 });

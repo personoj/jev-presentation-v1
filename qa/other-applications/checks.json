@@ -1,0 +1,98 @@
+{
+  "stages": [
+    {
+      "beat": "0",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": []
+    },
+    {
+      "beat": "1",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": [
+        "智能家居"
+      ]
+    },
+    {
+      "beat": "2",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": [
+        "智能家居",
+        "语义检索"
+      ]
+    },
+    {
+      "beat": "3",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": [
+        "智能家居",
+        "语义检索",
+        "引用核查"
+      ]
+    },
+    {
+      "beat": "4",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": [
+        "智能家居",
+        "语义检索",
+        "引用核查",
+        "自动驾驶"
+      ]
+    },
+    {
+      "beat": "5",
+      "hidden": true,
+      "nextDisabled": false,
+      "scroll": 0,
+      "shown": [
+        "智能家居",
+        "语义检索",
+        "引用核查",
+        "自动驾驶",
+        "文档整理"
+      ]
+    },
+    {
+      "beat": "6",
+      "hidden": true,
+      "nextDisabled": true,
+      "scroll": 0,
+      "shown": [
+        "智能家居",
+        "语义检索",
+        "引用核查",
+        "自动驾驶",
+        "文档整理",
+        "内容审核"
+      ]
+    }
+  ],
+  "backwardCount": 5,
+  "replayCount": 0,
+  "viewports": [
+    [
+      1280,
+      720
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "reducedMotion": {
+    "shown": 1,
+    "running": 0,
+    "scroll": 0
+  },
+  "consoleErrors": []
+}

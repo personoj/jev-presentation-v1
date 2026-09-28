@@ -1,5 +1,6 @@
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {story,resources,readLocation} from './deck/story';
+import {moreApplications} from './deck/more-applications';
 import {BookIntro,Comparison,Judgment,PrimitivesOverview,Training} from './deck/Scenes';
 import {Example} from './deck/Examples';
 import {VoiceLab} from './features/alignment/VoiceLab';
@@ -64,6 +65,7 @@ export function App(){
      {(['choice','noul','score'] as string[]).includes(scene.id)&&<Example kind={scene.id as 'choice'|'noul'|'score'} beat={beat} setBeat={step=>go(index,step)} {...props}/>}
      {scene.id==='voice'&&<><div className="voice-flow"><span>声音</span><i>→</i><span>ASR 转写</span><i>→</i><span>对齐 ＋ Jev 判断</span><i>→</i><span>稿件位置</span></div><VoiceLab {...props}/></>}
      {scene.id.startsWith('economy')&&<div className="town-scroll"><EconomyLab {...props}/></div>}
+     {scene.id==='applications'&&<div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:24}}>{moreApplications.slice(0,beat).map(item=><article key={item.kind} style={{padding:24,border:'1px solid #b7a58b'}}><h2 style={{fontSize:32}}>{item.title}</h2><p style={{fontSize:23,lineHeight:1.6}}>{item.lines.join('')}</p></article>)}</div>}
     </div>}
    </div>
   </main>

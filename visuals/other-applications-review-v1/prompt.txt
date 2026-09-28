@@ -1,0 +1,46 @@
+Use the attached image ONLY as a style reference for a NEW presentation slide, not as content to preserve. Create one polished full-screen Chinese academic presentation REFERENCE MOCKUP, canvas 1672x941 landscape (16:9). This will be slide 15 following the existing Jev presentation. Match the reference's warm ivory textured paper, restrained vermilion #a33a20, charcoal-black ink, muted navy and olive accents, Chinese Songti/serif typography, thin header/footer rules and quiet editorial elegance. This should feel like a finished carefully art-directed lecture slide, not a software dashboard. No browser chrome. Do not reuse Choice/Noul/Score or the diagrams from the reference.
+
+HEADER: top left 'Jev' in elegant serif with small vermilion dot; top right '目录' and thin two-line menu. Header rule at y98. Footer rule y863, left thin back arrow, centered '15 / 15', right thin forward arrow.
+
+MAIN TITLE at y130, large 66px-equivalent: 'Jev 还可以做什么？' with 'Jev' in vermilion and rest ink black. Centered subtitle at y226, 29px-equivalent: '官网中的更多应用示例'
+
+BODY: Six generous editorial paper cards in a disciplined 3-column, 2-row grid. Cards approximately x70,591,1112; width489; row1 y290 to530; row2 y566 to806. Gaps about32px. Slightly warmer handmade paper than the page, hairline warm borders, tiny soft shadows. No thick boxes, no rounded SaaS dashboard cards, no large colored backgrounds. Maintain roomy text margins and excellent distant projection readability. Each card has a small red sequence number 01–06, a beautiful restrained hand-rendered watercolor/engraved miniature (80–100 px tall) near its title, a large Chinese title 38–42px, and a clear 28–30px Chinese sentence below in two well-balanced lines. All text must be correct and exactly as below, with complete punctuation. Icons are illustrations, not emoji. No dense small print or English technical tags.
+
+Reading order row-major:
+01 title '智能家居'
+Body, split as:
+'理解家居指令，'
+'选择要控制的设备和操作。'
+Illustration: a small warm domestic table lamp illuminating a quiet little house outline, restrained amber/navy ink, visual cue of selecting a lamp.
+
+02 title '语义检索'
+Body:
+'根据问题，'
+'找出文档里相关的内容。'
+Illustration: cream document with two elegantly highlighted text lines under a small navy magnifying glass.
+
+03 title '引用核查'
+Body:
+'核对引用原文，'
+'判断它是否支持当前说法。'
+Illustration: two small overlapping source papers, quotation marks and a modest olive check linked by a delicate ink stroke.
+
+04 title '信息提取'
+Body:
+'从文本中选出需要的'
+'金额、邮箱和电话号码。'
+Illustration: a paper slip with three neatly selected fields, a tiny envelope and coin; no legible invented text.
+
+05 title '文档整理'
+Body:
+'识别标题、列表与正文，'
+'恢复文档的排版。'
+Illustration: gently skewed loose text lines resolving into one neat structured page with heading and bullet list. No code labels.
+
+06 title '内容审核'
+Body:
+'识别输入和回答中的风险，'
+'筛出需要复核的内容。'
+Illustration: two understated speech cards with a small protective shield and a circled inspection dot, muted olive/vermillion.
+
+This reference depicts the FINAL stable state with ALL SIX CARDS visible and equally legible. Each whole card will later appear upon a separate presenter click, so keep the six compositions visually independent, do not interconnect them with arrows. Do not depict empty placeholders, step controls, progress widgets, animation instructions, source URLs, disclaimers or a technical footer. Do not add extra copy, slogans, performance claims, statistics, percentages, robots, neon gradients, photographs or towns. Typography and comfortable information density are the top priority; artwork supports the direct spoken descriptions.

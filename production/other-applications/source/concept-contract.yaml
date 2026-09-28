@@ -1,0 +1,14 @@
+subject_count: 6
+subjects: [智能家居, 语义检索, 引用核查, 自动驾驶仿真, 文档整理, 内容审核]
+reference: visuals/other-applications-review-v1/15-other-applications-driving.png
+style: 奶油纸张底色，朱红标题，原生大字，六幅独立插图
+motion_intent: 一次点击只出现一个案例，整张卡片和文字一起入场，已出现的卡片保持清晰
+background_owner: page
+driver: state
+input_semantics: step
+time_control: segment-play
+navigation: paged
+clip_continuity: independent
+continuity: [既有前14页, 六卡片固定布局, 已讲案例保持可见]
+aspect_ratio: 1672:941
+destination: 全屏浏览器演示，第15页

@@ -1,0 +1,55 @@
+{
+  "status": "approved-with-autonomous-driving-replacement; implemented copy lives in src/deck/more-applications.ts",
+  "generator": "built-in image_gen",
+  "title": "Jev 还可以做什么？",
+  "subtitle": "更多应用场景",
+  "order": "从左到右、从上到下，逐次点击",
+  "initialState": "只显示标题和副标题，不出现空卡片",
+  "reveal": "每次点击将一张完整卡片的底板、插图、标题和描述一起淡入；此前卡片保持清晰可读",
+  "cases": [
+    {
+      "title": "智能家居",
+      "copy": "理解家居指令，选择要控制的设备和操作。",
+      "url": "https://docs.typesafe.ai/demos/smart-home",
+      "illustration": "台灯与房屋",
+      "motion": "卡片出现后，台灯由暗到亮，0.45秒后稳定"
+    },
+    {
+      "title": "语义检索",
+      "copy": "根据问题，找出文档里相关的内容。",
+      "url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+      "illustration": "文档与放大镜",
+      "motion": "放大镜轻移，匹配文字的底色展开，0.6秒后稳定"
+    },
+    {
+      "title": "引用核查",
+      "copy": "核对引用原文，判断它是否支持当前说法。",
+      "url": "https://docs.typesafe.ai/cookbooks/citation_check",
+      "illustration": "两张引用纸片与对勾",
+      "motion": "连接线描出，对勾出现，0.6秒后稳定"
+    },
+    {
+      "title": "自动驾驶",
+      "copy": "在驾驶仿真中，根据路况选择行动。",
+      "url": null,
+      "origin": "用户提出的应用设想，未作为官方已验证案例归属",
+      "illustration": "车辆、道路与交通信号",
+      "motion": "车辆道路插图入场，候选路线短暂描出后稳定"
+    },
+    {
+      "title": "文档整理",
+      "copy": "识别标题、列表与正文，恢复文档的排版。",
+      "url": "https://docs.typesafe.ai/cookbooks/autoformat",
+      "verifiedVia": "https://docs.typesafe.ai/llms.txt",
+      "illustration": "零散段落整理为结构化文档",
+      "motion": "散开的文字块对齐成一页，0.6秒后稳定"
+    },
+    {
+      "title": "内容审核",
+      "copy": "识别输入和回答中的风险，筛出需要复核的内容。",
+      "url": "https://docs.typesafe.ai/cookbooks/llm_guardrails",
+      "illustration": "对话卡片与盾牌",
+      "motion": "需复核的对话被标记，0.5秒后稳定"
+    }
+  ]
+}

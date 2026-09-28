@@ -1,5 +1,6 @@
 import {openingContent} from './opening';
-export type SceneId = 'opening'|'system-one'|'judgment'|'comparison'|'training'|'primitives'|'choice'|'noul'|'score'|'voice'|'economy'|'economy-person'|'economy-round'|'economy-compare';
+import {moreApplications} from './more-applications';
+export type SceneId = 'opening'|'system-one'|'judgment'|'comparison'|'training'|'primitives'|'choice'|'noul'|'score'|'voice'|'economy'|'economy-person'|'economy-round'|'economy-compare'|'applications';
 export type Scene = {id:SceneId; section:string; title:string; subtitle:string; beats:string[]; note:string};
 export const story:Scene[] = [
  {id:'opening',section:'组会汇报',title:openingContent.title,subtitle:openingContent.definition,beats:['从《思考，快与慢》中的系统一讲起'],note:openingContent.speech.join('\n\n')},
@@ -15,7 +16,8 @@ export const story:Scene[] = [
  {id:'economy',section:'07 / 主体模拟',title:'让 Jev 为小镇居民做选择',subtitle:'八位居民各自行动，观察这些选择怎样改变小镇。',beats:['认识八位居民、三家商店和文化消费券'],note:'ABM 从每个主体的选择观察整体变化。八位居民是虚构的实验人物，各有预算、偏好与计划。点击地图上的任意居民，或打开居民选择器，后续页面会沿用该居民。'},
  {id:'economy-person',section:'07 / 主体模拟',title:'这一轮，他会怎么选？',subtitle:'把个人情况交给 Jev，从四个行动中选择一个。',beats:['居民的背景、余额与消费券','Jev 给出四个行动的概率','程序检查条件，完成交易或保留预算'],note:'这里使用为讲解编排的模拟行动与概率，未调用 Jev。人物和轮次可以切换；交易通过原有现金、库存、需求上限与消费券规则结算。原始 Jev 保存实验保留在实验台。金额为模拟货币。'},
  {id:'economy-round',section:'07 / 主体模拟',title:'八个人的选择，让小镇运转起来',subtitle:'居民作出选择，交易逐笔发生，小镇进入下一轮。',beats:['从相同的初始状态出发','推进轮次，观察交易与消费券核销'],note:'地图中的八位居民均可选择。点击下一轮或轮次刻度，可查看12轮演示模拟；连续回放可暂停。购买时点经过编排，每轮有不同居民行动。右侧是当轮成交、交易额与核销，不是累计值。消费券在第6轮结束后到期。'},
- {id:'economy-compare',section:'07 / 主体模拟',title:'发放消费券，改变了什么？',subtitle:'同一组居民、相同的初始条件，对比两种情景。',beats:['相同居民、相同初始条件','小镇与累计成交曲线同步回放','第6轮相差4件，第10轮相差6件，最终多成交50%'],note:'演示模拟：无券12件、交易额800；有券18件、交易额1210、核销240。第6轮累计相差4件，第10轮相差6件，最终多成交50%。两条曲线从零起步，共用同一刻度。行动与概率是讲解编排，结算来自原有程序；不代表 Jev 实测或现实政策效果。实验台保留原始 Jev 保存轨迹、自由实验和真实调用。'}
+ {id:'economy-compare',section:'07 / 主体模拟',title:'发放消费券，改变了什么？',subtitle:'同一组居民、相同的初始条件，对比两种情景。',beats:['相同居民、相同初始条件','小镇与累计成交曲线同步回放','第6轮相差4件，第10轮相差6件，最终多成交50%'],note:'演示模拟：无券12件、交易额800；有券18件、交易额1210、核销240。第6轮累计相差4件，第10轮相差6件，最终多成交50%。两条曲线从零起步，共用同一刻度。行动与概率是讲解编排，结算来自原有程序；不代表 Jev 实测或现实政策效果。实验台保留原始 Jev 保存轨迹、自由实验和真实调用。'},
+ {id:'applications',section:'08 / 更多应用',title:'Jev 还可以做什么？',subtitle:'更多应用场景',beats:['更多应用场景',...moreApplications.map(item=>`${item.title}：${item.lines.join('')}`)],note:'依次点击，从左到右、从上到下展示六个案例，每个案例直接朗读卡片上的一句话即可。智能家居、语义检索、引用核查、文档整理和内容审核依据 TypeSafe 官方文档。自动驾驶是用户提出的应用设想，这里仅用驾驶仿真中的结构化路况和候选行为说明，不代表官方已验证的实车控制能力。本页不发出模型请求。'}
 ];
 
 export const resources = [
@@ -26,7 +28,8 @@ export const resources = [
  ['训练目标：RLHF 与 RLCD','https://docs.typesafe.ai/introduction/machine-learning-primer'],
  ['Choice、Noul、Score','https://docs.typesafe.ai/primitives'],
  ['概率与置信度','https://docs.typesafe.ai/confidence'],
- ['Attention Is All You Need','https://arxiv.org/abs/1706.03762']
+ ['Attention Is All You Need','https://arxiv.org/abs/1706.03762'],
+ ...moreApplications.flatMap(item=>item.source?[[`应用示例 · ${item.title}`,item.source]]:[])
 ];
 
 export function readLocation(hash:string){

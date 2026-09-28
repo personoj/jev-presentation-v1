@@ -1,0 +1,9 @@
+assets: 由内置 image_gen 生成六图透明图集，网页原生绘制纸卡和所有文字
+atlas_geometry: 模型输出为3列2行等分图集；CSS按单元裁切，避免再次生成
+copy_source: src/deck/more-applications.ts
+reveal: 0.55秒淡入，0.7秒上移12像素后停住
+illustration: 灯光渐亮，检索高亮描线，引用圈选，车辆道路入场，文档结构描线，风险标记轻圈选
+settle: 所有效果在1.5秒内结束，不循环、不让已讲案例变灰
+cancellation: 返回上一步移除该卡片动画；离页卸载；点击页码回到只显示标题
+reduced_motion: 直接显示已揭示的卡片，隐藏全部装饰动效
+fact_boundary: 自动驾驶为应用设想，文案限定在驾驶仿真，副标题不用官网案例的笼统归属
