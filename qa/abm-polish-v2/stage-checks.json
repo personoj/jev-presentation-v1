@@ -1,0 +1,103 @@
+{
+  "stages": [
+    {
+      "beat": "0",
+      "groups": [],
+      "scene": "economy",
+      "scroll": 0
+    },
+    {
+      "beat": "0",
+      "groups": [
+        {
+          "class": "r-group  abm-choice-reveal",
+          "hidden": "true",
+          "opacity": "0"
+        },
+        {
+          "class": "r-group  abm-payment",
+          "hidden": "true",
+          "opacity": "0"
+        }
+      ],
+      "scene": "economy-person",
+      "scroll": 0
+    },
+    {
+      "beat": "1",
+      "groups": [
+        {
+          "class": "r-group is-shown abm-choice-reveal",
+          "hidden": "false",
+          "opacity": "1"
+        },
+        {
+          "class": "r-group  abm-payment",
+          "hidden": "true",
+          "opacity": "0"
+        }
+      ],
+      "scene": "economy-person",
+      "scroll": 0
+    },
+    {
+      "beat": "2",
+      "groups": [
+        {
+          "class": "r-group is-shown abm-choice-reveal",
+          "hidden": "false",
+          "opacity": "1"
+        },
+        {
+          "class": "r-group is-shown abm-payment",
+          "hidden": "false",
+          "opacity": "1"
+        }
+      ],
+      "scene": "economy-person",
+      "scroll": 0
+    },
+    {
+      "beat": "0",
+      "groups": [
+        {
+          "class": "r-group  abm-compare-progress",
+          "hidden": "true",
+          "opacity": "0"
+        },
+        {
+          "class": "r-group  abm-compare-conclusion",
+          "hidden": "true",
+          "opacity": "0"
+        }
+      ],
+      "scene": "economy-compare",
+      "scroll": 0
+    },
+    {
+      "beat": "2",
+      "groups": [
+        {
+          "class": "r-group  abm-compare-progress",
+          "hidden": "true",
+          "opacity": "0"
+        },
+        {
+          "class": "r-group is-shown abm-compare-conclusion",
+          "hidden": "false",
+          "opacity": "1"
+        }
+      ],
+      "scene": "economy-compare",
+      "scroll": 0
+    }
+  ],
+  "testsPassed": 119,
+  "firstClick": "Synchronized replay with native round progress, no empty conclusion cards",
+  "finalTotals": [
+    9,
+    640,
+    11,
+    770
+  ]
+}
