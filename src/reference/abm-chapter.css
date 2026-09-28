@@ -25,6 +25,10 @@
 .abm-choice-reveal,.abm-payment{transition:opacity .55s var(--r-ease),transform .75s var(--r-ease)}
 .abm-purchase{padding:3px;background:#fff6e5f0;border:1px solid #b3997655;border-radius:5px;filter:none;box-shadow:0 2px 5px #54442e25}.compact .abm-purchase{padding:1px;border-radius:3px}
 .compact .abm-purchase{display:none}
+/* Replace the painted tracks with one native track; sample blank paper from each same row. */
+.abm-row-paper{position:absolute;left:210px;top:8px;width:420px;height:53px;overflow:hidden;pointer-events:none}.abm-row-paper>i{display:block;width:105px;height:53px;background-image:url('/reference-art/abm/12-resident-choice.png');background-size:1672px 941px;transform:scaleX(4);transform-origin:left center}
+.abm-track{top:20px;height:29px;border-radius:5px;background:#d7d2c7;box-shadow:inset 0 1px 2px #4c443716}.abm-track i{border-radius:0;min-width:0}.abm-action-name{line-height:1.2}.abm-prob-value{top:8px;height:53px;padding-top:7px;background:transparent;box-shadow:none}
+.abm-compare-totals .abm-count{font-family:'Times New Roman',Georgia,serif;font-variant-numeric:lining-nums tabular-nums}
 .abm-compare-worlds{position:absolute;inset:0;transform:translateY(0);transition:transform 1s var(--r-ease)}.abm-compare-worlds.at-intro{transform:translateY(118px)}
 .abm-compare-premise,.abm-compare-totals{pointer-events:none!important;transition:opacity .4s var(--r-ease),transform .5s var(--r-ease)}
 .abm-compare-opening,.abm-compare-progress,.abm-compare-conclusion{pointer-events:none!important}

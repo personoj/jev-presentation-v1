@@ -61,7 +61,7 @@ export function AbmChapter(props:Props){
     <Art src={`abm/${plate[page]}`} box={[983,265,677,463]}/>
     <Text x={1023} y={280} size={41}>本轮行动概率</Text>
     <div className={`abm-probabilities ${beat>=1?'revealed':''}`}>
-     {ACTION_ORDER.map((action,i)=>{const probability=turn.decision?.probabilities?.[action];return <div className="abm-prob-row" key={action} style={{top:334+i*72}}><span className="abm-action-name">{ACTION_NAMES[action]}</span><span className="abm-track"><i style={{width:`${beat>=1&&probability!==undefined?probability*100:0}%`,background:action==='wait'?'#63717c':action===turn.action?'var(--r-red)':'#6b775d'}}/></span><span className="abm-prob-value">{beat<1?'—':probability===undefined?'—':`${Math.round(probability*100)}%`}</span></div>})}
+     {ACTION_ORDER.map((action,i)=>{const probability=turn.decision?.probabilities?.[action];return <div className="abm-prob-row" key={action} style={{top:334+i*72}}><span className="abm-row-paper" aria-hidden="true"><i style={{backgroundPosition:`-1100px -${342+i*72}px`}}/></span><span className="abm-action-name">{ACTION_NAMES[action]}</span><span className="abm-track"><i style={{width:`${beat>=1&&probability!==undefined?probability*100:0}%`,background:action==='wait'?'#63717c':action===turn.action?'var(--r-red)':'#6b775d'}}/></span><span className="abm-prob-value">{beat<1?'—':probability===undefined?'—':`${Math.round(probability*100)}%`}</span></div>})}
     </div>
     <Text x={1020} y={650} w={583} size={37} align="center" color="var(--r-red)">选择：{ACTION_RESULTS[turn.action]}</Text>
     </Group>
@@ -95,7 +95,7 @@ export function AbmChapter(props:Props){
      <Text x={554} y={288} w={240} align="center" size={37} color="var(--r-blue)">原有预算</Text><Text x={554} y={407} w={240} align="center" size={29}>按各自计划消费</Text>
      <Text x={1354} y={288} w={240} align="center" size={37} color="var(--r-red)">文化消费券</Text><Text x={1354} y={407} w={240} align="center" size={29}>每人满 60 减 30</Text>
     </Group>
-    <Group show={compareRound>0} className="abm-compare-totals">{[no,yes].map((result,i)=><div key={i}><Text x={553+i*801} y={264} w={156} align="center" size={102} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.units}/></Text><Text x={703+i*801} y={308} size={27}>件成交</Text><Text x={550+i*801} y={391} w={225} align="center" size={94} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.revenue}/></Text><Text x={565+i*801} y={503} w={210} align="center" size={29}>累计交易额</Text></div>)}</Group>
+    <Group show={compareRound>0} className="abm-compare-totals">{[no,yes].map((result,i)=><div key={i}><Text x={553+i*801} y={266} w={156} align="center" size={102} line={1} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.units}/></Text><Text x={703+i*801} y={308} size={27}>件成交</Text><Text x={550+i*801} y={391} w={225} align="center" size={94} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.revenue}/></Text><Text x={565+i*801} y={503} w={210} align="center" size={29}>累计交易额</Text></div>)}</Group>
     </div>
     <Group show={beat===0} className="abm-compare-opening"><Text x={0} y={764} w={1672} align="center" size={34}>只改变一件事：<span className="r-red">是否发放消费券</span></Text><Text x={0} y={819} w={1672} align="center" size={24} color="#786d5b">点击，观察两座小镇接下来的 12 轮</Text></Group>
     <Group show={beat===1} className="abm-compare-progress">
