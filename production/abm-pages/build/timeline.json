@@ -8,6 +8,7 @@
   "countMs":500,
   "autoplayRoundMs":2600,
   "compareRoundMs":620,
+  "chartStepMs":520,
   "probabilityMs":950,
   "revealMs":600,
   "selectionMs":300

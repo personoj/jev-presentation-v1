@@ -30,9 +30,9 @@ test('staged decisions reproduce every balance, stock count and coupon transacti
   }
  }
 });
-test('policy totals and the two milestone cards are derived consistently from the demo',()=>{
- assert.deepEqual(totals(data.no[12]),{units:14,revenue:920,subsidy:0});
- assert.deepEqual(totals(data.yes[12]),{units:16,revenue:1050,subsidy:240});
- assert.deepEqual(differenceMilestones(data),[{round:4,difference:1},{round:9,difference:2}]);
+test('policy totals and widening differences are derived consistently from the demo',()=>{
+ assert.deepEqual(totals(data.no[12]),{units:12,revenue:800,subsidy:0});
+ assert.deepEqual(totals(data.yes[12]),{units:18,revenue:1210,subsidy:240});
+ assert.deepEqual(differenceMilestones(data),[{round:2,difference:1},{round:4,difference:2},{round:5,difference:3},{round:6,difference:4},{round:9,difference:5},{round:10,difference:6}]);
  assert.equal(data.yes[1].history[0].decisions.find(d=>d.residentId==='R05')?.probabilities?.B01,.72);
 });

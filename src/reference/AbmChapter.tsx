@@ -1,7 +1,8 @@
 import {useEffect,useRef,useState} from 'react';
 import {Art,Text,Group,Diagram,Ink} from './primitives';
 import {AbmTown,Portrait} from './AbmTown';
-import {ACTION_NAMES,ACTION_ORDER,ACTION_RESULTS,PROFILE_COPY,residentTurn,totals,differenceMilestones,type ChapterData} from './abm-data';
+import {ACTION_NAMES,ACTION_ORDER,ACTION_RESULTS,PROFILE_COPY,residentTurn,totals,type ChapterData} from './abm-data';
+import {AbmComparisonChart} from './AbmComparisonChart';
 import timing from '../../production/abm-pages/build/timeline.json';
 import './abm-chapter.css';
 
@@ -23,7 +24,7 @@ export function AbmChapter(props:Props){
  const person=data.profiles.find(p=>p.id===selected)??data.profiles[4];
  const turn=residentTurn(data.yes,round,person.id),tx=turn.transaction,settled=tx?.status==='settled';
  const displayedRound=page===2&&beat===0?round-1:round,frame=data.yes[displayedRound],summary=data.yes[beat===0?0:settledRound].history.at(-1);
- const no=totals(data.no[compareRound]),yes=totals(data.yes[compareRound]),milestones=differenceMilestones(data);
+ const no=totals(data.no[compareRound]),yes=totals(data.yes[compareRound]);
  const nextRound=()=>{if(beat===0)go(12,1);else setRound(Math.min(12,round+1))};
  return <section className={`abm-chapter abm-page-${page}`} aria-label="小镇主体模拟">
   <div className="abm-tools"><button ref={trigger} onClick={()=>{setPlaying(false);setComparePlaying(false);setPicker(true)}}>切换居民 · {person.name}</button><button onClick={experiment}>实验台</button></div>
@@ -86,6 +87,7 @@ export function AbmChapter(props:Props){
     <button className="abm-selected-detail" onClick={()=>go(11,2)}>查看{person.name}这一轮的判断 ↗</button>
    </>}
    {page===3&&<>
+    <span className="abm-demo-label">演示模拟</span>
     <Text x={0} y={75} w={1672} align="center" size={62}>发放消费券，<span className="r-red">改变了什么？</span></Text><Text x={0} y={153} w={1672} align="center" size={29}>同一组居民、相同的初始条件，对比两种情景。</Text>
     <div className={`abm-compare-worlds ${beat===0?'at-intro':''}`}>
     <Art src={`abm/${plate[page]}`} box={[28,188,1620,377]}/>
@@ -98,18 +100,7 @@ export function AbmChapter(props:Props){
     <Group show={compareRound>0} className="abm-compare-totals">{[no,yes].map((result,i)=><div key={i}><Text x={553+i*801} y={266} w={156} align="center" size={102} line={1} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.units}/></Text><Text x={703+i*801} y={308} size={27}>件成交</Text><Text x={550+i*801} y={391} w={225} align="center" size={94} color={i?'var(--r-red)':'var(--r-blue)'}><Count value={result.revenue}/></Text><Text x={565+i*801} y={503} w={210} align="center" size={29}>累计交易额</Text></div>)}</Group>
     </div>
     <Group show={beat===0} className="abm-compare-opening"><Text x={0} y={764} w={1672} align="center" size={34}>只改变一件事：<span className="r-red">是否发放消费券</span></Text><Text x={0} y={819} w={1672} align="center" size={24} color="#786d5b">点击，观察两座小镇接下来的 12 轮</Text></Group>
-    <Group show={beat===1} className="abm-compare-progress">
-     <Text x={0} y={604} w={1672} align="center" size={35}>{compareRound===12?'12 轮结束，接下来看看差异':'让两座小镇，同步走过 12 轮'}</Text>
-     <div className="abm-paired-track"><i style={{width:`${compareRound/12*100}%`}}/>{Array.from({length:12},(_,i)=><span key={i} className={compareRound>=i+1?'passed':''} style={{left:`${(i+1)/12*100}%`}}><b>{i+1}</b></span>)}</div>
-     <Text x={0} y={770} w={1672} align="center" size={27} color="#786d5b">{compareRound===12?'再次点击，展开成交差异与关键轮次':'相同的时间推进，相同的交易规则'}</Text>
-    </Group>
-    <Group show={beat>=2&&compareRound===12} className="abm-compare-conclusion">
-     <Art src={`abm/${plate[page]}`} box={[28,565,1620,310]}/>
-     <Text x={77} y={579} size={39}>差异出现在什么时候？</Text>
-     {milestones.map((event,i)=><div key={event.round}><Text x={100+i*727} y={648} w={340} align="center" size={34}>第 {event.round} 轮</Text><Text x={100+i*727} y={702} w={340} align="center" size={27}>有券组累计多成交</Text><Text x={100+i*727} y={753} w={340} align="center" size={54} color="var(--r-red)">{event.difference} 件</Text></div>)}
-     <Text x={480} y={669} w={310} align="center" size={28}>第 6 轮：消费券到期</Text><Diagram><Ink d="M482 742 L785 742" color="var(--r-red)" arrow/></Diagram>
-     <Text x={1243} y={580} w={350} size={33} align="center">本组模拟差异</Text><Text x={1250} y={636} w={339} size={44} align="center" color="var(--r-red)">+{totals(data.yes[12]).units-totals(data.no[12]).units} 件成交</Text><Text x={1250} y={695} w={339} size={43} align="center" color="var(--r-red)">+{totals(data.yes[12]).revenue-totals(data.no[12]).revenue} 交易额</Text><Text x={1248} y={778} w={340} size={27} align="center">消费券核销 {totals(data.yes[12]).subsidy}</Text>
-    </Group>
+    <Group show={beat>=1} className="abm-chart-reveal"><AbmComparisonChart data={data} round={compareRound} emphasize={beat>=2}/></Group>
     <button className="abm-compare-replay" onClick={()=>{if(compareRound===12||beat===0){setCompareRound(0);if(beat!==1)go(13,1);setComparePlaying(true)}else setComparePlaying(!comparePlaying)}}>{beat===0?'开始对照 →':`${comparePlaying?'暂停':'同步回放'} · 第 ${compareRound} / 12 轮`}</button>
    </>}
   </div>

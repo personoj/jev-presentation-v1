@@ -4,11 +4,11 @@ import {createEconomy,settleRound,audit,discount,random,type Action,type Economy
 // Deliberately staged teaching data, not model responses or a policy-effect estimate.
 // Spread purchases across the full twelve-round presentation without changing settlement rules.
 const schedule:Record<number,Record<string,Action>>={
- 1:{R05:'B01'},2:{R07:'B01',R06:'T01'},3:{R02:'B01'},4:{R03:'B02'},
- 5:{R08:'B01'},6:{R04:'T01',R01:'B01'},7:{R06:'B01'},8:{R02:'T01'},
+ 1:{R05:'B01'},2:{R06:'T01'},3:{R02:'B01'},4:{R03:'B02'},
+ 5:{R08:'B01'},6:{R04:'T01'},7:{R06:'B01'},8:{R02:'T01'},
  9:{R03:'B01'},10:{R07:'B01'},11:{R08:'T01'},12:{R01:'B02'},
 };
-const couponAdditions:Record<number,Record<string,Action>>={4:{R04:'B02'},9:{R08:'B01'}};
+const couponAdditions:Record<number,Record<string,Action>>={2:{R07:'B01'},4:{R04:'B02'},5:{R03:'T01'},6:{R01:'B01'},9:{R08:'B01'},10:{R06:'B02'}};
 const actions:Action[]=['B01','B02','T01','wait'];
 function feasible(state:Economy,resident:Resident,action:Action){
  if(action==='wait')return true;
