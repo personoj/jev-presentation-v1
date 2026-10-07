@@ -6,7 +6,7 @@
 
 优先读取进程环境变量 `TYPESAFE_API_KEY`、`DASHSCOPE_API_KEY`、`ZENMUX_API_KEY`；缺省时只把 `C:/Users/W/Desktop/apikey.txt` 中名为 `Jev`、`DASHSCOPE_API_KEY`、`ZenMux` 的行解析成凭据，不执行文件内容。`API_KEYS_FILE` 可更改本机文件位置。密钥始终留在服务端内存，不写入项目、前端或日志。
 
-可选环境变量：`JEV_MODEL`、`ASR_MODEL`、`VIDEO_MODEL`、`ASR_WS_URL`、`PORT`。当前默认 `jev-latest`、`qwen3-asr-flash-realtime`、`minimax/minimax-h3-max`。千问默认北京兼容入口已实测可用；其他地域需要对应密钥和 WebSocket URL。
+可选环境变量：`JEV_MODEL`、`ASR_MODEL`、`VIDEO_MODEL`、`ASR_WS_URL`、`PORT`。当前默认 `jev-latest`、`qwen-audio-3.1-asr-flash-streaming`、`minimax/minimax-h3-max`。其他地域需要对应密钥和 WebSocket URL。服务读取进程环境变量，不会自动加载 `.env`；`.env.example` 仅为配置参考。
 
 ## HTTP
 
